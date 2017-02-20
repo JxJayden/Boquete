@@ -1,0 +1,891 @@
+[2017-02-20 15:58:14.150] [DEBUG] log.js - server error { ValidationError: Path `username` is required.
+    at MongooseError.ValidationError (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/error/validation.js:23:11)
+    at model.Document.invalidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1524:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1399:17
+    at validate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:706:7)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:750:9
+    at Array.forEach (native)
+    at SchemaString.SchemaType.doValidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:711:19)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1397:9
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+  errors: 
+   { username: 
+      { Path `username` is required.
+          at MongooseError.ValidatorError (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/error/validator.js:24:11)
+          at validate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:705:13)
+          at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:750:9
+          at Array.forEach (native)
+          at SchemaString.SchemaType.doValidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:711:19)
+          at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1397:9
+          at _combinedTickCallback (internal/process/next_tick.js:67:7)
+          at process._tickCallback (internal/process/next_tick.js:98:9)
+        message: 'Path `username` is required.',
+        name: 'ValidatorError',
+        properties: [Object],
+        kind: 'required',
+        path: 'username',
+        value: '',
+        reason: undefined } },
+  message: 'user validation failed',
+  name: 'ValidationError' } { request: 
+   { method: 'POST',
+     url: '/user/add',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '3f38b0cb-4812-4aba-a509-2a849a186c12',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '20',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/add',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 15:58:45.758] [INFO] log.js - normal password d
+[2017-02-20 15:58:45.760] [INFO] log.js - hash password$2a$10$IIAshPoBixzIn8R3yuoNN.T3KTQSNeMvv2wvxzO.OMoy1647509Wy
+[2017-02-20 15:58:45.776] [INFO] log.js - { __v: 0,
+  username: 'd',
+  password: '$2a$10$IIAshPoBixzIn8R3yuoNN.T3KTQSNeMvv2wvxzO.OMoy1647509Wy',
+  _id: 58aaa1b5c8952632c597719e,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T07:58:45.665Z,
+  isRoot: false,
+  limits: [] }
+[2017-02-20 16:03:59.796] [INFO] log.js -  d
+[2017-02-20 16:03:59.837] [DEBUG] log.js - { ValidationError: Path `username` is required.
+    at MongooseError.ValidationError (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/error/validation.js:23:11)
+    at model.Document.invalidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1524:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1399:17
+    at validate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:706:7)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:750:9
+    at Array.forEach (native)
+    at SchemaString.SchemaType.doValidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:711:19)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1397:9
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+  errors: 
+   { username: 
+      { Path `username` is required.
+          at MongooseError.ValidatorError (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/error/validator.js:24:11)
+          at validate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:705:13)
+          at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:750:9
+          at Array.forEach (native)
+          at SchemaString.SchemaType.doValidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:711:19)
+          at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1397:9
+          at _combinedTickCallback (internal/process/next_tick.js:67:7)
+          at process._tickCallback (internal/process/next_tick.js:98:9)
+        message: 'Path `username` is required.',
+        name: 'ValidatorError',
+        properties: [Object],
+        kind: 'required',
+        path: 'username',
+        value: '',
+        reason: undefined } },
+  message: 'user validation failed',
+  name: 'ValidationError' }
+[2017-02-20 16:05:01.657] [DEBUG] log.js - { ValidationError: Path `username` is required.
+    at MongooseError.ValidationError (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/error/validation.js:23:11)
+    at model.Document.invalidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1524:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1399:17
+    at validate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:706:7)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:750:9
+    at Array.forEach (native)
+    at SchemaString.SchemaType.doValidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:711:19)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1397:9
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+  errors: 
+   { username: 
+      { Path `username` is required.
+          at MongooseError.ValidatorError (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/error/validator.js:24:11)
+          at validate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:705:13)
+          at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:750:9
+          at Array.forEach (native)
+          at SchemaString.SchemaType.doValidate (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/schematype.js:711:19)
+          at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/mongoose/lib/document.js:1397:9
+          at _combinedTickCallback (internal/process/next_tick.js:67:7)
+          at process._tickCallback (internal/process/next_tick.js:98:9)
+        message: 'Path `username` is required.',
+        name: 'ValidatorError',
+        properties: [Object],
+        kind: 'required',
+        path: 'username',
+        value: '',
+        reason: undefined } },
+  message: 'user validation failed',
+  name: 'ValidationError' }
+[2017-02-20 16:07:10.305] [INFO] log.js - normal password k
+[2017-02-20 16:07:10.308] [INFO] log.js - hash password$2a$10$8J68u2GJ2AUYS5VLPsuiGeP7pznVp.lZmJIfHj0Ed5P2853x7cSyy
+[2017-02-20 16:09:05.840] [INFO] log.js - normal password k
+[2017-02-20 16:09:05.844] [INFO] log.js - hash password$2a$10$50PjbLKIRSAoxgzfjCeM7eANeFPRKhk32J2wF5VxSZm0N5RehzOKa
+[2017-02-20 16:09:36.332] [DEBUG] log.js - server error SyntaxError: Unexpected token , in JSON at position 1
+    at Object.parse (native)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:13:22
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:99
+    at router.post (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:6:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:326:16
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:36:12
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:331:31)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:50:11
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/app.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:99
+    at app.use (/Users/jayden/usr/github/graduation-project-cms/server/app.js:48:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32) { request: 
+   { method: 'POST',
+     url: '/user/add',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '5a5bd17f-a283-4a19-8d9a-3580b3ec08ad',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '45',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/add',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 16:09:39.112] [DEBUG] log.js - server error SyntaxError: Unexpected token , in JSON at position 1
+    at Object.parse (native)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:13:22
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:99
+    at router.post (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:6:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:326:16
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:36:12
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:331:31)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:50:11
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/app.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:99
+    at app.use (/Users/jayden/usr/github/graduation-project-cms/server/app.js:48:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32) { request: 
+   { method: 'POST',
+     url: '/user/add',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'd8e21640-6a60-4807-8693-ef45ed4dbdd6',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '46',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/add',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 16:14:06.606] [INFO] log.js - normal password k
+[2017-02-20 16:14:06.609] [INFO] log.js - hash password$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6
+[2017-02-20 16:47:02.245] [INFO] log.js - iVBORw0KGgoAAAANSUhEUgAAAFAAAAAeCAMAAACMnWmDAAAAGFBMVEUAAAAgoP8AAAAAAAAAAAAAAAAAAAAAAAARssZ9AAAACHRSTlMA/wAAAAAAACXRGJEAAAmJSURBVHjaAX4JgfYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAAAAAAAAQEBAQEBAAAAAAAAAAAAAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAQEBAQEBAAAAAAAAAAAAAQEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAABAQEBAQAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAEBAQAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAQABAQAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAQEAAAAAAAAAAAABAQAAAAAAAAABAQEBAAEBAQAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAQEBAAAAAAAAAAEBAQAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAQEBAQAAAAAAAQEBAAAAAAAAAAABAQEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAQEBAQEBAAAAAAAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAABAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxTgGEfKcoPgAAAABJRU5ErkJggg==
+[2017-02-20 16:47:02.249] [INFO] log.js - <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52 00 00 00 50 00 00 00 1e 08 03 00 00 00 8c 9d 69 83 00 00 00 18 50 4c 54 45 00 00 00 20 a0 ff 00 00 00 ... >
+[2017-02-20 16:47:19.227] [INFO] log.js - iVBORw0KGgoAAAANSUhEUgAAAFAAAAAeCAMAAACMnWmDAAAAGFBMVEUAAAAgoP8AAAAAAAAAAAAAAAAAAAAAAAARssZ9AAAACHRSTlMA/wAAAAAAACXRGJEAAAmJSURBVHjaAX4JgfYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAABAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAEBAQEBAQEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAQEBAAEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAQEBAAAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAEBAQEBAQEBAQAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAAEBAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAABAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfEQHERucoJAAAAABJRU5ErkJggg==
+[2017-02-20 16:47:19.230] [INFO] log.js - iVBORw0KGgoAAAANSUhEUgAAAFAAAAAeCAMAAACMnWmDAAAAGFBMVEUAAAAgoP8AAAAAAAAAAAAAAAAAAAAAAAARssZ9AAAACHRSTlMA/wAAAAAAACXRGJEAAAmJSURBVHjaAX4JgfYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAABAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAAEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQAAAAAAAAEBAQEBAQEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAABAQEBAQEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAQEBAAEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAAAAQEBAAAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAAAAAAAAAAEBAQEAAAEBAQEAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAQEBAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAEBAQEBAQEBAQAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAAAAAAEBAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAABAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEBAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAAAAAAAAAAAAAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfEQHERucoJAAAAABJRU5ErkJggg==
+[2017-02-20 16:48:45.812] [INFO] log.js - undefined
+[2017-02-20 16:48:45.819] [INFO] log.js - undefined
+[2017-02-20 16:51:57.915] [INFO] log.js - <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52 00 00 00 50 00 00 00 1e 08 03 00 00 00 8c 9d 69 83 00 00 00 18 50 4c 54 45 00 00 00 20 a0 ff 00 00 00 ... >
+[2017-02-20 17:22:00.596] [DEBUG] log.js - server error TypeError: db.userModel.login is not a function
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:21:45
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:99
+    at router.post (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:7:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:326:16
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:36:12
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:331:31)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:50:11
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/app.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:99
+    at app.use (/Users/jayden/usr/github/graduation-project-cms/server/app.js:48:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'f3f17676-7015-4718-bd65-6c7af515808d',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=c59b1d9a50c829246da3fbf30d70c925',
+        'content-type': 'application/x-www-form-urlencoded',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: 
+   { status: 404,
+     message: 'Not Found',
+     header: { 'set-cookie': [Object] } },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:24:35.350] [DEBUG] log.js - server error TypeError: Cannot read property 'then' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:21:32
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:99
+    at router.post (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:7:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:326:16
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:36:12
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:331:31)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:50:11
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/app.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:99
+    at app.use (/Users/jayden/usr/github/graduation-project-cms/server/app.js:48:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '3c204862-a965-4bd6-999d-6cedca042575',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: 
+   { status: 404,
+     message: 'Not Found',
+     header: { 'set-cookie': [Object] } },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:28:10.330] [INFO] log.js - undefined
+[2017-02-20 17:28:10.340] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:30:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'e53570af-e891-491f-8334-5b551e528728',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: 
+   { status: 404,
+     message: 'Not Found',
+     header: { 'set-cookie': [Object] } },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:28:45.525] [INFO] log.js - undefined
+[2017-02-20 17:28:45.536] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:30:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'a350498f-f489-4906-b5ab-c340641c89ac',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:29:40.361] [INFO] log.js - undefined
+[2017-02-20 17:29:40.371] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:30:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '709172b5-3eaf-4abb-be16-58f3edc4b407',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:30:16.029] [INFO] log.js - undefined
+[2017-02-20 17:30:16.040] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:30:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '8e8f5342-daf3-4ca7-8152-03d929efb922',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:30:16.225] [INFO] log.js - login succeed
+[2017-02-20 17:30:47.911] [INFO] log.js - undefined
+[2017-02-20 17:30:47.921] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:30:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'ab927eb4-a0dc-41bb-a601-c9b26df94b0e',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:30:48.052] [INFO] log.js - true
+[2017-02-20 17:30:48.053] [INFO] log.js - login succeed
+[2017-02-20 17:31:03.422] [INFO] log.js - undefined
+[2017-02-20 17:31:03.432] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:30:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '2dde8924-61d8-4213-86ee-65c13b92b028',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:31:03.582] [INFO] log.js - true
+[2017-02-20 17:31:03.584] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:31:03.590] [INFO] log.js - login succeed
+[2017-02-20 17:32:41.724] [INFO] log.js - true
+[2017-02-20 17:32:41.730] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:32:41.739] [INFO] log.js - login succeed
+[2017-02-20 17:32:59.433] [INFO] log.js - true
+[2017-02-20 17:32:59.437] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:32:59.442] [INFO] log.js - login succeed
+[2017-02-20 17:34:31.865] [INFO] log.js - true
+[2017-02-20 17:34:31.875] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:34:31.882] [INFO] log.js - login succeed
+[2017-02-20 17:34:47.035] [INFO] log.js - true
+[2017-02-20 17:34:47.042] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:34:47.048] [INFO] log.js - login succeed
+[2017-02-20 17:35:30.531] [INFO] log.js - undefined
+[2017-02-20 17:35:30.541] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:31:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'eb38bfad-b591-4f11-bb0e-59f3d6e95254',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:35:30.662] [INFO] log.js - true
+[2017-02-20 17:35:30.662] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:35:30.668] [INFO] log.js - login succeed
+[2017-02-20 17:36:03.320] [INFO] log.js - undefined
+[2017-02-20 17:36:03.332] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:32:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'bbf6be69-e1d0-4636-b04f-73233a7a28ea',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:36:03.472] [INFO] log.js - true
+[2017-02-20 17:36:03.473] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:36:03.478] [INFO] log.js - login succeed
+[2017-02-20 17:37:01.473] [INFO] log.js - undefined
+[2017-02-20 17:37:01.490] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:32:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '616237fd-3bee-4a90-85c8-e9b66bb157b8',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:37:01.651] [INFO] log.js - true
+[2017-02-20 17:37:01.652] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:37:01.657] [INFO] log.js - login succeed
+[2017-02-20 17:37:01.658] [INFO] log.js - { '0': 
+   { _id: 58aaa54e795ad836ca85881c,
+     username: 'ddd',
+     password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+     __v: 0,
+     _salt_bounds: 10,
+     created_at: 2017-02-20T08:14:06.515Z,
+     isRoot: false,
+     limits: [ 1, 2, 3 ] } }
+[2017-02-20 17:37:14.097] [DEBUG] log.js - server error TypeError: Cannot read property 'err' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:30:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'a05455dc-4b24-43e6-97aa-d6df3721ed47',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:37:14.269] [INFO] log.js - true
+[2017-02-20 17:37:14.270] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:37:14.273] [INFO] log.js - login succeed
+[2017-02-20 17:37:14.274] [INFO] log.js - { '0': 
+   { _id: 58aaa54e795ad836ca85881c,
+     username: 'ddd',
+     password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+     __v: 0,
+     _salt_bounds: 10,
+     created_at: 2017-02-20T08:14:06.515Z,
+     isRoot: false,
+     limits: [ 1, 2, 3 ] } }
+[2017-02-20 17:39:39.738] [INFO] log.js - true
+[2017-02-20 17:39:39.741] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:39:39.745] [INFO] log.js - login succeed
+[2017-02-20 17:39:39.745] [INFO] log.js - { '0': 
+   { _id: 58aaa54e795ad836ca85881c,
+     username: 'ddd',
+     password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+     __v: 0,
+     _salt_bounds: 10,
+     created_at: 2017-02-20T08:14:06.515Z,
+     isRoot: false,
+     limits: [ 1, 2, 3 ] } }
+[2017-02-20 17:39:39.754] [DEBUG] log.js - server error TypeError: Cannot read property 'cookies' of undefined
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:42:13
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/login.js:3:361
+    at process._tickCallback (internal/process/next_tick.js:103:7) { request: 
+   { method: 'POST',
+     url: '/user/login/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': 'dfab1645-4f58-4298-9513-0ef7fd55ca5d',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '35',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/login/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:39:58.393] [INFO] log.js - true
+[2017-02-20 17:39:58.396] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:39:58.399] [INFO] log.js - login succeed
+[2017-02-20 17:39:58.400] [INFO] log.js - { '0': 
+   { _id: 58aaa54e795ad836ca85881c,
+     username: 'ddd',
+     password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+     __v: 0,
+     _salt_bounds: 10,
+     created_at: 2017-02-20T08:14:06.515Z,
+     isRoot: false,
+     limits: [ 1, 2, 3 ] } }
+[2017-02-20 17:40:32.520] [INFO] log.js - true
+[2017-02-20 17:40:32.524] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:40:32.529] [INFO] log.js - login succeed
+[2017-02-20 17:40:32.529] [INFO] log.js - { '0': 
+   { request: { method: 'POST', url: '/user/login/', header: [Object] },
+     response: { status: 404, message: 'Not Found', header: {} },
+     app: { subdomainOffset: 2, proxy: false, env: 'development' },
+     originalUrl: '/user/login/',
+     req: '<original node req>',
+     res: '<original node res>',
+     socket: '<original node socket>' },
+  '1': [Function: next] }
+[2017-02-20 17:41:23.915] [DEBUG] log.js - server error SyntaxError: Unexpected token u in JSON at position 0
+    at Object.parse (native)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:9:23
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:3:99
+    at router.post (/Users/jayden/usr/github/graduation-project-cms/server/routes/user/add.js:6:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:326:16
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at /Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:36:12
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-router/lib/router.js:331:31)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:45:18)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:50:11
+    at next (native)
+    at step (/Users/jayden/usr/github/graduation-project-cms/server/app.js:3:191)
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:437
+    at /Users/jayden/usr/github/graduation-project-cms/server/app.js:3:99
+    at app.use (/Users/jayden/usr/github/graduation-project-cms/server/app.js:48:1)
+    at dispatch (/Users/jayden/usr/github/graduation-project-cms/server/node_modules/koa-compose/index.js:44:32) { request: 
+   { method: 'POST',
+     url: '/user/add/',
+     header: 
+      { 'cache-control': 'no-cache',
+        'postman-token': '345aaa75-15d3-491b-ba1c-7b5a5c589a4d',
+        'content-type': 'application/x-www-form-urlencoded',
+        'user-agent': 'PostmanRuntime/3.0.5',
+        accept: '*/*',
+        host: 'localhost:3000',
+        cookie: 'verify=2dc46cc359671b94a177ba97aaf3044b; sessionId=7bfb7cf52560b3171f05f8d23dec885a; limits=694f9f023f72f16389a63d3159f5796e',
+        'accept-encoding': 'gzip, deflate',
+        'content-length': '22',
+        connection: 'keep-alive' } },
+  response: { status: 404, message: 'Not Found', header: {} },
+  app: { subdomainOffset: 2, proxy: false, env: 'development' },
+  originalUrl: '/user/add/',
+  req: '<original node req>',
+  res: '<original node res>',
+  socket: '<original node socket>' }
+[2017-02-20 17:42:08.161] [INFO] log.js - normal password 1
+[2017-02-20 17:42:08.163] [INFO] log.js - hash password$2a$10$zAha81Mjr53Uj6acspy/j.44LCCRvn8gP2Puq5kgwtNaG2zBSdB32
+[2017-02-20 17:42:41.334] [DEBUG] log.js - ddds is not exist!
+[2017-02-20 17:42:41.336] [INFO] log.js - { '0': 
+   { request: { method: 'POST', url: '/user/login/', header: [Object] },
+     response: { status: 404, message: 'Not Found', header: {} },
+     app: { subdomainOffset: 2, proxy: false, env: 'development' },
+     originalUrl: '/user/login/',
+     req: '<original node req>',
+     res: '<original node res>',
+     socket: '<original node socket>' },
+  '1': [Function: next] }
+[2017-02-20 17:42:51.153] [INFO] log.js - false
+[2017-02-20 17:42:51.154] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:42:51.157] [INFO] log.js - login succeed
+[2017-02-20 17:42:51.158] [INFO] log.js - { '0': 
+   { request: { method: 'POST', url: '/user/login/', header: [Object] },
+     response: { status: 404, message: 'Not Found', header: {} },
+     app: { subdomainOffset: 2, proxy: false, env: 'development' },
+     originalUrl: '/user/login/',
+     req: '<original node req>',
+     res: '<original node res>',
+     socket: '<original node socket>' },
+  '1': [Function: next] }
+[2017-02-20 17:42:59.039] [INFO] log.js - false
+[2017-02-20 17:42:59.039] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:42:59.040] [INFO] log.js - login succeed
+[2017-02-20 17:42:59.040] [INFO] log.js - { '0': 
+   { request: { method: 'POST', url: '/user/login/', header: [Object] },
+     response: { status: 404, message: 'Not Found', header: {} },
+     app: { subdomainOffset: 2, proxy: false, env: 'development' },
+     originalUrl: '/user/login/',
+     req: '<original node req>',
+     res: '<original node res>',
+     socket: '<original node socket>' },
+  '1': [Function: next] }
+[2017-02-20 17:43:46.247] [INFO] log.js - login error undefined
+[2017-02-20 17:43:46.249] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:43:46.254] [INFO] log.js - login succeed
+[2017-02-20 17:43:46.255] [INFO] log.js - { '0': 
+   { request: { method: 'POST', url: '/user/login/', header: [Object] },
+     response: { status: 404, message: 'Not Found', header: {} },
+     app: { subdomainOffset: 2, proxy: false, env: 'development' },
+     originalUrl: '/user/login/',
+     req: '<original node req>',
+     res: '<original node res>',
+     socket: '<original node socket>' },
+  '1': [Function: next] }
+[2017-02-20 17:45:44.556] [INFO] log.js - login error undefined
+[2017-02-20 17:45:44.559] [INFO] log.js - { _id: 58aaa54e795ad836ca85881c,
+  username: 'ddd',
+  password: '$2a$10$lP2NwN6XL3Lu8vPqOM1q2uxijt2gaSIbah/GgoCjllLE7g9KROYd6',
+  __v: 0,
+  _salt_bounds: 10,
+  created_at: 2017-02-20T08:14:06.515Z,
+  isRoot: false,
+  limits: [ 1, 2, 3 ] }
+[2017-02-20 17:45:44.563] [INFO] log.js - { '0': 
+   { request: { method: 'POST', url: '/user/login/', header: [Object] },
+     response: { status: 404, message: 'Not Found', header: {} },
+     app: { subdomainOffset: 2, proxy: false, env: 'development' },
+     originalUrl: '/user/login/',
+     req: '<original node req>',
+     res: '<original node res>',
+     socket: '<original node socket>' },
+  '1': [Function: next] }
