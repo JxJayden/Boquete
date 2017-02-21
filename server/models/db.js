@@ -40,7 +40,7 @@ user_schema.statics.login = function(username, password, cb) {
         username: username
     }, (err, user) => {
         if (err || !user) {
-            logger.debug(err ? err : `${username} is not exist!`);
+            logger.error(err ? err : `${username} is not exist!`);
             return cb(err ? {
                 err: true,
                 code: -3,
@@ -54,7 +54,7 @@ user_schema.statics.login = function(username, password, cb) {
 
         bcrypt.compare(password, user.password, (error, same) => {
             if (error) {
-                logger.debug(error);
+                logger.error(error);
                 return cb({
                     err: true,
                     code: -3,
@@ -81,16 +81,14 @@ user_schema.pre('save', function(next) {
     console.log(that._salt_bounds);
     bcrypt.genSalt(that._salt_bounds, function(err, salt) {
         if (err) {
-            logger.debug(err);
+            logger.error(err);
             return next();
         }
 
         bcrypt.hash(that.password, salt, function(error, hash) {
             if (error) {
-                logger.debug(error);
+                logger.error(error);
             }
-            logger.info('normal password ' + that.password);
-            logger.info('hash password' + hash);
             that.password = hash;
 
             return next();

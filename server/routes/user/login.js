@@ -24,6 +24,7 @@ router.post('/', async function(ctx, next) {
         }).then((value) => {
             return value;
         }).catch((err) => {
+            logger.debug(err);
             return err;
         });
 
@@ -37,13 +38,15 @@ router.post('/', async function(ctx, next) {
         } else {
             let time = new Date().getTime().toString();
             ctx.cookies.set('sessionId', cry.encrypt(time));
+            ctx.cookies.set('root', cry.encrypt(loginState.isRoot));
             ctx.cookies.set('limits', cry.encrypt(JSON.stringify(loginState.limits)));
             ctx.body = {
                 err: false,
                 code: 200,
                 message: 'login succeed',
                 data: {
-                    limits: JSON.parse(loginState.limits)
+                    limits: loginState.limits,
+                    isRoot: loginState.isRoot
                 }
             }
         }
