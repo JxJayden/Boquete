@@ -3,7 +3,6 @@ const router = require('koa-router')();
 const logger = require('../../lib/log');
 const cry = require('../../lib/cryptology');
 
-
 router.post('/', async function(ctx, next) {
     let username = ctx.request.body.username;
     let password = ctx.request.body.password;
@@ -18,18 +17,16 @@ router.post('/', async function(ctx, next) {
             code: -1
         }
     } else {
-        let a = new Promise((resolve, reject) => {
+        let loginState = await new Promise((resolve, reject) => {
             db.userModel.login(username, password, (err, user) => {
-                logger.info(arguments);
-                if (err) {
-                    resolve(err);
-                } else {
-                    reject(user);
-                }
+                err ? reject(err) : resolve(user);
             })
+        }).then((value) => {
+            return value;
+        }).catch((err) => {
+            return err;
         });
 
-        let loginState = await a;
         if (loginState.err) {
             ctx.body = {
                 err: true,
@@ -46,7 +43,7 @@ router.post('/', async function(ctx, next) {
                 code: 200,
                 message: 'login succeed',
                 data: {
-                    limits: loginState.limits
+                    limits: JSON.parse(loginState.limits)
                 }
             }
         }

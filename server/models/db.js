@@ -53,8 +53,6 @@ user_schema.statics.login = function(username, password, cb) {
         }
 
         bcrypt.compare(password, user.password, (error, same) => {
-            logger.info('login error', error);
-            logger.info(user);
             if (error) {
                 logger.debug(error);
                 return cb({
@@ -65,7 +63,7 @@ user_schema.statics.login = function(username, password, cb) {
             }
             if (same) {
                 logger.info('login succeed');
-                return cb(user);
+                return cb(null, user);
             } else {
                 return cb({
                     err: true,
