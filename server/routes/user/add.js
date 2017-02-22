@@ -1,18 +1,22 @@
 const db = require('../../models/db');
 const router = require('koa-router')();
 const logger = require('../../lib/log');
-
+const cry = require('../../lib/cryptology');
 
 router.post('/', async function(ctx, next) {
-    let username = ctx.request.body.username;
-    let password = ctx.request.body.password;
-    let isRoot = ctx.request.body.root ? true : false;
-    let limits = ctx.request.body.limits ? JSON.parse(ctx.request.body.limits) : [];
-    let newUser, isHasUser, body;
+    let newUser = {
+        username: ctx.request.body.username,
+        password: ctx.request.body.password,
+        isRoot: ctx.request.body.isRoot,
+        limits: ctx.request.body.limits ? JSON.parse(ctx.request.body.limits) : []
+    };
+    let currentUserId = cry.decrypt(ctx.cookies.get('user')),
+        body;
 
     // 对 username 和 password 做判断
-    if (!username || !password) {
-        if (!password) {
+    if (!newUser.username || !newUser.password) {
+
+        if (!newUser.password) {
             body = {
                 error: true,
                 message: 'password is required',
@@ -27,7 +31,9 @@ router.post('/', async function(ctx, next) {
                 data: {}
             }
         }
-    } else if (Object.prototype.toString.call(limits) !== '[object Array]') { // 对 limits 是否为数组做判断
+
+    } else if (Object.prototype.toString.call(newUser.limits) !== '[object Array]') { // 对 limits 是否为数组做判断
+
         body = {
             error: true,
             message: 'limits must be Array',
@@ -35,34 +41,43 @@ router.post('/', async function(ctx, next) {
             data: {}
         }
     } else {
-        body = await db.userModel.count({ username: username }).exec().then((value) => {
+        body = await db.userModel.count({ username: newUser.username }).exec().then((value) => {
+
             if (value && value > 0) {
                 throw {
                     error: true,
                     message: `${username} is exist!`,
                     code: -2,
-                    data: {}
+                }
+            } else {
+                return db.userModel.findOne({ _id: currentUserId }, 'username isRoot').exec();
+            }
+        }).then((value) => {
+
+            if (!value.isRoot) {
+                throw {
+                    error: true,
+                    message: '无添加账户的权限',
+                    code: -1,
                 }
             } else {
                 return true;
             }
+        }).then(() => {
+            return new db.userModel(newUser).save();
         }).then((value) => {
-            newUser = new db.userModel({
-                username: username,
-                password: password,
-                limits: limits,
-                isRoot: isRoot
-            });
 
-            return newUser.save();
-        }).then((value) => {
             return {
                 error: false,
                 message: 'succeed',
                 code: 200,
-                data: value
+                data: {
+                    user: value
+                }
             }
+
         }).catch((err) => {
+
             logger.error(err);
             return {
                 error: true,

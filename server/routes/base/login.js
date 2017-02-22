@@ -17,7 +17,7 @@ router.post('/', async function(ctx, next) {
             code: -1
         }
     } else {
-        let loginState = await new Promise((resolve, reject) => {
+        let login = await new Promise((resolve, reject) => {
             db.userModel.login(username, password, (err, user) => {
                 err ? reject(err) : resolve(user);
             })
@@ -28,25 +28,25 @@ router.post('/', async function(ctx, next) {
             return err;
         });
 
-        if (loginState.err) {
+        if (login.err) {
             ctx.body = {
                 err: true,
-                code: loginState.code,
-                message: loginState.message,
+                code: login.code,
+                message: login.message,
                 data: {}
             }
         } else {
             let time = new Date().getTime().toString();
             ctx.cookies.set('sessionId', cry.encrypt(time));
-            ctx.cookies.set('root', cry.encrypt(loginState.isRoot));
-            ctx.cookies.set('limits', cry.encrypt(JSON.stringify(loginState.limits)));
+            ctx.cookies.set('user', cry.encrypt(String(login._id)));
+            ctx.cookies.set('limits', cry.encrypt(JSON.stringify(login.limits)));
             ctx.body = {
                 err: false,
                 code: 200,
                 message: 'login succeed',
                 data: {
-                    limits: loginState.limits,
-                    isRoot: loginState.isRoot
+                    limits: login.limits,
+                    isRoot: login.isRoot
                 }
             }
         }

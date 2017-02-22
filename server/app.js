@@ -6,10 +6,10 @@ const co = require('co');
 const convert = require('koa-convert');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
+const mount = require('mount-koa-routes');
 const bodyparser = require('koa-bodyparser')();
 const logger = require('./lib/log');
-const mount = require('mount-koa-routes');
-
+const cry = require('./lib/cryptology');
 // // website routers
 // const website_add = require('./routes/website/add');
 // const website_delete = require('./routes/website/delete');
@@ -47,7 +47,24 @@ app.use(require('koa-static')(__dirname + '/public'));
 
 app.use(async(ctx, next) => {
     const start = new Date();
-    await next();
+    if (!~ctx.url.indexOf('base')) {
+
+        let sessionTime = ctx.cookies.get('sessionId');
+        sessionTime = parseInt(cry.decrypt(sessionTime));
+        logger.info(sessionTime);
+        if (sessionTime && new Date().getTime() - sessionTime < 28800000) {
+            await next();
+        } else {
+            ctx.body = {
+                err: true,
+                message: '长时间未操作，会话已过期',
+                code: -2,
+                data: {}
+            }
+        }
+    } else {
+        await next();
+    }
     const ms = new Date() - start;
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
@@ -55,10 +72,6 @@ app.use(async(ctx, next) => {
 // routers
 mount(app, __dirname + '/routes', true);
 
-// router.use('/', index.routes(), index.allowedMethods());
-// router.use('/users', users.routes(), users.allowedMethods());
-
-app.use(router.routes(), router.allowedMethods());
 // response
 
 app.on('error', function(err, ctx) {
