@@ -45,8 +45,10 @@ app.use(require('koa-static')(__dirname + '/public'));
 //   extension: 'jade'
 // }));
 
-app.use(async(ctx, next) => {
+app.use(async function(ctx, next) {
     const start = new Date();
+    logger.info(ctx.url);
+    logger.info(!~ctx.url.indexOf('base'));
     if (!~ctx.url.indexOf('base')) {
 
         let sessionTime = ctx.cookies.get('sessionId');
@@ -74,9 +76,9 @@ mount(app, __dirname + '/routes', true);
 
 // response
 
-app.on('error', function(err, ctx) {
+app.on('error', function (err, ctx) {
     console.log(err)
-    logger.debug('server error', err, ctx);
+    logger.error('server error', err, ctx);
 });
 
 module.exports = app;
