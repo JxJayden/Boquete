@@ -1,7 +1,7 @@
-const db = require('../../models/db');
-const router = require('koa-router')();
-const logger = require('../../lib/log');
-const cry = require('../../lib/cryptology');
+const db = require('../../models/db')
+const router = require('koa-router')()
+const logger = require('../../lib/log')
+const cry = require('../../lib/cryptology')
 
 router.get('/', async function(ctx, next) {
     ctx.body = await db.userModel.find({}, '_id username limits isRoot').exec().then((value) => {
@@ -14,7 +14,7 @@ router.get('/', async function(ctx, next) {
             }
         }
     }).catch((err) => {
-        logger.error(err);
+        logger.error(err)
         return {
             err: true,
             code: -4,
@@ -24,4 +24,4 @@ router.get('/', async function(ctx, next) {
     })
 })
 
-module.exports = router;
+module.exports = router

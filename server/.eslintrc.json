@@ -23,7 +23,7 @@
         ],
         "semi": [
             "error",
-            "always"
+            "never"
         ],
         "async-await/space-after-async": 2,
         "async-await/space-after-await": 2

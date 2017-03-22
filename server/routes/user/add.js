@@ -1,7 +1,7 @@
-const db = require('../../models/db');
-const router = require('koa-router')();
-const logger = require('../../lib/log');
-const cry = require('../../lib/cryptology');
+const db = require('../../models/db')
+const router = require('koa-router')()
+const logger = require('../../lib/log')
+const cry = require('../../lib/cryptology')
 
 router.post('/', async function(ctx, next) {
     let newUser = {
@@ -9,9 +9,9 @@ router.post('/', async function(ctx, next) {
         password: ctx.request.body.password,
         isRoot: ctx.request.body.isRoot,
         limits: ctx.request.body.limits ? JSON.parse(ctx.request.body.limits) : []
-    };
+    }
     let currentUserId = cry.decrypt(ctx.cookies.get('user')),
-        body;
+        body
 
     // 对 username 和 password 做判断
     if (!newUser.username || !newUser.password) {
@@ -50,7 +50,7 @@ router.post('/', async function(ctx, next) {
                     code: -2,
                 }
             } else {
-                return db.userModel.findOne({ _id: currentUserId }, 'username isRoot').exec();
+                return db.userModel.findOne({ _id: currentUserId }, 'username isRoot').exec()
             }
         }).then((value) => {
 
@@ -61,10 +61,10 @@ router.post('/', async function(ctx, next) {
                     code: -1,
                 }
             } else {
-                return true;
+                return true
             }
         }).then(() => {
-            return new db.userModel(newUser).save();
+            return new db.userModel(newUser).save()
         }).then((value) => {
 
             return {
@@ -78,16 +78,16 @@ router.post('/', async function(ctx, next) {
 
         }).catch((err) => {
 
-            logger.error(err);
+            logger.error(err)
             return {
                 error: true,
                 message: err.message,
                 code: err.code || -3,
                 data: {}
             }
-        });
+        })
     }
-    ctx.body = body;
+    ctx.body = body
 })
 
-module.exports = router;
+module.exports = router

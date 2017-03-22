@@ -1,12 +1,12 @@
-const db = require('../../models/db');
-const router = require('koa-router')();
-const logger = require('../../lib/log');
-const cry = require('../../lib/cryptology');
+const db = require('../../models/db')
+const router = require('koa-router')()
+const logger = require('../../lib/log')
+const cry = require('../../lib/cryptology')
 
 router.delete('/', async function(ctx, next) {
-    let _id = ctx.request.body._id;
-    let currentUserId = cry.decrypt(ctx.cookies.get('user'));
-    let body;
+    let _id = ctx.request.body._id
+    let currentUserId = cry.decrypt(ctx.cookies.get('user'))
+    let body
 
     if (currentUserId) {
         body = await (db.userModel.findOne({ _id: currentUserId }, 'username isRoot')).exec().then((value) => {
@@ -18,13 +18,13 @@ router.delete('/', async function(ctx, next) {
                     code: -1
                 }
             } else {
-                return value.username;
+                return value.username
             }
 
         }).then((current) => {
 
-            logger.info(`做出删除操作的用户为 ${current}`);
-            return db.userModel.findOne({ _id: _id }).exec();
+            logger.info(`做出删除操作的用户为 ${current}`)
+            return db.userModel.findOne({ _id: _id }).exec()
 
         }).then((value) => {
 
@@ -35,7 +35,7 @@ router.delete('/', async function(ctx, next) {
                     code: -1
                 }
             } else {
-                return db.userModel.remove({ _id: _id }).exec();
+                return db.userModel.remove({ _id: _id }).exec()
             }
 
         }).then(() => {
@@ -54,12 +54,12 @@ router.delete('/', async function(ctx, next) {
                 code: err.code || -1
             }
 
-        });
+        })
 
     } else {
-        cxt.cookies.set('sessionId', null);
-        cxt.cookies.set('user', null);
-        cxt.cookies.set('limits', null);
+        cxt.cookies.set('sessionId', null)
+        cxt.cookies.set('user', null)
+        cxt.cookies.set('limits', null)
 
         body = {
             err: true,
@@ -68,7 +68,7 @@ router.delete('/', async function(ctx, next) {
         }
     }
 
-    ctx.body = body;
+    ctx.body = body
 })
 
-module.exports = router;
+module.exports = router
