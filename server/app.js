@@ -16,7 +16,7 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(async function (ctx, next) {
     const start = new Date()
 
-    if (!~ctx.url.indexOf('base')) {
+    if (utils.isLimited(ctx.url)) {
         if (utils.isTimeout(ctx.cookies.get('sessionId'))) {
             ctx.body = {
                 err: true,
@@ -25,7 +25,7 @@ app.use(async function (ctx, next) {
                 data: {}
             }
         } else {
-            if (utils.hasLimit(ctx.url, ctx.cookies.get('limits'))) {
+            if (utils.hasPermission(ctx.url, ctx.cookies.get('limits'))) {
                 await next()
             } else {
                 ctx.body = {
@@ -46,6 +46,7 @@ app.use(async function (ctx, next) {
 
 // routers
 mount(app, __dirname + '/routes', true)
+
 
 // response
 

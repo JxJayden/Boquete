@@ -1,10 +1,9 @@
 const db = require('../../models/index'),
-    router = require('koa-router')(),
     logger = require('../../lib/log'),
     cry = require('../../lib/cryptology'),
     config = require('../../lib/config')
 
-router.post('/', async function (ctx) {
+module.exports =  async function (ctx) {
     let mail = ctx.request.body.mail,
         password = ctx.request.body.password,
         verifyCode = ctx.request.body.verify,
@@ -12,6 +11,7 @@ router.post('/', async function (ctx) {
         loginUser
 
     try {
+        // 非生产环境不验证验证码，便于开发
         if (!config.production) {
             if (!verifyCode || !cookiesVerifyCode) {
                 throw {
@@ -28,11 +28,8 @@ router.post('/', async function (ctx) {
             }
         }
 
-
-
+        // 登录判断
         loginUser = await db.userModel.login(mail, password)
-
-        logger.info(loginUser)
 
         config.production && ctx.cookies.set('verify', null)
         ctx.cookies.set('sessionId', cry.encrypt(new Date().getTime().toString()))
@@ -57,6 +54,4 @@ router.post('/', async function (ctx) {
             data: {}
         }
     }
-})
-
-module.exports = router
+}

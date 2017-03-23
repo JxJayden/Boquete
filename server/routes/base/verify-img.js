@@ -1,8 +1,7 @@
-const router = require('koa-router')(),
-    cry = require('../../lib/cryptology'),
+const cry = require('../../lib/cryptology'),
     captchapng = require('captchapng')
 
-router.get('/', async function(ctx) {
+module.exports = async function (ctx) {
     let verify = parseInt(Math.random() * 9000 + 1000)
     let p = new captchapng(80, 30, verify)
     let img, imgBase64
@@ -16,6 +15,4 @@ router.get('/', async function(ctx) {
     ctx.cookies.set('verify', cry.encrypt(verify))
     ctx.type = 'image/png'
     ctx.body = imgBase64
-})
-
-module.exports = router
+}

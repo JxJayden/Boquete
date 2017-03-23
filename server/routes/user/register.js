@@ -1,9 +1,8 @@
 const db = require('../../models/index'),
-    router = require('koa-router')(),
     logger = require('../../lib/log'),
     config = require('../../lib/config')
 
-router.post('/', async function (ctx) {
+module.exports = async function (ctx) {
     let newUser = {
             mail: ctx.request.body.mail,
             username: ctx.request.body.username,
@@ -11,9 +10,10 @@ router.post('/', async function (ctx) {
             isRoot: true,
             limits: config.limits
         },
-        body
+        body, isUserExist
 
     try {
+        // 对 mail, username, password 做判断 不存在则抛出错误
         if (!newUser.mail || !newUser.username || !newUser.password) {
 
             throw {
@@ -26,9 +26,20 @@ router.post('/', async function (ctx) {
 
         }
 
-        await db.userModel.hasUserBymail(newUser.mail)
+        // 根据注册邮箱判断用户是否已经存在
+        isUserExist = await db.userModel.hasUserBymail(newUser.mail)
+
+        if (isUserExist) {
+            throw {
+                code: -3,
+                message: `The Mail: ${newUser.mail} is exist!`
+            }
+        }
+
+        // 保存新用户
         await new db.userModel(newUser).save()
 
+        // 删除一些不必要的信息
         delete newUser.password
         delete newUser.limits
         delete newUser.isRoot
@@ -50,6 +61,4 @@ router.post('/', async function (ctx) {
         }
     }
     ctx.body = body
-})
-
-module.exports = router
+}

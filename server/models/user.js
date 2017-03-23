@@ -5,8 +5,7 @@ const mongoose = require('mongoose'),
 
 const user_schema = new Schema({
     team: {
-        type: Array,
-        default: []
+        type: String
     },
     mail: {
         type: String,
@@ -90,13 +89,9 @@ user_schema.statics.hasUserBymail = function (mail) {
             mail: mail
         }).exec().then((count) => {
             if (count && count > 0) {
-                reject({
-                    err: true,
-                    message: `${mail} is exist`,
-                    code: -3
-                })
+                resolve(true)
             } else {
-                resolve()
+                resolve(false)
             }
         }).catch((err) => {
             logger.error(err)

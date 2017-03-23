@@ -3,48 +3,57 @@ const db   = require('../../models/index'),
     logger = require('../../lib/log'),
     cry    = require('../../lib/cryptology')
 
-router.put('/', async function(ctx) {
+router.delete('/', async function(ctx) {
     let _id = ctx.request.body._id
     let currentUserId = cry.decrypt(ctx.cookies.get('user'))
-    let change = ctx.request.body.change ? JSON.parse(ctx.request.body.change) : false
     let body
 
-    if (!change) {
-        body = {
-            err: true,
-            message: '没有做出更改！',
-            code: -1
-        }
-    } else if (currentUserId) {
-        body = await db.userModel.findOne({ _id: currentUserId }, 'username limits').exec().then((value) => {
-            // do some judge
-            if (value.limits) {
-                logger.info(`做出修改操作的用户为 ${value.username}`)
-                return db.userModel.update({ _id: _id }, { $set: change }).exec()
-            } else {
+    if (currentUserId) {
+        body = await (db.userModel.findOne({ _id: currentUserId }, 'username isRoot')).exec().then((value) => {
+
+            if (!value.isRoot) {
                 throw {
                     err: true,
-                    message: '没有权限！',
-                    code: -2
+                    message: '无删除权限！',
+                    code: -1
                 }
+            } else {
+                return value.username
+            }
+
+        }).then((current) => {
+
+            logger.info(`做出删除操作的用户为 ${current}`)
+            return db.userModel.findOne({ _id: _id }).exec()
+
+        }).then((value) => {
+
+            if (value.isRoot) {
+                throw {
+                    err: true,
+                    message: '无法删除超级用户！',
+                    code: -1
+                }
+            } else {
+                return db.userModel.remove({ _id: _id }).exec()
             }
 
         }).then(() => {
 
             return {
                 err: false,
-                message: 'update done',
+                message: 'delete done',
                 code: 200
             }
 
         }).catch((err) => {
 
-            logger.error(err)
             return {
                 err: true,
                 message: err.message,
-                code: err.code || -4
+                code: err.code || -1
             }
+
         })
 
     } else {
@@ -62,4 +71,4 @@ router.put('/', async function(ctx) {
     ctx.body = body
 })
 
-module.exports = router
+// module.exports = router
