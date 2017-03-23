@@ -1,6 +1,0 @@
-{
-  "devDependencies": {
-    "eslint": "latest",
-    "eslint-plugin-async-await": "latest"
-  }
-}

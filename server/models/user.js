@@ -5,6 +5,10 @@ const mongoose = require('mongoose'),
 
 const user_schema = new Schema({
     team: {
+        type: Array,
+        default: []
+    },
+    mail: {
         type: String,
         required: true
     },
@@ -35,45 +39,72 @@ const user_schema = new Schema({
     }
 })
 
-user_schema.statics.login = function (username, password, cb) {
-    this.findOne({
-        username: username
-    }, (err, user) => {
-        if (err) {
+user_schema.statics.login = function (mail, password) {
+    return new Promise((resolve, reject) => {
+        this.findOne({
+            mail: mail
+        }).exec().then((user) => {
+            let loginUser = user
+
+            if (!loginUser) {
+                reject({
+                    code: -1,
+                    message: `The mail ${mail} is not exist!`
+                })
+            }
+
+            bcrypt.compare(password, loginUser.password, (error, same) => {
+                if (error) {
+                    logger.error(error)
+                    reject({
+                        code: -3,
+                        message: error.message
+                    })
+                }
+                if (same) {
+                    resolve(loginUser)
+                } else {
+                    reject({
+                        code: -1,
+                        message: 'password is incorrect, please check it again!'
+                    })
+                }
+
+            })
+        }).catch((err) => {
             logger.error(err)
-            return cb({
-                err: true,
+            reject({
                 code: -3,
                 message: err.message
             })
-        }
-        if (!user) {
-            return cb({
-                err: true,
-                code: -1,
-                message: `${username} is not exist!`
-            })
-        }
+        })
+    })
 
-        bcrypt.compare(password, user.password, (error, same) => {
-            if (error) {
-                logger.error(error)
-                return cb({
+}
+
+user_schema.statics.hasUserBymail = function (mail) {
+    let self = this
+
+    return new Promise((resolve, reject) => {
+        self.count({
+            mail: mail
+        }).exec().then((count) => {
+            if (count && count > 0) {
+                reject({
                     err: true,
-                    code: -3,
-                    message: err.message
+                    message: `${mail} is exist`,
+                    code: -3
                 })
-            }
-            if (same) {
-                return cb(null, user)
             } else {
-                return cb({
-                    err: true,
-                    code: -1,
-                    message: 'password is incorrect, please check it again!'
-                })
+                resolve()
             }
-
+        }).catch((err) => {
+            logger.error(err)
+            reject({
+                err: true,
+                code: -4,
+                message: err.message
+            })
         })
     })
 }

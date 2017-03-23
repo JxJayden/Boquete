@@ -57,9 +57,9 @@ router.delete('/', async function(ctx) {
         })
 
     } else {
-        cxt.cookies.set('sessionId', null)
-        cxt.cookies.set('user', null)
-        cxt.cookies.set('limits', null)
+        ctx.cookies.set('sessionId', null)
+        ctx.cookies.set('user', null)
+        ctx.cookies.set('limits', null)
 
         body = {
             err: true,

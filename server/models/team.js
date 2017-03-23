@@ -11,7 +11,10 @@ const team_schema = new Schema({
         type: String,
         required: true
     },
-    users: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+    users: [{
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    }],
     feature: {
         type: Array,
         default: []
@@ -21,6 +24,24 @@ const team_schema = new Schema({
         default: Date.now
     }
 })
+
+team_schema.statics.hasTeam = function (teamname, cb) {
+    this.count({
+        name: teamname
+    }).exec().then((teamCount) => {
+        if (teamCount && teamCount > 0) {
+            cb(true)
+        } else {
+            cb(false)
+        }
+    }).catch((err) => {
+        logger.error(err)
+        throw {
+            err: true,
+            message: err.message
+        }
+    })
+}
 
 const teamModel = mongoose.model('team', team_schema)
 
