@@ -1,9 +1,8 @@
-const db = require('../../models/db')
-const router = require('koa-router')()
-const logger = require('../../lib/log')
-const cry = require('../../lib/cryptology')
+const db   = require('../../models/index'),
+    router = require('koa-router')(),
+    logger = require('../../lib/log')
 
-router.get('/', async function(ctx, next) {
+router.get('/', async function(ctx) {
     ctx.body = await db.userModel.find({}, '_id username limits isRoot').exec().then((value) => {
         return {
             err: false,

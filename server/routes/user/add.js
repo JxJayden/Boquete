@@ -1,14 +1,21 @@
-const db = require('../../models/db')
-const router = require('koa-router')()
-const logger = require('../../lib/log')
-const cry = require('../../lib/cryptology')
+const db   = require('../../models/index'),
+    router = require('koa-router')(),
+    logger = require('../../lib/log'),
+    cry    = require('../../lib/cryptology'),
+    config = require('../../config'),
+    utils  = require('../../lib/utils')
 
-router.post('/', async function(ctx, next) {
+router.post('/', async function(ctx) {
     let newUser = {
+        team: 0,
         username: ctx.request.body.username,
         password: ctx.request.body.password,
         isRoot: ctx.request.body.isRoot,
-        limits: ctx.request.body.limits ? JSON.parse(ctx.request.body.limits) : []
+        limits:  ctx.request.body.isRoot ? // 超级用户拥有所有权限
+            config.limits :
+            ctx.request.body.limits ?
+            JSON.parse(ctx.request.body.limits) :
+            []
     }
     let currentUserId = cry.decrypt(ctx.cookies.get('user')),
         body
@@ -16,23 +23,16 @@ router.post('/', async function(ctx, next) {
     // 对 username 和 password 做判断
     if (!newUser.username || !newUser.password) {
 
-        if (!newUser.password) {
-            body = {
-                error: true,
-                message: 'password is required',
-                code: -1,
-                data: {}
-            }
-        } else {
-            body = {
-                error: true,
-                message: 'username is required',
-                code: -1,
-                data: {}
-            }
+        body = {
+            error: true,
+            message: !newUser.password ?
+                'password is required' :
+                'username is required',
+            code: -1,
+            data: {}
         }
 
-    } else if (Object.prototype.toString.call(newUser.limits) !== '[object Array]') { // 对 limits 是否为数组做判断
+    } else if (!utils.isArray(newUser.limits)) { // 对 limits 是否为数组做判断
 
         body = {
             error: true,
@@ -40,13 +40,14 @@ router.post('/', async function(ctx, next) {
             code: -1,
             data: {}
         }
+
     } else {
         body = await db.userModel.count({ username: newUser.username }).exec().then((value) => {
 
             if (value && value > 0) {
                 throw {
                     error: true,
-                    message: `${username} is exist!`,
+                    message: `${newUser.username} is exist!`,
                     code: -2,
                 }
             } else {
@@ -61,6 +62,7 @@ router.post('/', async function(ctx, next) {
                     code: -1,
                 }
             } else {
+                newUser.team = value._id
                 return true
             }
         }).then(() => {

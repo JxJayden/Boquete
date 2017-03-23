@@ -1,13 +1,13 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const logger = require('../lib/log')
-
-mongoose.connect('mongodb://127.0.0.1:27017/nodecms')
-mongoose.Promise = global.Promise
-
-const Schema = mongoose.Schema
+const mongoose = require('mongoose'),
+    bcrypt = require('bcrypt'),
+    logger = require('../lib/log'),
+    Schema = mongoose.Schema
 
 const user_schema = new Schema({
+    team: {
+        type: String,
+        required: true
+    },
     username: {
         type: String,
         required: true
@@ -35,17 +35,20 @@ const user_schema = new Schema({
     }
 })
 
-user_schema.statics.login = function(username, password, cb) {
+user_schema.statics.login = function (username, password, cb) {
     this.findOne({
         username: username
     }, (err, user) => {
-        if (err || !user) {
-            logger.error(err ? err : `${username} is not exist!`)
-            return cb(err ? {
+        if (err) {
+            logger.error(err)
+            return cb({
                 err: true,
                 code: -3,
                 message: err.message
-            } : {
+            })
+        }
+        if (!user) {
+            return cb({
                 err: true,
                 code: -1,
                 message: `${username} is not exist!`
@@ -62,7 +65,6 @@ user_schema.statics.login = function(username, password, cb) {
                 })
             }
             if (same) {
-                logger.info('login succeed')
                 return cb(null, user)
             } else {
                 return cb({
@@ -76,16 +78,15 @@ user_schema.statics.login = function(username, password, cb) {
     })
 }
 
-user_schema.pre('save', function(next) {
+user_schema.pre('save', function (next) {
     var that = this
-    console.log(that._salt_bounds)
-    bcrypt.genSalt(that._salt_bounds, function(err, salt) {
+    bcrypt.genSalt(that._salt_bounds, function (err, salt) {
         if (err) {
             logger.error(err)
             return next()
         }
 
-        bcrypt.hash(that.password, salt, function(error, hash) {
+        bcrypt.hash(that.password, salt, function (error, hash) {
             if (error) {
                 logger.error(error)
             }
@@ -99,6 +100,4 @@ user_schema.pre('save', function(next) {
 
 const userModel = mongoose.model('user', user_schema)
 
-module.exports = {
-    userModel: userModel
-}
+module.exports = userModel

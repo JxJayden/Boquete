@@ -1,15 +1,15 @@
-const router = require('koa-router')()
-const logger = require('../../lib/log')
-const cry = require('../../lib/cryptology')
-const captchapng = require('captchapng')
+const router = require('koa-router')(),
+    cry = require('../../lib/cryptology'),
+    captchapng = require('captchapng')
 
-router.get('/', async function(ctx, next) {
+router.get('/', async function(ctx) {
     let verify = parseInt(Math.random() * 9000 + 1000)
     let p = new captchapng(80, 30, verify)
     let img, imgBase64
 
     p.color(0, 0, 0, 0)
     p.color(32, 160, 255, 255)
+
     img = p.getBase64()
     imgBase64 = new Buffer(img, 'base64')
 

@@ -1,9 +1,9 @@
-const db = require('../../models/db')
+const db = require('../../models/index')
 const router = require('koa-router')()
 const logger = require('../../lib/log')
 const cry = require('../../lib/cryptology')
 
-router.post('/', async function(ctx, next) {
+router.post('/', async function(ctx) {
     let username = ctx.request.body.username
     let password = ctx.request.body.password
     let verifyCode = ctx.request.body.verify

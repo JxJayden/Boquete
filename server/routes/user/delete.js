@@ -1,9 +1,9 @@
-const db = require('../../models/db')
-const router = require('koa-router')()
-const logger = require('../../lib/log')
-const cry = require('../../lib/cryptology')
+const db   = require('../../models/index'),
+    router = require('koa-router')(),
+    logger = require('../../lib/log'),
+    cry    = require('../../lib/cryptology')
 
-router.delete('/', async function(ctx, next) {
+router.delete('/', async function(ctx) {
     let _id = ctx.request.body._id
     let currentUserId = cry.decrypt(ctx.cookies.get('user'))
     let body
