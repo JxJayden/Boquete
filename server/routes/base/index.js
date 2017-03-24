@@ -1,3 +1,3 @@
 module.exports = {
-    verify_img: require('./verify-img')
+    verify_img: require('./verify_img')
 }

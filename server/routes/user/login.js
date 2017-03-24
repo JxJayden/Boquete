@@ -4,7 +4,7 @@ const db = require('../../models/index'),
     config = require('../../lib/config')
 
 module.exports =  async function (ctx) {
-    let mail = ctx.request.body.mail,
+    let username = ctx.request.body.username,
         password = ctx.request.body.password,
         verifyCode = ctx.request.body.verify,
         cookiesVerifyCode = ctx.cookies.get('verify'),
@@ -29,9 +29,9 @@ module.exports =  async function (ctx) {
         }
 
         // 登录判断
-        loginUser = await db.userModel.login(mail, password)
+        loginUser = await db.userModel.login(username, password)
 
-        config.production && ctx.cookies.set('verify', null)
+        ctx.cookies.set('verify', null)
         ctx.cookies.set('sessionId', cry.encrypt(new Date().getTime().toString()))
         ctx.cookies.set('user', cry.encrypt(String(loginUser._id)))
         ctx.cookies.set('limits', cry.encrypt(JSON.stringify(loginUser.limits)))

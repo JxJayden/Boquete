@@ -17,4 +17,7 @@ const log_config = {
 log4js.configure(log_config)
 
 const logger = log4js.getLogger(path.basename(__filename))
+/**
+ * 打印日志
+ */
 module.exports = logger

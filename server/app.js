@@ -17,7 +17,14 @@ app.use(async function (ctx, next) {
     const start = new Date()
 
     if (utils.isLimited(ctx.url)) {
-        if (utils.isTimeout(ctx.cookies.get('sessionId'))) {
+        if (!ctx.cookies.get('sessionId')) {
+            ctx.body = {
+                err: true,
+                message: '请登录',
+                code: -2,
+                data: {}
+            }
+        } else if (utils.isTimeout(ctx.cookies.get('sessionId'))) {
             ctx.body = {
                 err: true,
                 message: '长时间未操作，会话已过期',

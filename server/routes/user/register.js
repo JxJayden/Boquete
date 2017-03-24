@@ -3,23 +3,23 @@ const db = require('../../models/index'),
     config = require('../../lib/config')
 
 module.exports = async function (ctx) {
-    let newUser = {
-            mail: ctx.request.body.mail,
-            username: ctx.request.body.username,
-            password: ctx.request.body.password,
+    let
+        username = ctx.request.body.username,
+        password = ctx.request.body.password,
+        newUser = {
+            username: username,
+            password: password,
             isRoot: true,
             limits: config.limits
         },
         body, isUserExist
 
     try {
-        // 对 mail, username, password 做判断 不存在则抛出错误
-        if (!newUser.mail || !newUser.username || !newUser.password) {
+        // 对 username, password 做判断 不存在则抛出错误
+        if (!username || !password) {
 
             throw {
-                message: !newUser.mail ?
-                    'mail is required' :
-                    !newUser.username ?
+                message: !username ?
                     'username is required' : 'password is required',
                 code: -1
             }
@@ -27,12 +27,12 @@ module.exports = async function (ctx) {
         }
 
         // 根据注册邮箱判断用户是否已经存在
-        isUserExist = await db.userModel.hasUserBymail(newUser.mail)
+        isUserExist = await db.userModel.hasUser(username)
 
         if (isUserExist) {
             throw {
                 code: -3,
-                message: `The Mail: ${newUser.mail} is exist!`
+                message: `The username: ${username} is exist!`
             }
         }
 

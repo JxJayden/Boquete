@@ -4,13 +4,6 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema
 
 const user_schema = new Schema({
-    team: {
-        type: String
-    },
-    mail: {
-        type: String,
-        required: true
-    },
     username: {
         type: String,
         required: true
@@ -38,17 +31,17 @@ const user_schema = new Schema({
     }
 })
 
-user_schema.statics.login = function (mail, password) {
+user_schema.statics.login = function (username, password) {
     return new Promise((resolve, reject) => {
         this.findOne({
-            mail: mail
+            username: username
         }).exec().then((user) => {
             let loginUser = user
 
             if (!loginUser) {
                 reject({
                     code: -1,
-                    message: `The mail ${mail} is not exist!`
+                    message: `The user ${username} is not exist!`
                 })
             }
 
@@ -81,13 +74,14 @@ user_schema.statics.login = function (mail, password) {
 
 }
 
-user_schema.statics.hasUserBymail = function (mail) {
+user_schema.statics.hasUser = function (username) {
     let self = this
 
     return new Promise((resolve, reject) => {
         self.count({
-            mail: mail
+            username: username
         }).exec().then((count) => {
+            logger.info(count)
             if (count && count > 0) {
                 resolve(true)
             } else {
@@ -100,6 +94,25 @@ user_schema.statics.hasUserBymail = function (mail) {
                 code: -4,
                 message: err.message
             })
+        })
+    })
+}
+
+user_schema.statics.isRoot = function (userId) {
+    let self = this
+
+    return new Promise((resolve, reject) => {
+        self.findOne({
+            _id: userId
+        }, {username: 1, isRoot: 1}).exec().then((value) => {
+            if (value && value.isRoot) {
+                resolve(true)
+            } else {
+                resolve(false)
+            }
+        }).catch((err) => {
+            logger.error(err)
+            reject(false)
         })
     })
 }
