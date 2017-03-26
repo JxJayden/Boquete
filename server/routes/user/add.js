@@ -3,37 +3,46 @@
  */
 const db = require('../../models/index'),
     logger = require('../../lib/log'),
-    cry = require('../../lib/cryptology')
+    cry = require('../../lib/cryptology'),
+    utils = require('../../lib/utils')
 
 module.exports = async function (ctx) {
-    let userId = ctx.cookies.get('user') ? cry.decrypt(ctx.cookies.get('user')) : null,
-        teamname = ctx.request.body.teamname,
-        newTeam = {
-            name: teamname,
-            owner: userId,
-            users: []
-        },
-        body, isTeamExist, user
+    let currentUserId = cry.decrypt(ctx.cookies.get('user')),
+        username = ctx.request.body.username,
+        password = ctx.request.body.password,
+        limits = ctx.request.body.limits,
+        isRoot = ctx.request.body.isRoot ? ctx.request.body.isRoot : false,
+        body, currentUser
 
     try {
-        // 对 userId 做判断
-        if (!userId) {
-            throw {
-                message: '请先登录',
-                code: -1
-            }
+        if (!username) throw {
+            code: -3,
+            message: '请输入新管理员的用户名'
         }
-        if (!teamname) {
+
+        if (!password) throw {
+            code: -3,
+            message: '请输入新管理员的密码'
+        }
+
+        if (!limits) {
             throw {
                 code: -3,
-                message: '请输入团队名称'
+                message: '请选择新管理员的权限'
             }
+        } else {
+            limits = JSON.parse(limits)
+        }
+
+        if (!utils.isArray(limits)) throw {
+            code: -3,
+            message: 'TypeError: limits must be Array'
         }
 
         await db.userModel.findOne({
-            _id: userId
-        }).exec().then((value) => {
-            user = value
+            _id: currentUserId
+        }, ).exec().then((value) => {
+            currentUser = value
         }).catch((err) => {
             throw {
                 code: -4,
@@ -41,39 +50,30 @@ module.exports = async function (ctx) {
             }
         })
 
-        if (user.team) {
+        if (!currentUser.isRoot) {
             throw {
-                message: '已经创建了团队',
+                message: '无添加新用户权限',
                 code: -1
             }
         }
 
-        // 根据团队名称判断团队是否已经存在
-        isTeamExist = await db.teamModel.hasTeam(teamname)
+        await new db.userModel({
+            username: username,
+            password: password,
+            limits: limits,
+            isRoot: isRoot
+        }).save()
 
-        if (isTeamExist) {
-            throw {
-                code: -3,
-                message: `The Team name: ${teamname} is exist!`
-            }
-        }
-
-        newTeam.users.push(user._id)
-
-        await new db.teamModel(newTeam).save()
-        await db.userModel.update({
-            _id: user._id
-        }, {
-            $set: {
-                team: teamname
-            }
-        })
         body = {
             error: false,
             message: 'succeed',
             code: 200,
             data: {
-                team: newTeam
+                user: {
+                    username: username,
+                    limits: limits,
+                    isRoot: isRoot
+                }
             }
         }
     } catch (err) {
