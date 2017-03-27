@@ -81,7 +81,6 @@ user_schema.statics.hasUser = function (username) {
         self.count({
             username: username
         }).exec().then((count) => {
-            logger.info(count)
             if (count && count > 0) {
                 resolve(true)
             } else {

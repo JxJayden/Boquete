@@ -7,12 +7,11 @@ const db = require('../../models/index'),
     utils = require('../../lib/utils')
 
 module.exports = async function (ctx) {
-    let currentUserId = cry.decrypt(ctx.cookies.get('user')),
-        username = ctx.request.body.username,
+    let  username = ctx.request.body.username,
         password = ctx.request.body.password,
         limits = ctx.request.body.limits,
         isRoot = ctx.request.body.isRoot ? ctx.request.body.isRoot : false,
-        body, currentUser
+        body, hasUserName
 
     try {
         if (!username) throw {
@@ -39,22 +38,11 @@ module.exports = async function (ctx) {
             message: 'TypeError: limits must be Array'
         }
 
-        await db.userModel.findOne({
-            _id: currentUserId
-        }, ).exec().then((value) => {
-            currentUser = value
-        }).catch((err) => {
-            throw {
-                code: -4,
-                message: err.message
-            }
-        })
+        hasUserName = await db.userModel.hasUser(username)
 
-        if (!currentUser.isRoot) {
-            throw {
-                message: '无添加新用户权限',
-                code: -1
-            }
+        if (hasUserName) throw {
+            code: -2,
+            message: `The username: ${username} is exist`
         }
 
         await new db.userModel({

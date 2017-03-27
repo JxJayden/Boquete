@@ -1,7 +1,8 @@
 /* eslint no-console: "off" */
 const config = require('./config'),
     cry = require('./cryptology'),
-    LIMIT_RE = new RegExp(`(${config.limits.join('|')})`, 'i')
+    LIMIT_RE = new RegExp(`(${config.limits.join('|')})`, 'i'),
+    toString = Object.prototype.toString
 
 /**
  * 判断是否为数组
@@ -9,7 +10,16 @@ const config = require('./config'),
  * @returns {Boolean}
  */
 function isArray(val) {
-    return Array.isArray(val) || Object.prototype.toString.call(val) === '[object Array]'
+    return Array.isArray(val) || toString.call(val) === '[object Array]'
+}
+
+/**
+ * 判断是否为数组
+ * @param {Object} val
+ * @returns
+ */
+function isObject(val) {
+    return toString.call(val) === '[object Object]'
 }
 
 /**
@@ -52,17 +62,10 @@ function isTimeout(sessionTime) {
     }
 }
 
-/**
- * 根据传进的参数判断是否为空，返回对应的信息。用于 HTTP 请求的参数判断
- * @param {Object} obj
- */
-function checkIfParamNull(...args) {
-
-}
 module.exports = {
     isArray: isArray,
+    isObject: isObject,
     hasPermission: hasPermission,
     isTimeout: isTimeout,
-    isLimited: isLimited,
-    checkIfParamNull: checkIfParamNull
+    isLimited: isLimited
 }

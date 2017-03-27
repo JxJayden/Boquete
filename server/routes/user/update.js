@@ -1,64 +1,55 @@
-const db   = require('../../models/index'),
+const db = require('../../models/index'),
     logger = require('../../lib/log'),
-    cry    = require('../../lib/cryptology')
+    utils = require('../../lib/utils')
 
-module.exports =  async function(ctx) {
+module.exports = async function (ctx) {
     let _id = ctx.request.body._id
-    let currentUserId = cry.decrypt(ctx.cookies.get('user'))
     let change = ctx.request.body.change ? JSON.parse(ctx.request.body.change) : false
     let body
 
-    if (!change) {
-        body = {
-            err: true,
-            message: '没有做出更改！',
-            code: -1
+    try {
+        if (!_id) {
+            throw {
+                message: '没有用户 ID',
+                code: -4
+            }
         }
-    } else if (currentUserId) {
-        body = await db.userModel.findOne({ _id: currentUserId }, 'username limits').exec().then((value) => {
-            // do some judge
-            if (value.limits) {
-                logger.info(`做出修改操作的用户为 ${value.username}`)
-                return db.userModel.update({ _id: _id }, { $set: change }).exec()
-            } else {
-                throw {
-                    err: true,
-                    message: '没有权限！',
-                    code: -2
+
+        if (!change && !utils.isObject(change)) {
+            throw {
+                message: '没有做出改变',
+                code: -4
+            }
+        }
+
+        await db.userModel.update({
+            _id: _id
+        }, {
+            $set: change
+        }).exec().then((value) => {
+            body = {
+                err: false,
+                code: 200,
+                message: '修改用户信息成功',
+                data: {
+                    value
                 }
             }
-
-        }).then(() => {
-
-            return {
-                err: false,
-                message: 'update done',
-                code: 200
-            }
-
         }).catch((err) => {
-
-            logger.error(err)
-            return {
-                err: true,
+            throw {
                 message: err.message,
-                code: err.code || -4
+                code: -3
             }
         })
 
-    } else {
-        ctx.cookies.set('sessionId', null)
-        ctx.cookies.set('user', null)
-        ctx.cookies.set('limits', null)
-
+    } catch (err) {
+        logger.error(err)
         body = {
             err: true,
-            message: '会话过期，请登录重试',
-            code: -2
+            code: err.code || -4,
+            message: err.message,
+            data: {}
         }
     }
-
     ctx.body = body
 }
-
-
