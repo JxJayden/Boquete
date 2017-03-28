@@ -25,8 +25,7 @@ export default {
     },
     computed: {
         username () {
-            const username = localStorage.getItem('ms_username')
-            return username ? username : this.name
+            return localStorage.getItem('username') || this.name
         }
     },
     methods: {

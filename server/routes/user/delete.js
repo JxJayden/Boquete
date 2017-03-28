@@ -20,6 +20,10 @@ module.exports = async function (ctx) {
             _id: _id,
             isRoot: false
         }).exec().then((value) => {
+            logger.info(value)
+            if (value.result.ok == 1 && value.result.n == 0) throw {
+                message: '无该用户'
+            }
             body = {
                 err: false,
                 message: '删除成功',

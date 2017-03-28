@@ -40,6 +40,7 @@ module.exports =  async function (ctx) {
             code: 200,
             message: 'login succeed',
             data: {
+                username: loginUser.username,
                 limits: loginUser.limits,
                 isRoot: loginUser.isRoot
             }

@@ -28,7 +28,6 @@
                     <el-button type="primary"
                                @click="submitForm('loginForm')">登录</el-button>
                 </div>
-                <!--<p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p>-->
             </el-form>
         </div>
     </div>
@@ -60,7 +59,7 @@ export default {
     },
     methods: {
         submitForm(formName) {
-            let loginForm = this.loginForm
+            const loginForm = this.loginForm
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     this.login(loginForm.username, loginForm.password, loginForm.verifycode, formName)
@@ -68,7 +67,7 @@ export default {
                     console.log('error submit!!')
                     return false
                 }
-            });
+            })
         },
         login(username, password, verifycode, formName) {
             this.axios.post(api.login, {
@@ -76,17 +75,18 @@ export default {
                 password: password,
                 verifycode: verifycode
             }).then((res) => {
-                let data = res.data
+                const data = res.data
                 if (data.err) {
                     throw data.message
                 } else {
-                    this.$router.push('/readme')
+                    localStorage.setItem('username', data.data.username)
+                    this.$router.push('/home')
                 }
             }).catch((err) => {
                 this.$notify.error({
                     title: '登录失败',
                     message: err
-                });
+                })
                 this.resetForm(formName)
             })
         },
