@@ -18,7 +18,6 @@
 </template>
 
 <script>
-    import axios from 'axios';
     import Datasource from 'vue-datasource';
     export default {
         data: function(){

@@ -1,15 +1,17 @@
 {
-    "env": {
-        "node": true,
-        "commonjs": true,
-        "es6": true
+    "extends": "vue",
+    "globals": {
+        "localStorage": true
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 2017,
-        "sourceType": "module"
-    },
+    "plugins": [
+        "vue"
+    ],
     "rules": {
+        "space-before-function-paren": ["error", {
+            "anonymous": "never",
+            "named": "never",
+            "asyncArrow": "ignore"
+        }],
         "indent": [
             "error",
             4
@@ -26,6 +28,5 @@
             "error",
             "never"
         ]
-    },
-    "plugins": ["async-await"]
+    }
 }

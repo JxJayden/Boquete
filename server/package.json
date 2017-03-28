@@ -37,5 +37,5 @@
     "eslint-config-standard": "^7.1.0",
     "eslint-plugin-async-await": "^0.0.0",
     "nodemon": "^1.8.1"
-  },
+  }
 }
