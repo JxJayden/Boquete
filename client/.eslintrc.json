@@ -3,12 +3,6 @@
     "plugins": [
         "vue"
     ],
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "html",
-        "vue"
-    ],
     "rules": {
         "indent": [
             "error",
