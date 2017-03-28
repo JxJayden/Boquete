@@ -6,13 +6,13 @@ const db = require('../../models/index'),
 module.exports =  async function (ctx) {
     let username = ctx.request.body.username,
         password = ctx.request.body.password,
-        verifyCode = ctx.request.body.verify,
+        verifyCode = ctx.request.body.verifycode,
         cookiesVerifyCode = ctx.cookies.get('verify'),
         loginUser
 
     try {
         // 非生产环境不验证验证码，便于开发
-        if (!config.production) {
+        if (config.production) {
             if (!verifyCode || !cookiesVerifyCode) {
                 throw {
                     message: '无验证码',

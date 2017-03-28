@@ -12,7 +12,7 @@ export default new Router({
         {
             path: '/readme',
             component: resolve => require(['../components/common/Home.vue'], resolve),
-            children:[
+            children: [
                 {
                     path: '/',
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
@@ -54,6 +54,6 @@ export default new Router({
         {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
-        },
+        }
     ]
 })

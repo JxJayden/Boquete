@@ -1,14 +1,14 @@
 {
-    "env": {
-        "node": true,
-        "commonjs": true,
-        "es6": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 2017,
-        "sourceType": "module"
-    },
+    "extends": "vue",
+    "plugins": [
+        "vue"
+    ],
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "html",
+        "vue"
+    ],
     "rules": {
         "indent": [
             "error",
@@ -26,6 +26,5 @@
             "error",
             "never"
         ]
-    },
-    "plugins": ["async-await"]
+    }
 }
