@@ -1,7 +1,9 @@
 {
   "name": "cms-server",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
+  "author": "JxJayden <jxdjayden@gamil.com>",
   "scripts": {
     "start": "./node_modules/.bin/nodemon bin/run",
     "koa": "./node_modules/.bin/runkoa bin/www",
@@ -36,11 +38,4 @@
     "eslint-plugin-async-await": "^0.0.0",
     "nodemon": "^1.8.1"
   },
-  "apidoc": {
-    "name": "cms-server",
-    "version": "0.1.0",
-    "description": "A CMS server",
-    "url": "https://api.cms.jxdjayden.com/v1",
-    "title": "CMS server api"
-  }
 }

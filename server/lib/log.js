@@ -6,7 +6,7 @@ const log_config = {
     }, {
         type: 'DateFile',
         level: 'DEBUG',
-        filename: `${__dirname}/../../logs/node-cms-server`,
+        filename: `${__dirname}/../../logs/server/api`,
         pattern: '-yyyy-MM-dd.log',
         alwaysIncludePattern: true,
         maxLogSize: 20480,
