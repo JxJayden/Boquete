@@ -4,7 +4,7 @@ const db = require('../../models/index'),
 
 module.exports = async function (ctx) {
     let _id = ctx.request.body._id
-    let change = ctx.request.body.change ? JSON.parse(ctx.request.body.change) : false
+    let change = ctx.request.body.change
     let body
 
     try {
@@ -15,11 +15,15 @@ module.exports = async function (ctx) {
             }
         }
 
-        if (!change && !utils.isObject(change)) {
+        if (!change) {
             throw {
                 message: '没有做出改变',
                 code: -4
             }
+        }
+
+        if (!utils.isObject(change)) {
+            change = JSON.parse(change)
         }
 
         await db.userModel.update({

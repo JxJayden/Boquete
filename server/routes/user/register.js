@@ -54,7 +54,7 @@ module.exports = async function (ctx) {
     } catch (err) {
         logger.error(err)
         body = {
-            error: true,
+            err: true,
             message: err.message,
             code: err.code || -3,
             data: {}

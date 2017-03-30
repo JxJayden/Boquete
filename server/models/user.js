@@ -103,7 +103,10 @@ user_schema.statics.isRoot = function (userId) {
     return new Promise((resolve, reject) => {
         self.findOne({
             _id: userId
-        }, {username: 1, isRoot: 1}).exec().then((value) => {
+        }, {
+            username: 1,
+            isRoot: 1
+        }).exec().then((value) => {
             if (value && value.isRoot) {
                 resolve(true)
             } else {
@@ -133,6 +136,38 @@ user_schema.pre('save', function (next) {
             return next()
         })
     })
+})
+
+user_schema.pre('update', function (next) {
+    var that = this
+    if (that._update.$set.password) {
+        let newPass = that._update.$set.password
+        that.findOne({
+            _id: that._conditions._id
+        }, {
+            _salt_bounds: 1
+        }).exec().then(value => {
+            bcrypt.genSalt(value._salt_bounds, function (err, salt) {
+                if (err) {
+                    logger.error(err)
+                    return next()
+                }
+
+                bcrypt.hash(newPass, salt, function (error, hash) {
+                    if (error) {
+                        logger.error(error)
+                    }
+                    that._update.$set.password = hash
+                    return next()
+                })
+            })
+        }).catch(err => {
+            throw err
+        })
+    } else {
+        return next()
+    }
+
 })
 
 
