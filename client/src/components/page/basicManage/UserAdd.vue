@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="title"
+    <el-dialog :title="title"
                ref="addUserDialog"
                @close="handleClose"
                @open="resetUserForm"
@@ -142,7 +142,7 @@ export default {
                 this.user.limits = []
             }
         },
-        submitUserForm(cb) {
+        submitUserForm() {
             this.$refs.userForm.validate((valid) => {
                 if (valid) {
                     this.addUser(this.user)

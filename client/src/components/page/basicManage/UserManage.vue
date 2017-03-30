@@ -12,8 +12,7 @@
                   :empty-text="userTableEmptyText"
                   style="width: 100%">
             <el-table-column prop="username"
-                             label="名称"
-                             width="150">
+                             label="名称">
             </el-table-column>
             <el-table-column label="权限"
                              align="center">
@@ -28,15 +27,18 @@
                              label="超级管理员"
                              :formatter="formatRoot">
             </el-table-column>
-            <el-table-column label="操作"
-                             width="180">
+            <el-table-column label="操作">
                 <template scope="scope">
                     <el-button size="small"
-                               :disabled="!userIsRoot"
-                               @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                               :disabled="scope.row.isRoot"
+                               @click="handleEdit(scope.row)">编辑</el-button>
+                    <el-button size="small"
+                               :disabled="scope.row.isRoot"
+                               type="warning"
+                               @click="handleEditPass(scope.row._id)">修改密码</el-button>
                     <el-button size="small"
                                type="danger"
-                               :disabled="!userIsRoot"
+                               :disabled="scope.row.isRoot"
                                @click="handleDelete(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>
@@ -47,20 +49,29 @@
                    class="user-add-btn"
                    :disabled="!userIsRoot"
                    @click="showAddUserDialog = true">添加新的管理员</el-button>
-        <v-user-add title="提示"
+
+        <v-user-add title="添加新的管理员"
                     :dialogCloseCb="handleAddUserDialogCb"
                     :addUser="addUser"
                     :show="showAddUserDialog"></v-user-add>
+        <v-user-edit title="修改管理员信息"
+                     :userInfo="EditUserInfo"
+                     :dialogCloseCb="handleEditUserDialogCb"
+                     :editUser="editUser"
+                     :show="showEditUserDialog"></v-user-edit>
     </div>
 </template>
 
 <script>
 import vUserAdd from './UserAdd'
+import vUserEdit from './UserEdit'
 import { api, tag } from '../../../lib/config'
+
 const user = JSON.parse(localStorage.getItem('user'))
+
 export default {
     components: {
-        vUserAdd
+        vUserAdd, vUserEdit
     },
     data() {
         return {
@@ -68,7 +79,9 @@ export default {
             userTableEmptyText: '',
             userData: null,
             limitTag: tag,
-            showAddUserDialog: false
+            showAddUserDialog: false,
+            showEditUserDialog: false,
+            EditUserInfo: null
         }
     },
     mounted() {
@@ -78,9 +91,7 @@ export default {
         formatRoot(row, column) {
             return row.isRoot ? '是' : '否'
         },
-        handleEdit(index, row) {
-            this.$message('编辑第' + (index + 1) + '行')
-        },
+
         handleDelete(_id) {
             this.$confirm('此操作将永久删除该管理员, 是否继续？', '提示', {
                 confirmButtonText: '确定',
@@ -143,7 +154,7 @@ export default {
                 limits: user.limits,
                 isRoot: user.isRoot
             }).then(res => {
-                if (!res.data.error) {
+                if (!res.data.err) {
                     this.$notify({
                         title: '成功',
                         message: '添加新的管理员成功',
@@ -156,6 +167,76 @@ export default {
             }).catch(err => {
                 this.$notify.error({
                     title: '添加失败',
+                    message: err
+                })
+            })
+        },
+        handleEdit(user) {
+            this.EditUserInfo = user
+            this.showEditUserDialog = true
+        },
+        handleEditUserDialogCb() {
+            this.showEditUserDialog = false
+        },
+        editUser(isChange, userId, change) {
+            if (!isChange) {
+                return false
+            } else {
+                this.axios.put(api.user, {
+                    _id: userId,
+                    change: change
+                }).then(res => {
+                    if (!res.data.err) {
+                        this.$notify({
+                            title: '成功',
+                            message: '编辑管理员信息成功',
+                            type: 'success'
+                        })
+                        this.getUserList()
+                    } else {
+                        throw res.data.message
+                    }
+                }).catch(err => {
+                    this.$notify.error({
+                        title: '编辑失败',
+                        message: err
+                    })
+                })
+            }
+        },
+        handleEditPass(userId) {
+            this.$prompt('请输入新密码', '修改密码', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                inputPattern: /^.{6,15}$/,
+                inputErrorMessage: '密码长度在 6 到 15 个字符'
+            }).then(({ value }) => {
+                this.editUserPass(userId, value)
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '取消输入'
+                })
+            })
+        },
+        editUserPass(userId, newPass) {
+            this.axios.put(api.user, {
+                _id: userId,
+                change: {
+                    password: newPass
+                }
+            }).then(res => {
+                if (res.data.err) {
+                    throw res.data.message
+                }
+                this.$notify({
+                    type: 'success',
+                    title: '成功',
+                    message: '修改密码成功'
+                })
+            }).catch(err => {
+                this.$notify.error({
+                    title: '修改失败',
                     message: err
                 })
             })

@@ -48,7 +48,7 @@ module.exports = async function (ctx) {
         }).save()
 
         body = {
-            error: false,
+            err: false,
             message: 'succeed',
             code: 200,
             data: {
@@ -62,7 +62,7 @@ module.exports = async function (ctx) {
     } catch (err) {
         logger.error(err)
         body = {
-            error: true,
+            err: true,
             message: err.message,
             code: err.code || -3,
             data: {}

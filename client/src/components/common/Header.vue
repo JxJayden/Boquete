@@ -35,6 +35,7 @@ export default {
             }
         },
         logout() {
+            localStorage.clear()
             this.axios.get(api.logout).then((res) => {
                 this.$router.push('/login')
             })
