@@ -79,7 +79,8 @@ export default {
                 if (data.err) {
                     throw data.message
                 } else {
-                    localStorage.setItem('username', data.data.username)
+                    localStorage.setItem('username', data.data.user.username)
+                    localStorage.setItem('user', JSON.stringify(data.data.user))
                     this.$router.push('/home')
                 }
             }).catch((err) => {

@@ -31,6 +31,7 @@
                            off-color="#ff4949"
                            on-text="是"
                            off-text="否"
+                           disabled
                            @change="handleCheckRootChange">
                 </el-switch>
             </el-form-item>

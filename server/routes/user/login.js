@@ -3,7 +3,7 @@ const db = require('../../models/index'),
     cry = require('../../lib/cryptology'),
     config = require('../../lib/config')
 
-module.exports =  async function (ctx) {
+module.exports = async function (ctx) {
     let username = ctx.request.body.username,
         password = ctx.request.body.password,
         verifyCode = ctx.request.body.verifycode,
@@ -40,9 +40,13 @@ module.exports =  async function (ctx) {
             code: 200,
             message: 'login succeed',
             data: {
-                username: loginUser.username,
-                limits: loginUser.limits,
-                isRoot: loginUser.isRoot
+                user: {
+                    _id: loginUser._id,
+                    username: loginUser.username,
+                    limits: loginUser.limits,
+                    isRoot: loginUser.isRoot
+                }
+
             }
         }
     } catch (err) {

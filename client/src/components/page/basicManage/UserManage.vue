@@ -8,6 +8,8 @@
         </div>
         <el-table :data="userData"
                   border
+                  ref="userTable"
+                  :empty-text="userTableEmptyText"
                   style="width: 100%">
             <el-table-column prop="username"
                              label="名称"
@@ -30,9 +32,11 @@
                              width="180">
                 <template scope="scope">
                     <el-button size="small"
+                               :disabled="!userIsRoot"
                                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="small"
                                type="danger"
+                               :disabled="!userIsRoot"
                                @click="handleDelete(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>
@@ -41,6 +45,7 @@
                    icon="plus"
                    size="large"
                    class="user-add-btn"
+                   :disabled="!userIsRoot"
                    @click="showAddUserDialog = true">添加新的管理员</el-button>
         <v-user-add title="提示"
                     :dialogCloseCb="handleAddUserDialogCb"
@@ -52,12 +57,15 @@
 <script>
 import vUserAdd from './UserAdd'
 import { api, tag } from '../../../lib/config'
+const user = JSON.parse(localStorage.getItem('user'))
 export default {
     components: {
         vUserAdd
     },
     data() {
         return {
+            userIsRoot: user.isRoot,
+            userTableEmptyText: '',
             userData: null,
             limitTag: tag,
             showAddUserDialog: false
@@ -108,9 +116,21 @@ export default {
             })
         },
         getUserList() {
-            this.axios.get(api.user).then((res) => {
-                this.userData = res.data.data.value
-            })
+            if (!user.isRoot) {
+                this.userTableEmptyText = '无访问权限'
+            } else {
+                this.axios.get(api.user).then(res => {
+                    if (res.data.error) {
+                        this.userTableEmptyText = res.data.message
+                    }
+                    this.userData = res.data.data.value
+                }).catch(err => {
+                    this.$notify.error({
+                        title: '获取用户信息失败',
+                        message: err
+                    })
+                })
+            }
         },
         handleAddUserDialogCb() {
             this.showAddUserDialog = false
