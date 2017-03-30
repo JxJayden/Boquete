@@ -15,5 +15,5 @@ export const tag = {
 
 export const userLimits = {
     tag: tag,
-    value: ['user', 'product', 'pages', 'file', 'website']
+    value: ['product', 'pages', 'file', 'website']
 }
