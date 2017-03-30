@@ -7,7 +7,7 @@ const db = require('../../models/index'),
     utils = require('../../lib/utils')
 
 module.exports = async function (ctx) {
-    let  username = ctx.request.body.username,
+    let username = ctx.request.body.username,
         password = ctx.request.body.password,
         limits = ctx.request.body.limits,
         isRoot = ctx.request.body.isRoot ? ctx.request.body.isRoot : false,
@@ -29,13 +29,8 @@ module.exports = async function (ctx) {
                 code: -3,
                 message: '请选择新管理员的权限'
             }
-        } else {
+        } else if (!utils.isArray(limits)) {
             limits = JSON.parse(limits)
-        }
-
-        if (!utils.isArray(limits)) throw {
-            code: -3,
-            message: 'TypeError: limits must be Array'
         }
 
         hasUserName = await db.userModel.hasUser(username)

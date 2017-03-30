@@ -6,7 +6,6 @@
                 <el-breadcrumb-item>管理员设置</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-
         <el-table :data="userData"
                   border
                   style="width: 100%">
@@ -27,17 +26,6 @@
                              label="超级管理员"
                              :formatter="formatRoot">
             </el-table-column>
-            <!--<el-table-column prop="isRoot"
-                                     label="超级管理员"
-                                     :formatter="formatRoot"
-                                     :filters="[{ text: '是', value: 'true' }, { text: '否', value: 'false' }]"
-                                     :filter-method="filterTag">
-                        <template scope="scope">
-                            <el-tag :type="scope.row.tag === '是' ? 'primary' : 'success'"
-                                    close-transition>{{scope.row.tag}}
-                            </el-tag>
-                        </template>
-                    </el-table-column>-->
             <el-table-column label="操作"
                              width="180">
                 <template scope="scope">
@@ -49,21 +37,30 @@
                 </template>
             </el-table-column>
         </el-table>
-        <!--<div class="pagination">
-                <el-pagination layout="prev, pager, next"
-                                :total="1000">
-                </el-pagination>
-            </div>-->
+        <el-button type="primary"
+                   icon="plus"
+                   size="large"
+                   class="user-add-btn"
+                   @click="showAddUserDialog = true">添加新的管理员</el-button>
+        <v-user-add title="提示"
+                    :dialogCloseCb="handleAddUserDialogCb"
+                    :addUser="addUser"
+                    :show="showAddUserDialog"></v-user-add>
     </div>
 </template>
 
 <script>
-import { api, tag } from '../../lib/config'
+import vUserAdd from './UserAdd'
+import { api, tag } from '../../../lib/config'
 export default {
+    components: {
+        vUserAdd
+    },
     data() {
         return {
             userData: null,
-            limitTag: tag
+            limitTag: tag,
+            showAddUserDialog: false
         }
     },
     mounted() {
@@ -77,17 +74,33 @@ export default {
             this.$message('编辑第' + (index + 1) + '行')
         },
         handleDelete(_id) {
+            this.$confirm('此操作将永久删除该管理员, 是否继续？', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.deleteUser(_id)
+            }).catch(() => {
+                // maybe will do something
+            })
+        },
+        deleteUser(_id) {
             this.axios.delete(api.user, {
                 data: {
                     _id: _id
                 }
-            }).then((res) => {
+            }).then(res => {
                 if (res.data.err) {
                     throw res.data.message
                 } else {
+                    this.$notify({
+                        title: '成功',
+                        message: '删除管理员成功',
+                        type: 'success'
+                    })
                     this.getUserList()
                 }
-            }).catch((err) => {
+            }).catch(err => {
                 this.$notify.error({
                     title: '删除失败',
                     message: err
@@ -96,10 +109,43 @@ export default {
         },
         getUserList() {
             this.axios.get(api.user).then((res) => {
-                console.log(res)
                 this.userData = res.data.data.value
+            })
+        },
+        handleAddUserDialogCb() {
+            this.showAddUserDialog = false
+        },
+        addUser(user) {
+            console.log(user)
+            this.axios.post(api.user, {
+                username: user.username,
+                password: user.password,
+                limits: user.limits,
+                isRoot: user.isRoot
+            }).then(res => {
+                if (!res.data.error) {
+                    this.$notify({
+                        title: '成功',
+                        message: '添加新的管理员成功',
+                        type: 'success'
+                    })
+                    this.getUserList()
+                } else {
+                    throw res.data.message
+                }
+            }).catch(err => {
+                this.$notify.error({
+                    title: '添加失败',
+                    message: err
+                })
             })
         }
     }
 }
 </script>
+<style scoped>
+.user-add-btn {
+    margin-top: 30px;
+    width: 100%;
+}
+</style>

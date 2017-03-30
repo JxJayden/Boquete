@@ -49,11 +49,11 @@ export default new Router({
         },
         {
             path: '/usermanage',
-            component: resolve => require(['../components/page/UserManage.vue'], resolve)
+            component: resolve => require(['../components/page/basicManage/UserManage.vue'], resolve)
         },
         {
-            path: '/mixcharts',
-            component: resolve => require(['../components/page/MixCharts.vue'], resolve) // vue-echarts-v3组件
+            path: '/websitemanage',
+            component: resolve => require(['../components/page/basicManage/WebsiteManage.vue'], resolve)
         }]
     },
     {
