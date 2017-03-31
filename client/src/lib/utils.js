@@ -6,7 +6,7 @@
  * @param {Object} data
  * @param {Function} cb
  */
-export function axiosPost(context, api, data, cb) {
+export function axiosPost(context, api, data, cb, errCb) {
     const self = context
     self.axios.post(api, data).then(res => {
         if (!res.data.err) {
@@ -26,6 +26,7 @@ export function axiosPost(context, api, data, cb) {
                 title: '更新失败',
                 message: err
             })
+            isFun(errCb) && errCb.call(self, res.data.data)
         }
     })
 }
@@ -38,7 +39,7 @@ export function axiosPost(context, api, data, cb) {
  * @param {Object} data
  * @param {Function} cb
  */
-export function axiosPut(context, api, data, cb) {
+export function axiosPut(context, api, data, cb, errCb) {
     const self = context
     self.axios.put(api, data).then(res => {
         if (!res.data.err) {
@@ -58,6 +59,7 @@ export function axiosPut(context, api, data, cb) {
                 title: '更新失败',
                 message: err
             })
+            isFun(errCb) && errCb.call(self, res.data.data)
         }
     })
 }
@@ -69,7 +71,7 @@ export function axiosPut(context, api, data, cb) {
  * @param {String} api
  * @param {Function} cb
  */
-export function axiosGet(context, api, cb) {
+export function axiosGet(context, api, cb, errCb) {
     const self = context
     self.axios.get(api).then(res => {
         if (!res.data.err) {
@@ -89,6 +91,7 @@ export function axiosGet(context, api, cb) {
                 title: '获取失败',
                 message: err
             })
+            isFun(errCb) && errCb.call(self, res.data.data)
         }
     })
 }
@@ -101,7 +104,7 @@ export function axiosGet(context, api, cb) {
  * @param {Object} data
  * @param {Function} cb
  */
-export function axiosDelete(context, api, data, cb) {
+export function axiosDelete(context, api, data, cb, errCb) {
     const self = context
     self.axios.delete(api, {
         data: data
@@ -123,6 +126,7 @@ export function axiosDelete(context, api, data, cb) {
                 title: '获取失败',
                 message: err
             })
+            isFun(errCb) && errCb.call(self, res.data.data)
         }
     })
 }
@@ -137,9 +141,5 @@ export function isFun(fn) {
  * @returns
  */
 export function isArray(value) {
-    if (Array.isArray) {
-        return Array.isArray(value)
-    } else {
-        return value && Object.prototype.toString.call(value) === '[object Array]'
-    }
+    return Array.isArray(value) || toString.call(value) === '[object Array]'
 }

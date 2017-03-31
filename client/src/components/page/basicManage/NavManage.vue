@@ -38,6 +38,7 @@
             </el-row>
         </el-form>
         <el-button type="primary"
+                   :loading="isSubmitBtnLoading"
                    @click="submitForm('navForm')">保存更改</el-button>
     </div>
 </template>
@@ -48,8 +49,8 @@ import { axiosPut, axiosGet, isArray } from '../../../lib/utils'
 export default {
     data() {
         return {
-            isChange: false,
             navigations: [],
+            isSubmitBtnLoading: false,
             newNav: {
                 label: '',
                 url: ''
@@ -90,11 +91,15 @@ export default {
             })
         },
         updateChange() {
+            this.isSubmitBtnLoading = true
             const data = {
                 nav: this.navigations
             }
             axiosPut(this, api.websiteNav, data, function () {
                 this.getWebsiteNavInfo()
+                this.isSubmitBtnLoading = false
+            }, function () {
+                this.isSubmitBtnLoading = false
             })
         },
         submitForm(formName) {

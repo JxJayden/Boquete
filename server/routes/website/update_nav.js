@@ -6,7 +6,7 @@ const db = require('../../models/index'),
 module.exports = async function (ctx) {
     let editNav = ctx.request.body.nav,
         currentUserId = cry.decrypt(ctx.cookies.get('user')),
-        NAV_RE = /label|url/g,
+        NAV_RE = /(label,url)|(url,label)/,
         navAfterReg = [],
         body
 
