@@ -93,7 +93,7 @@ export default {
         updateChange() {
             this.isSubmitBtnLoading = true
             const data = {
-                nav: this.navigations
+                nav: this.navigations.slice(0, this.navigations.length - 1)
             }
             axiosPut(this, api.websiteNav, data, function () {
                 this.getWebsiteNavInfo()
