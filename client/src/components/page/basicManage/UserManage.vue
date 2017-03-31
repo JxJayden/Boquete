@@ -2,7 +2,7 @@
     <div class="user-manage">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-menu"></i> 基本设置</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-menu"></i> 设置</el-breadcrumb-item>
                 <el-breadcrumb-item>管理员设置</el-breadcrumb-item>
             </el-breadcrumb>
         </div>

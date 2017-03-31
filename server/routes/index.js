@@ -4,6 +4,7 @@ const config = require('../lib/config'),
     }),
     user = require('./user/index'),
     base = require('./base/index'),
+    website = require('./website/index'),
     register = user.register,
     login = user.login,
     logout = user.logout
@@ -20,5 +21,10 @@ router
     .get('/user', user.get)
     .put('/user', user.isRoot, user.update)
     .delete('/user', user.isRoot, user.delete)
+    // 网站信息管理
+    .get('/website', website.get)
+    .get('/website/url', website.get_url)
+    .put('/website', website.update)
+
 
 module.exports = router

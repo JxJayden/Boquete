@@ -2,7 +2,9 @@ const apiPrefix = '/api/v1/'
 export const api = {
     login: `${apiPrefix}login`,
     logout: `${apiPrefix}logout`,
-    user: `${apiPrefix}user`
+    user: `${apiPrefix}user`,
+    website: `${apiPrefix}website`,
+    websiteUrl: `${apiPrefix}website/url`
 }
 
 export const tag = {

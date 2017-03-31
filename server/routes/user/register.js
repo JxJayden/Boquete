@@ -4,15 +4,15 @@ const db = require('../../models/index'),
 
 module.exports = async function (ctx) {
     let
-        username = ctx.request.body.username,
-        password = ctx.request.body.password,
+        username = String(ctx.request.body.username),
+        password = String(ctx.request.body.password),
         newUser = {
             username: username,
             password: password,
             isRoot: true,
             limits: config.limits
         },
-        body, isUserExist
+        body, isUserExist, registerUser, registerWebSite
 
     try {
         // 对 username, password 做判断 不存在则抛出错误
@@ -37,7 +37,14 @@ module.exports = async function (ctx) {
         }
 
         // 保存新用户
-        await new db.userModel(newUser).save()
+        registerUser = await new db.userModel(newUser).save()
+
+        registerWebSite = await new db.websiteModel({
+            owner: registerUser._id,
+            title: registerUser.username,
+            url: encodeURI(`http://show.jxdjayden.cn/${registerUser.username}`),
+            copyright: `${registerUser.username} © ${new Date().getFullYear()}`
+        }).save()
 
         // 删除一些不必要的信息
         delete newUser.password
@@ -48,7 +55,8 @@ module.exports = async function (ctx) {
             err: false,
             message: 'register succeed',
             data: {
-                newUser
+                newUser,
+                registerWebSite
             }
         }
     } catch (err) {

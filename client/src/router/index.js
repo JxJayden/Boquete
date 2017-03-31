@@ -13,7 +13,7 @@ export default new Router({
         component: resolve => require(['../components/common/Home.vue'], resolve),
         children: [{
             path: '/',
-            component: resolve => require(['../components/page/Readme.vue'], resolve)
+            component: resolve => require(['../components/page/Index.vue'], resolve)
         },
         {
             path: '/basetable',
@@ -48,12 +48,12 @@ export default new Router({
             component: resolve => require(['../components/page/MixCharts.vue'], resolve) // vue-echarts-v3组件
         },
         {
-            path: '/usermanage',
-            component: resolve => require(['../components/page/basicManage/UserManage.vue'], resolve)
+            path: '/basicmanage',
+            component: resolve => require(['../components/page/basicManage/BasicManage.vue'], resolve)
         },
         {
-            path: '/websitemanage',
-            component: resolve => require(['../components/page/basicManage/WebsiteManage.vue'], resolve)
+            path: '/usermanage',
+            component: resolve => require(['../components/page/basicManage/UserManage.vue'], resolve)
         }]
     },
     {

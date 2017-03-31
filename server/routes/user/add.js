@@ -1,9 +1,8 @@
 /**
- * 添加团队
+ * 添加管理员
  */
 const db = require('../../models/index'),
     logger = require('../../lib/log'),
-    cry = require('../../lib/cryptology'),
     utils = require('../../lib/utils')
 
 module.exports = async function (ctx) {

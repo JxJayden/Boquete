@@ -1,26 +1,30 @@
 /**
- * 获取用户信息
+ * 获取网站信息
  */
 const db = require('../../models/index'),
-    logger = require('../../lib/log')
+    logger = require('../../lib/log'),
+    cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    let conditions = ctx.query.id ?
-        { _id: ctx.query.id } :
-        {},
+    let ownerId = ctx.cookies.get('user') || null,
         body
 
     try {
-        await db.userModel.find(conditions, {
-            _id: 1,
-            username: 1,
-            limits: 1,
-            isRoot: 1
-        }).exec().then((value) => {
+        if (!ownerId) {
+            throw {
+                message: '请先登录'
+            }
+        } else {
+            ownerId = cry.decrypt(ownerId)
+        }
+
+        await db.websiteModel.findOne({
+            owner: ownerId
+        }, {_id: 1, url: 1, title: 1}).exec().then((value) => {
 
             if (value === null) {
                 throw {
-                    message: 'no user'
+                    message: 'no website'
                 }
             }
 
