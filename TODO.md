@@ -13,6 +13,7 @@
   - [x] 删除管理员
   - [x] 修改管理员信息
 - [x] 完成 website API
+- [x] 完成 website Naviagtion API
 - [ ] 完成 file API
 - [ ] 完成 pages API
 - [ ] 完成 post API
@@ -24,6 +25,7 @@
 - [x] 完成登录及退出
 - [x] 完成用户管理
 - [x] 完成网站信息管理
+- [x] 完成网站 Naviagtion 管理
 - [ ] 完成媒体库管理
 - [ ] 使用 vuex 代替 LocalStage 来管理状态
 - [ ] 完成页面管理
