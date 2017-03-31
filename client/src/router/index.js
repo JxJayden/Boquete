@@ -47,6 +47,7 @@ export default new Router({
             path: '/mixcharts',
             component: resolve => require(['../components/page/MixCharts.vue'], resolve) // vue-echarts-v3组件
         },
+        // setting
         {
             path: '/basicmanage',
             component: resolve => require(['../components/page/basicManage/BasicManage.vue'], resolve)
@@ -54,6 +55,10 @@ export default new Router({
         {
             path: '/usermanage',
             component: resolve => require(['../components/page/basicManage/UserManage.vue'], resolve)
+        },
+        {
+            path: '/navmanage',
+            component: resolve => require(['../components/page/basicManage/NavManage.vue'], resolve)
         }]
     },
     {

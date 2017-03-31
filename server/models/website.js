@@ -1,5 +1,8 @@
 const mongoose = require('mongoose'),
+    logger = require('../lib/log'),
     Schema = mongoose.Schema
+
+mongoose.Promise = global.Promise
 
 const website_schema = new Schema({
     owner: {
@@ -25,9 +28,34 @@ const website_schema = new Schema({
     url: {
         type: String,
         required: true
+    },
+    nav: {
+        type: Array,
+        index: true,
+        required: true
     }
 })
+website_schema.statics.getNavByOwner = function (ownerId) {
+    let self = this
 
+    return new Promise((resolve, reject) => {
+        self.findOne({
+            owner: ownerId
+        }, {
+            nav: 1
+        }).exec().then((value) => {
+            if (value && value.nav) {
+                resolve(value)
+            } else {
+                resolve(null)
+            }
+        }).catch((err) => {
+            logger.error(err)
+            reject(null)
+        })
+    })
+}
 const websiteModel = mongoose.model('website', website_schema)
+
 
 module.exports = websiteModel

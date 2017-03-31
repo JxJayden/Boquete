@@ -28,6 +28,7 @@
                 <template slot="title"><i class="el-icon-setting"></i>设置</template>
                 <!--<el-menu-item index="usermanage">管理员设置</el-menu-item>-->
                 <el-menu-item index="basicmanage">基本设置</el-menu-item>
+                <el-menu-item index="navmanage">导航栏设置</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>

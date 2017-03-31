@@ -4,7 +4,8 @@ export const api = {
     logout: `${apiPrefix}logout`,
     user: `${apiPrefix}user`,
     website: `${apiPrefix}website`,
-    websiteUrl: `${apiPrefix}website/url`
+    websiteUrl: `${apiPrefix}website/url`,
+    websiteNav: `${apiPrefix}website/nav`
 }
 
 export const tag = {

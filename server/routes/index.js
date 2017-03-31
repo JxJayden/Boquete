@@ -23,8 +23,12 @@ router
     .delete('/user', user.isRoot, user.delete)
     // 网站信息管理
     .get('/website', website.get)
-    .get('/website/url', website.get_url)
     .put('/website', website.update)
-
+    .get('/website/url', website.get_url)
+    // 网站导航栏管理
+    .get('/website/nav', website.get_nav)
+    .post('/website/nav', website.add_nav)
+    .put('/website/nav', website.update_nav)
+    .delete('/website/nav', website.del_nav)
 
 module.exports = router

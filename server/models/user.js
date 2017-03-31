@@ -3,6 +3,8 @@ const mongoose = require('mongoose'),
     logger = require('../lib/log'),
     Schema = mongoose.Schema
 
+mongoose.Promise = global.Promise
+
 const user_schema = new Schema({
     username: {
         type: String,

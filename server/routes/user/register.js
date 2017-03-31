@@ -43,7 +43,11 @@ module.exports = async function (ctx) {
             owner: registerUser._id,
             title: registerUser.username,
             url: encodeURI(`http://show.jxdjayden.cn/${registerUser.username}`),
-            copyright: `${registerUser.username} © ${new Date().getFullYear()}`
+            copyright: `${registerUser.username} © ${new Date().getFullYear()}`,
+            nav: [{
+                label: 'home',
+                url: encodeURI(`http://show.jxdjayden.cn/${registerUser.username}`)
+            }]
         }).save()
 
         // 删除一些不必要的信息

@@ -31,6 +31,7 @@
                 <el-form-item>
                     <el-button type="primary"
                                :disabled="!isChange"
+                               :loading="isLoading"
                                @click="onSubmit">保存</el-button>
                 </el-form-item>
             </el-form>
@@ -45,6 +46,7 @@ export default {
     data() {
         return {
             isChange: false,
+            isLoading: false,
             change: {},
             website: {
                 title: '',
@@ -63,6 +65,7 @@ export default {
     },
     methods: {
         onSubmit() {
+            this.isLoading = true
             const data = {
                 _id: this.website._id,
                 change: {
@@ -72,6 +75,8 @@ export default {
                 }
             }
             axiosPut(this, api.website, data, function (data) {
+                this.isLoading = false
+                this.isChange = false
                 this.$message.success('提交成功！')
             })
         },
@@ -81,7 +86,6 @@ export default {
             })
         },
         handleChange() {
-            console.log(arguments)
             this.isChange = true
         }
     }

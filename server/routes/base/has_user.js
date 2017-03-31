@@ -27,7 +27,7 @@ module.exports = async function (ctx) {
         })
         return hasUser
     } catch (err) {
-        logger.error(err)
+        logger.info(err)
         return false
     }
 }
