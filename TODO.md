@@ -16,8 +16,8 @@
 - [x] 完成 website Naviagtion API
 - [x] 完成 file API
   - [x] save logo 前删除旧数据
-- [ ] 完成 pages API
 - [ ] 完成 post API
+- [ ] 完成 pages API
 - [ ] 完成 product API // optional
 - [ ] API 尽量实现 RESTful API
 
@@ -27,6 +27,7 @@
 - [x] 完成用户管理
 - [x] 完成网站信息管理
 - [x] 完成网站 Naviagtion 管理
+- [ ] 完成文章管理
 - [ ] 使用 vuex 代替 LocalStage 来管理状态
 - [ ] 完成页面管理
 - [ ] 完成产品管理 // optional
