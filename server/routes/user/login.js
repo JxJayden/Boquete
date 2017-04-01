@@ -11,7 +11,6 @@ module.exports = async function (ctx) {
         loginUser
 
     try {
-        logger.info(ctx.request.body)
         // 非生产环境不验证验证码，便于开发
         if (config.production) {
             if (!verifyCode || !cookiesVerifyCode) {
@@ -47,7 +46,6 @@ module.exports = async function (ctx) {
                     limits: loginUser.limits,
                     isRoot: loginUser.isRoot
                 }
-
             }
         }
     } catch (err) {

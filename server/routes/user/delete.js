@@ -6,34 +6,22 @@ const db = require('../../models/index'),
 
 module.exports = async function (ctx) {
     let _id = ctx.request.body._id,
-        body
+        body, dbVal
 
     try {
-        if (!_id) {
-            throw {
-                code: -4,
-                message: '没有用户 ID'
-            }
+        if (!_id) throw { code: -4, message: '没有用户 ID' }
+
+        dbVal = await db.userModel.remove({ _id: _id, isRoot: false }).exec()
+
+        if (dbVal.result.ok == 1 && dbVal.result.n == 0) throw { message: '无该用户' }
+
+        body = {
+            err: false,
+            message: '删除成功',
+            code: 200,
+            data: dbVal.result
         }
 
-        await db.userModel.remove({
-            _id: _id,
-            isRoot: false
-        }).exec().then((value) => {
-            if (value.result.ok == 1 && value.result.n == 0) throw {
-                message: '无该用户'
-            }
-            body = {
-                err: false,
-                message: '删除成功',
-                code: 200,
-                data: {
-                    value
-                }
-            }
-        }).catch((err) => {
-            throw err
-        })
     } catch (err) {
         logger.error(err)
         body = {

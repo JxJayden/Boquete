@@ -19,5 +19,4 @@ module.exports = async function (ctx) {
             data: {}
         }
     }
-
 }

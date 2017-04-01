@@ -10,9 +10,7 @@ module.exports = async function (ctx) {
         body, dbVal
 
     try {
-        dbVal = await db.websiteModel.findOne({
-            owner: ownerId
-        }, {_id: 1, url: 1, title: 1}).exec()
+        dbVal = await db.websiteModel.findOne({ owner: ownerId }, {_id: 1, url: 1, title: 1}).exec()
 
         if (dbVal === null) throw { message: 'no website' }
 

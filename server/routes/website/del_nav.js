@@ -12,13 +12,11 @@ module.exports = async function (ctx) {
 
     try {
         if (!delNav.label || !delNav.url) {
-
             throw {
                 message: !delNav.label ?
                     'label is required' : 'url is required',
                 code: -1
             }
-
         }
 
         dbVal = await db.websiteModel.update({ owner: ownerId }, { $pull: { 'nav': delNav }}).exec()

@@ -13,31 +13,17 @@ module.exports = async function (ctx) {
         body, hasUserName
 
     try {
-        if (!username) throw {
-            code: -3,
-            message: '请输入新管理员的用户名'
-        }
+        if (!username) throw { code: -3, message: '请输入新管理员的用户名' }
 
-        if (!password) throw {
-            code: -3,
-            message: '请输入新管理员的密码'
-        }
+        if (!password) throw { code: -3, message: '请输入新管理员的密码' }
 
-        if (!limits) {
-            throw {
-                code: -3,
-                message: '请选择新管理员的权限'
-            }
-        } else if (!utils.isArray(limits)) {
-            limits = JSON.parse(limits)
-        }
+        if (!limits) throw { code: -3, message: '请选择新管理员的权限' }
+
+        if (!utils.isArray(limits))  limits = JSON.parse(limits)
 
         hasUserName = await db.userModel.hasUser(username)
 
-        if (hasUserName) throw {
-            code: -2,
-            message: `The username: ${username} is exist`
-        }
+        if (hasUserName) throw { code: -2, message: `The username: ${username} is exist` }
 
         await new db.userModel({
             username: username,

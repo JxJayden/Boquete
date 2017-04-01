@@ -8,35 +8,27 @@ module.exports = async function (ctx) {
     let conditions = ctx.query.id ?
         { _id: ctx.query.id } :
         {},
-        body
+        body, dbVal
 
     try {
-        await db.userModel.find(conditions, {
+        dbVal = await db.userModel.find(conditions, {
             _id: 1,
             username: 1,
             limits: 1,
             isRoot: 1
-        }).exec().then((value) => {
+        }).exec()
 
-            if (value === null) {
-                throw {
-                    message: 'no user'
-                }
-            }
+        if (dbVal === null) { throw { message: 'no user' } }
 
-            body = {
-                err: false,
-                code: 200,
-                message: 'succeed',
-                data: {
-                    value
-                }
+        body = {
+            err: false,
+            code: 200,
+            message: 'succeed',
+            data: {
+                users: dbVal
             }
-        }).catch((err) => {
-            throw {
-                message: err.message
-            }
-        })
+        }
+
     } catch (err) {
         logger.error(err)
         body = {

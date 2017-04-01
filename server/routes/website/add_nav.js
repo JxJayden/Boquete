@@ -8,35 +8,25 @@ module.exports = async function (ctx) {
             url: ctx.request.body.url
         },
         currentUserId = cry.decrypt(ctx.cookies.get('user')),
-        body
+        body, dbVal
 
     try {
         if (!newNav.label || !newNav.url) {
-
             throw {
                 message: !newNav.label ?
                     'label is required' : 'url is required',
                 code: -1
             }
-
         }
 
-        await db.websiteModel.update({
-            owner: currentUserId
-        }, {
-            $push: {
-                nav: newNav
-            }
-        }).exec().then(value => {
-            body = {
-                err: false,
-                message: 'add nav succeed',
-                code: 200,
-                data: value
-            }
-        }).catch(err => {
-            throw err
-        })
+        dbVal = await db.websiteModel.update({ owner: currentUserId }, { $push: { nav: newNav }}).exec()
+
+        body = {
+            err: false,
+            message: 'add nav succeed',
+            code: 200,
+            data: dbVal
+        }
     } catch (err) {
         logger.error(err)
         body = {
