@@ -18,6 +18,11 @@ module.exports = async function (ctx) {
                 code: -3
             }
         }
+        if (websiteInfo.logo) {
+            fs.unlink(websiteInfo.logo, function (err) {
+                logger.error(err)
+            })
+        }
 
         await fileSave.single('logo')(ctx)
         await saveLogoPathUrlTodb(ctx.req.file.path, currentUserId)
