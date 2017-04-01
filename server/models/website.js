@@ -35,16 +35,14 @@ const website_schema = new Schema({
         required: true
     }
 })
-website_schema.statics.getNavByOwner = function (ownerId) {
+website_schema.statics.getWebsiteByOwner = function (ownerId) {
     let self = this
 
     return new Promise((resolve, reject) => {
         self.findOne({
             owner: ownerId
-        }, {
-            nav: 1
         }).exec().then((value) => {
-            if (value && value.nav) {
+            if (value && value.owner) {
                 resolve(value)
             } else {
                 resolve(null)
@@ -55,6 +53,30 @@ website_schema.statics.getNavByOwner = function (ownerId) {
         })
     })
 }
+
+website_schema.statics.hasWebsiteByOwner = function (ownerId) {
+    let self = this
+
+    return new Promise((resolve, reject) => {
+        self.count({
+            owner: ownerId
+        }).exec().then((count) => {
+            if (count && count > 0) {
+                resolve(true)
+            } else {
+                resolve(false)
+            }
+        }).catch((err) => {
+            logger.error(err)
+            reject({
+                err: true,
+                code: -4,
+                message: err.message
+            })
+        })
+    })
+}
+
 const websiteModel = mongoose.model('website', website_schema)
 
 

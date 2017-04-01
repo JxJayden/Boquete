@@ -3,13 +3,21 @@ const Koa = require('koa'),
     convert = require('koa-convert'),
     json = require('koa-json'),
     mount = require('mount-koa-routes'),
+    send = require('koa-send'),
     logger = require('./lib/log'),
     utils = require('./lib/utils'),
     hasUser = require('./routes/base/has_user')
 
 // middlewares
 app.use(convert(json()))
-app.use(require('koa-static')(__dirname + '/public'))
+
+app.use(async(ctx, next) => {
+    await send(ctx, ctx.path.replace(/\/?public\//, ''), {
+        root: __dirname + '/public',
+        maxage: 300
+    })
+    await next()
+})
 
 app.use(async function (ctx, next) {
     const start = new Date()

@@ -1,21 +1,32 @@
 const db = require('../../models/index'),
     logger = require('../../lib/log'),
+    cry = require('../../lib/cryptology'),
+    fs = require('fs'),
     fileSave = require('../../lib/save_file')({
         isRandomName: true,
-        dest: 'public/uploads'
+        dest: 'public/images'
     })
 
 module.exports = async function (ctx) {
-    let body
+    let currentUserId = cry.decrypt(ctx.cookies.get('user')),
+        body, websiteInfo
     try {
-        await fileSave.single('logo')(ctx).then(ctx => {
-            body = {
-                err: false,
-                code: 200,
-                message: 'upload done',
-                data: ctx.req.file
+        websiteInfo = await db.websiteModel.getWebsiteByOwner(currentUserId)
+        if (!websiteInfo) {
+            throw {
+                message: '没有找到对应的网站',
+                code: -3
             }
-        })
+        }
+
+        await fileSave.single('logo')(ctx)
+        await saveLogoPathUrlTodb(ctx.req.file.path, currentUserId)
+        body = {
+            err: false,
+            code: 200,
+            message: 'save logo succeed',
+            data: ctx.req.file
+        }
     } catch (err) {
         logger.debug(err)
         ctx.status = 500
@@ -24,4 +35,18 @@ module.exports = async function (ctx) {
         })
     }
     ctx.body = body
+}
+
+async function saveLogoPathUrlTodb(logoPath, ownerId) {
+    await db.websiteModel.update({
+        owner: ownerId
+    }, {
+        $set: {
+            logo: logoPath
+        }
+    }).exec().then(val => {
+        return val
+    }).catch(err => {
+        throw err
+    })
 }

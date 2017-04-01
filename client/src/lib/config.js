@@ -1,5 +1,6 @@
 const apiPrefix = '/api/v1/'
 export const api = {
+    host: '//api.cms.com/',
     login: `${apiPrefix}login`,
     logout: `${apiPrefix}logout`,
     user: `${apiPrefix}user`,
