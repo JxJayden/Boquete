@@ -25,8 +25,8 @@ export default {
     methods: {
         getWebsiteUrl() {
             axiosGet(this, api.websiteUrl, function (data) {
-                this.websiteUrl = data.value.url
-                this.title = data.value.title
+                this.websiteUrl = data.url
+                this.title = data.title
             })
         }
     }

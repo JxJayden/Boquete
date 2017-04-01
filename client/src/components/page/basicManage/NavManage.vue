@@ -73,7 +73,7 @@ export default {
     methods: {
         getWebsiteNavInfo() {
             axiosGet(this, api.websiteNav, function (data) {
-                this.navigations = data.value.nav.concat([{
+                this.navigations = data.nav.concat([{
                     label: '',
                     url: ''
                 }])
@@ -104,7 +104,6 @@ export default {
         },
         submitForm(formName) {
             this.checkAllFormAndCallBack(formName, this.updateChange)
-            this.updateChange
         },
         checkAllFormAndCallBack(formName, cb) {
             const forms = this.$refs[formName]

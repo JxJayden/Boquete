@@ -5,54 +5,25 @@ const db = require('../../models/index'),
 module.exports = async function (ctx) {
     let _id = ctx.request.body._id
     let change = ctx.request.body.change
-    let body
+    let body, dbVal
 
     try {
-        if (!_id) {
-            throw {
-                message: '没有获取到网站',
-                code: -4
-            }
+        if (!_id)  throw { message: '没有获取到网站', code: -4 }
+
+        if (!change) throw { message: '没有做出改变', code: -4 }
+
+        if (!utils.isObject(change)) change = JSON.parse(change)
+
+        if (change.owner) throw { message: '不允许修改网站所有者', code: -4 }
+
+        dbVal = await db.websiteModel.update({ _id: _id }, { $set: change }).exec()
+
+        body = {
+            err: false,
+            code: 200,
+            message: '修改用户信息成功',
+            data: dbVal
         }
-
-        if (!change) {
-            throw {
-                message: '没有做出改变',
-                code: -4
-            }
-        }
-
-        if (!utils.isObject(change)) {
-            change = JSON.parse(change)
-        }
-
-        if (change.owner) {
-            throw {
-                message: '不允许修改网站所有者',
-                code: -4
-            }
-        }
-
-        await db.websiteModel.update({
-            _id: _id
-        }, {
-            $set: change
-        }).exec().then((value) => {
-            body = {
-                err: false,
-                code: 200,
-                message: '修改用户信息成功',
-                data: {
-                    value
-                }
-            }
-        }).catch((err) => {
-            throw {
-                message: err.message,
-                code: -3
-            }
-        })
-
     } catch (err) {
         logger.error(err)
         body = {

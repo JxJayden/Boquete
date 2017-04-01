@@ -3,25 +3,27 @@ const Koa = require('koa'),
     convert = require('koa-convert'),
     json = require('koa-json'),
     mount = require('mount-koa-routes'),
+    bodyparser = require('koa-bodyparser'),
     send = require('koa-send'),
     logger = require('./lib/log'),
     utils = require('./lib/utils'),
     hasUser = require('./routes/base/has_user')
 
 // middlewares
-app.use(convert(json()))
-
-app.use(async(ctx, next) => {
-    await send(ctx, ctx.path.replace(/\/?public\//, ''), {
-        root: __dirname + '/public',
-        maxage: 300
+app
+    .use(convert(bodyparser()))
+    .use(convert(json()))
+    .use(async(ctx, next) => {
+        await send(ctx, ctx.path.replace(/\/?public\//, ''), {
+            root: __dirname + '/public',
+            maxage: 300
+        })
+        await next()
     })
-    await next()
-})
 
 app.use(async function (ctx, next) {
     const start = new Date()
-
+    logger.info(ctx.request.body)
     try {
         if (utils.isLimited(ctx.url)) { // 判断访问的路径有没有被限制
             if (!await hasUser(ctx, next)) {
@@ -49,6 +51,7 @@ app.use(async function (ctx, next) {
             await next()
         }
     } catch (err) {
+        logger.error(err)
         if (err.code === -10) {
             ctx.cookies.set('sessionId', null)
             ctx.cookies.set('user', null)

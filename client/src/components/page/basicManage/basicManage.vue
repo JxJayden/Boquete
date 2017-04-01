@@ -102,8 +102,8 @@ export default {
         },
         getWebsiteInfo() {
             axiosGet(this, api.website, function (data) {
-                this.website = data.value
-                this.imageUrl = data.value.logo ? api.host + data.value.logo : ''
+                this.website = data
+                this.imageUrl = data.logo ? api.host + data.logo : ''
             })
         },
         handleChange() {

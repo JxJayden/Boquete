@@ -26,6 +26,7 @@ module.exports = async function (ctx) {
 
         await fileSave.single('logo')(ctx)
         await saveLogoPathUrlTodb(ctx.req.file.path, currentUserId)
+
         body = {
             err: false,
             code: 200,
@@ -43,15 +44,11 @@ module.exports = async function (ctx) {
 }
 
 async function saveLogoPathUrlTodb(logoPath, ownerId) {
-    await db.websiteModel.update({
+    return await db.websiteModel.update({
         owner: ownerId
     }, {
         $set: {
             logo: logoPath
         }
-    }).exec().then(val => {
-        return val
-    }).catch(err => {
-        throw err
-    })
+    }).exec()
 }

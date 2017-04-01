@@ -32,9 +32,7 @@ module.exports = async function (ctx) {
                 err: false,
                 message: 'add nav succeed',
                 code: 200,
-                data: {
-                    value
-                }
+                data: value
             }
         }).catch(err => {
             throw err

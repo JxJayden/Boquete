@@ -7,8 +7,8 @@ module.exports = async function (ctx) {
             label: ctx.request.body.label,
             url: ctx.request.body.url
         },
-        currentUserId = cry.decrypt(ctx.cookies.get('user')),
-        body
+        ownerId = cry.decrypt(ctx.cookies.get('user')),
+        body, dbVal
 
     try {
         if (!delNav.label || !delNav.url) {
@@ -21,24 +21,14 @@ module.exports = async function (ctx) {
 
         }
 
-        await db.websiteModel.update({
-            owner: currentUserId
-        }, {
-            $pull: {
-                'nav': delNav
-            }
-        }).exec().then(value => {
-            body = {
-                err: false,
-                message: 'add nav succeed',
-                code: 200,
-                data: {
-                    value
-                }
-            }
-        }).catch(err => {
-            throw err
-        })
+        dbVal = await db.websiteModel.update({ owner: ownerId }, { $pull: { 'nav': delNav }}).exec()
+
+        body = {
+            err: false,
+            message: 'add nav succeed',
+            code: 200,
+            data: dbVal
+        }
     } catch (err) {
         logger.error(err)
         body = {

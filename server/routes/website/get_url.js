@@ -6,41 +6,22 @@ const db = require('../../models/index'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    let ownerId = ctx.cookies.get('user') || null,
-        body
+    let ownerId = cry.decrypt(ctx.cookies.get('user')),
+        body, dbVal
 
     try {
-        if (!ownerId) {
-            throw {
-                message: '请先登录'
-            }
-        } else {
-            ownerId = cry.decrypt(ownerId)
-        }
-
-        await db.websiteModel.findOne({
+        dbVal = await db.websiteModel.findOne({
             owner: ownerId
-        }, {_id: 1, url: 1, title: 1}).exec().then((value) => {
+        }, {_id: 1, url: 1, title: 1}).exec()
 
-            if (value === null) {
-                throw {
-                    message: 'no website'
-                }
-            }
+        if (dbVal === null) throw { message: 'no website' }
 
-            body = {
-                err: false,
-                code: 200,
-                message: 'succeed',
-                data: {
-                    value
-                }
-            }
-        }).catch((err) => {
-            throw {
-                message: err.message
-            }
-        })
+        body = {
+            err: false,
+            code: 200,
+            message: 'succeed',
+            data: dbVal
+        }
     } catch (err) {
         logger.error(err)
         body = {
