@@ -15,7 +15,7 @@
 - [x] 完成 website API
 - [x] 完成 website Naviagtion API
 - [x] 完成 file API
-  - [ ] save logo 前删除旧数据
+  - [x] save logo 前删除旧数据
 - [ ] 完成 pages API
 - [ ] 完成 post API
 - [ ] 完成 product API // optional
