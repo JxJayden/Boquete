@@ -28,6 +28,23 @@
                               @change="handleChange"
                               auto-complete="off"></el-input>
                 </el-form-item>
+                <el-form-item label="网站 logo">
+                    <div style="clear: both;">
+                        <el-upload class="logo-uploader"
+                                   name="logo"
+                                   :action="uploadLogoUrl"
+                                   :with-credentials="true"
+                                   :show-file-list="false"
+                                   :on-error="handleLogoError"
+                                   :on-success="handleLogoSuccess">
+                            <img v-if="imageUrl"
+                                 :src="imageUrl"
+                                 class="logo">
+                            <i v-else
+                               class="el-icon-plus logo-uploader-icon"></i>
+                        </el-upload>
+                    </div>
+                </el-form-item>
                 <el-form-item>
                     <el-button type="primary"
                                :disabled="!isChange"
@@ -45,13 +62,16 @@ import { axiosPut, axiosGet } from '../../../lib/utils'
 export default {
     data() {
         return {
+            uploadLogoUrl: api.websiteLogo,
             isChange: false,
             isLoading: false,
+            imageUrl: '',
             change: {},
             website: {
                 title: '',
                 description: '',
-                copyright: ''
+                copyright: '',
+                logo: ''
             },
             rules: {
                 title: [{ required: true, message: '请输入网站名称', trigger: 'blur' }],
@@ -87,7 +107,45 @@ export default {
         },
         handleChange() {
             this.isChange = true
+        },
+        handleLogoSuccess(res, file) {
+            console.log(res)
+            this.imageUrl = URL.createObjectURL(file.raw)
+            this.handleChange()
+        },
+        handleLogoError(res, file) {
+            this.$message.error('提交失败！')
         }
     }
 }
 </script>
+<style scope>
+.logo-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 178px;
+    height: 178px;
+}
+
+.logo-uploader .el-upload:hover {
+    border-color: #20a0ff;
+}
+
+.logo-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+}
+
+.logo {
+    width: 178px;
+    height: 178px;
+    display: block;
+}
+</style>

@@ -3,16 +3,13 @@ const Koa = require('koa'),
     convert = require('koa-convert'),
     json = require('koa-json'),
     mount = require('mount-koa-routes'),
-    bodyparser = require('koa-bodyparser')(),
     logger = require('./lib/log'),
     utils = require('./lib/utils'),
     hasUser = require('./routes/base/has_user')
 
 // middlewares
-app.use(convert(bodyparser))
 app.use(convert(json()))
 app.use(require('koa-static')(__dirname + '/public'))
-
 
 app.use(async function (ctx, next) {
     const start = new Date()
@@ -28,7 +25,7 @@ app.use(async function (ctx, next) {
                 utils.isTimeout(ctx.cookies.get('sessionId'))) {
                 throw {
                     message: '长时间未操作，会话已过期',
-                    code: -2,
+                    code: -10,
                 }
             } else {
                 if (utils.hasPermission(ctx.url, ctx.cookies.get('limits'))) {
@@ -67,9 +64,6 @@ app.use(async function (ctx, next) {
 
 // routers
 mount(app, __dirname + '/routes', true)
-
-
-// response
 
 app.on('error', function (err, ctx) {
     logger.error('server error', err, ctx)

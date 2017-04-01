@@ -5,6 +5,7 @@ const config = require('../lib/config'),
     user = require('./user/index'),
     base = require('./base/index'),
     website = require('./website/index'),
+    file = require('./file/index'),
     register = user.register,
     login = user.login,
     logout = user.logout
@@ -25,10 +26,13 @@ router
     .get('/website', website.get)
     .put('/website', website.update)
     .get('/website/url', website.get_url)
+    .post('/website/logo', website.upload_logo)
     // 网站导航栏管理
     .get('/website/nav', website.get_nav)
     .post('/website/nav', website.add_nav)
     .put('/website/nav', website.update_nav)
     .delete('/website/nav', website.del_nav)
+    // 文件管理
+    .post('/file', file.upload)
 
 module.exports = router

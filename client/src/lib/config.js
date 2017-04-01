@@ -5,7 +5,8 @@ export const api = {
     user: `${apiPrefix}user`,
     website: `${apiPrefix}website`,
     websiteUrl: `${apiPrefix}website/url`,
-    websiteNav: `${apiPrefix}website/nav`
+    websiteNav: `${apiPrefix}website/nav`,
+    websiteLogo: `${apiPrefix}/website/logo`
 }
 
 export const tag = {
