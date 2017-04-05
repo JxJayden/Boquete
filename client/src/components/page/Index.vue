@@ -10,8 +10,8 @@
     </div>
 </template>
 <script>
-import { api } from '../../lib/config'
-import { axiosGet } from '../../lib/utils'
+import { API } from '../../lib/config'
+import { _get } from '../../lib/utils'
 export default {
     data() {
         return {
@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         getWebsiteUrl() {
-            axiosGet(this, api.websiteUrl, function (data) {
+            _get(this, API.WEBSITEURL, function (data) {
                 this.websiteUrl = data.url
                 this.title = data.title
             })

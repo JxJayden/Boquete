@@ -1,9 +1,9 @@
-const mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
-    logger = require('../lib/log'),
-    Schema = mongoose.Schema
-
-mongoose.Promise = global.Promise
+const
+    bcrypt   = require('bcrypt'),
+    logger   = require('../lib/log'),
+    m        = require('../lib/mongoose'),
+    Schema   = m.Schema,
+    mongoose = m.mongoose
 
 const user_schema = new Schema({
     username: {
@@ -171,7 +171,6 @@ user_schema.pre('update', function (next) {
     }
 
 })
-
 
 const userModel = mongoose.model('user', user_schema)
 

@@ -25,6 +25,10 @@
                 <el-menu-item index="mixcharts">混合图表</el-menu-item>
             </el-submenu>
             <el-submenu index="5">
+                <template slot="title"><i class="el-icon-edit"></i>文章管理</template>
+                <el-menu-item index="addpost">添加文章</el-menu-item>
+            </el-submenu>
+            <el-submenu index="6">
                 <template slot="title"><i class="el-icon-setting"></i>设置</template>
                 <!--<el-menu-item index="usermanage">管理员设置</el-menu-item>-->
                 <el-menu-item index="basicmanage">基本设置</el-menu-item>

@@ -6,7 +6,7 @@
  * @param {Object} data
  * @param {Function} cb
  */
-export function axiosPost(context, api, data, cb, errCb) {
+export function _post(context, api, data, cb, errCb) {
     const self = context
     self.axios.post(api, data).then(res => {
         if (!res.data.err) {
@@ -39,7 +39,7 @@ export function axiosPost(context, api, data, cb, errCb) {
  * @param {Object} data
  * @param {Function} cb
  */
-export function axiosPut(context, api, data, cb, errCb) {
+export function _put(context, api, data, cb, errCb) {
     const self = context
     self.axios.put(api, data).then(res => {
         if (!res.data.err) {
@@ -71,7 +71,7 @@ export function axiosPut(context, api, data, cb, errCb) {
  * @param {String} api
  * @param {Function} cb
  */
-export function axiosGet(context, api, cb, errCb) {
+export function _get(context, api, cb, errCb) {
     const self = context
     self.axios.get(api).then(res => {
         if (!res.data.err) {
@@ -104,7 +104,7 @@ export function axiosGet(context, api, cb, errCb) {
  * @param {Object} data
  * @param {Function} cb
  */
-export function axiosDelete(context, api, data, cb, errCb) {
+export function _delete(context, api, data, cb, errCb) {
     const self = context
     self.axios.delete(api, {
         data: data

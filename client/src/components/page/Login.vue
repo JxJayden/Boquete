@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { api } from '../../lib/config'
+import { API } from '../../lib/config'
 export default {
     data() {
         return {
@@ -70,7 +70,7 @@ export default {
             })
         },
         login(username, password, verifycode, formName) {
-            this.axios.post(api.login, {
+            this.axios.post(API.LOGIN, {
                 username: username,
                 password: password,
                 verifycode: verifycode

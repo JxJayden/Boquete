@@ -65,7 +65,7 @@
 <script>
 import vUserAdd from './UserAdd'
 import vUserEdit from './UserEdit'
-import { api, tag } from '../../../lib/config'
+import { API, tag } from '../../../lib/config'
 
 const user = JSON.parse(localStorage.getItem('user'))
 
@@ -104,7 +104,7 @@ export default {
             })
         },
         deleteUser(_id) {
-            this.axios.delete(api.user, {
+            this.axios.delete(API.USER, {
                 data: {
                     _id: _id
                 }
@@ -130,7 +130,7 @@ export default {
             if (!user.isRoot) {
                 this.userTableEmptyText = '无访问权限'
             } else {
-                this.axios.get(api.user).then(res => {
+                this.axios.get(API.USER).then(res => {
                     if (res.data.error) {
                         this.userTableEmptyText = res.data.message
                     }
@@ -148,7 +148,7 @@ export default {
         },
         addUser(user) {
             console.log(user)
-            this.axios.post(api.user, {
+            this.axios.post(API.USER, {
                 username: user.username,
                 password: user.password,
                 limits: user.limits,
@@ -182,7 +182,7 @@ export default {
             if (!isChange) {
                 return false
             } else {
-                this.axios.put(api.user, {
+                this.axios.put(API.USER, {
                     _id: userId,
                     change: change
                 }).then(res => {
@@ -220,7 +220,7 @@ export default {
             })
         },
         editUserPass(userId, newPass) {
-            this.axios.put(api.user, {
+            this.axios.put(API.USER, {
                 _id: userId,
                 change: {
                     password: newPass

@@ -1,8 +1,8 @@
-const mongoose = require('mongoose'),
-    logger = require('../lib/log'),
-    Schema = mongoose.Schema
-
-mongoose.Promise = global.Promise
+const
+    logger   = require('../lib/log'),
+    m        = require('../lib/mongoose'),
+    Schema   = m.Schema,
+    mongoose = m.mongoose
 
 const website_schema = new Schema({
     owner: {
@@ -31,10 +31,10 @@ const website_schema = new Schema({
     },
     nav: {
         type: Array,
-        index: true,
         required: true
     }
 })
+
 website_schema.statics.getWebsiteByOwner = function (ownerId) {
     let self = this
 
@@ -78,6 +78,5 @@ website_schema.statics.hasWebsiteByOwner = function (ownerId) {
 }
 
 const websiteModel = mongoose.model('website', website_schema)
-
 
 module.exports = websiteModel

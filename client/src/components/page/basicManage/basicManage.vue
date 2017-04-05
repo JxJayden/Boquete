@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import { api } from '../../../lib/config'
-import { axiosPut, axiosGet } from '../../../lib/utils'
+import { API } from '../../../lib/config'
+import { _put, _get } from '../../../lib/utils'
 export default {
     data() {
         return {
-            uploadLogoUrl: api.websiteLogo,
+            uploadLogoUrl: API.WEBSITELOGO,
             isChange: false,
             isLoading: false,
             imageUrl: '',
@@ -94,16 +94,16 @@ export default {
                     copyright: this.website.copyright
                 }
             }
-            axiosPut(this, api.website, data, function (data) {
+            _put(this, API.WEBSITE, data, function (data) {
                 this.isLoading = false
                 this.isChange = false
                 this.$message.success('提交成功！')
             })
         },
         getWebsiteInfo() {
-            axiosGet(this, api.website, function (data) {
+            _get(this, API.WEBSITE, function (data) {
                 this.website = data
-                this.imageUrl = data.logo ? api.host + data.logo : ''
+                this.imageUrl = data.logo ? API.HOST + data.logo : ''
             })
         },
         handleChange() {

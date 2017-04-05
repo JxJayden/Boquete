@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import { api } from '../../../lib/config'
-import { axiosPut, axiosGet, isArray } from '../../../lib/utils'
+import { API } from '../../../lib/config'
+import { _put, _get, isArray } from '../../../lib/utils'
 export default {
     data() {
         return {
@@ -72,7 +72,7 @@ export default {
     },
     methods: {
         getWebsiteNavInfo() {
-            axiosGet(this, api.websiteNav, function (data) {
+            _get(this, API.WEBSITENAV, function (data) {
                 this.navigations = data.nav.concat([{
                     label: '',
                     url: ''
@@ -95,7 +95,7 @@ export default {
             const data = {
                 nav: this.navigations.slice(0, this.navigations.length - 1)
             }
-            axiosPut(this, api.websiteNav, data, function () {
+            _put(this, API.WEBSITENAV, data, function () {
                 this.getWebsiteNavInfo()
                 this.isSubmitBtnLoading = false
             }, function () {

@@ -59,6 +59,10 @@ export default new Router({
         {
             path: '/navmanage',
             component: resolve => require(['../components/page/basicManage/NavManage.vue'], resolve)
+        },
+        {
+            path: '/addpost',
+            component: resolve => require(['../components/page/postManage/addPost.vue'], resolve)
         }]
     },
     {

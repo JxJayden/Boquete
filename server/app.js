@@ -69,8 +69,7 @@ app.use(async function (ctx, next) {
         }
     }
 
-    const ms = new Date() - start
-    logger.info(`${ctx.method} ${ctx.url} - ${ms}ms`)
+    logger.info(`${ctx.method} ${ctx.url} - ${new Date() - start}ms`)
 })
 
 // routers

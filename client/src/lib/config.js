@@ -1,13 +1,14 @@
 const apiPrefix = '/api/v1/'
-export const api = {
-    host: '//api.cms.com/',
-    login: `${apiPrefix}login`,
-    logout: `${apiPrefix}logout`,
-    user: `${apiPrefix}user`,
-    website: `${apiPrefix}website`,
-    websiteUrl: `${apiPrefix}website/url`,
-    websiteNav: `${apiPrefix}website/nav`,
-    websiteLogo: `${apiPrefix}/website/logo`
+export const API = {
+    HOST: '//api.cms.com/',
+    LOGIN: `${apiPrefix}login`,
+    LOGOUT: `${apiPrefix}logout`,
+    USER: `${apiPrefix}user`,
+    WEBSITE: `${apiPrefix}website`,
+    WEBSITEURL: `${apiPrefix}website/url`,
+    WEBSITENAV: `${apiPrefix}website/nav`,
+    WEBSITELOGO: `${apiPrefix}/website/logo`,
+    POST: `${apiPrefix}/post`
 }
 
 export const tag = {

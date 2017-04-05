@@ -56,7 +56,7 @@ const mimetypeList = {
 }
 
 module.exports = {
-    limits: ['file', 'pages', 'product', 'user', 'website'],
+    limits: ['file', 'pages', 'product', 'user', 'website', 'post'],
     maxTime: 28800000,
     production: false,
     route_prefix: 'v1',

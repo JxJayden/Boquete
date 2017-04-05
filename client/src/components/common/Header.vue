@@ -16,7 +16,7 @@
     </div>
 </template>
 <script>
-import { api } from '../../lib/config'
+import { API } from '../../lib/config'
 export default {
     data() {
         return {
@@ -36,7 +36,7 @@ export default {
         },
         logout() {
             localStorage.clear()
-            this.axios.get(api.logout).then((res) => {
+            this.axios.get(API.LOGOUT).then((res) => {
                 this.$router.push('/login')
             })
         }
