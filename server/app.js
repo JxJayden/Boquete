@@ -7,7 +7,7 @@ const Koa = require('koa'),
     send = require('koa-send'),
     logger = require('./lib/log'),
     utils = require('./lib/utils'),
-    hasUser = require('./routes/base/has_user')
+    judgeUser = require('./routes/base/judge_user')
 
 // middlewares
 app
@@ -23,31 +23,31 @@ app
 
 app.use(async function (ctx, next) {
     const start = new Date()
-    logger.info(ctx.request.body)
     try {
-        if (utils.isLimited(ctx.url)) { // 判断访问的路径有没有被限制
-            if (!await hasUser(ctx, next)) {
+        if (!utils.isLimited(ctx.url)) {
+            await next()
+        } else {
+            if (!await judgeUser.hasUser(ctx.cookies.get('user'))) {
                 throw {
-                    message: '请登录',
                     code: -10,
-                }
-            } else if (!ctx.cookies.get('sessionId') ||
-                utils.isTimeout(ctx.cookies.get('sessionId'))) {
-                throw {
-                    message: '长时间未操作，会话已过期',
-                    code: -10,
-                }
-            } else {
-                if (utils.hasPermission(ctx.url, ctx.cookies.get('limits'))) {
-                    await next()
-                } else {
-                    throw {
-                        message: '没有访问权限',
-                        code: -4,
-                    }
+                    message: '无该用户，请重新登录'
                 }
             }
-        } else {
+
+            if (!judgeUser.isEffective(ctx.cookies.get('sessionId'))) {
+                throw {
+                    code: -4,
+                    message: '长时间未操作，请重新登录'
+                }
+            }
+
+            if (!judgeUser.hasLimits(ctx.url, ctx.cookies.get('limits'))) {
+                throw {
+                    code: -4,
+                    message: '无访问权限'
+                }
+            }
+
             await next()
         }
     } catch (err) {

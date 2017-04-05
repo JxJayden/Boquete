@@ -1,6 +1,5 @@
 /* eslint no-console: "off" */
 const config = require('./config'),
-    cry = require('./cryptology'),
     LIMIT_RE = new RegExp(`(${config.limits.join('|')})`, 'i'),
     toString = Object.prototype.toString
 
@@ -31,7 +30,7 @@ function isObject(val) {
 function hasPermission(url, limits) {
     let to = url.match(LIMIT_RE)[0]
 
-    limits = JSON.parse(cry.decrypt(limits))
+    limits = JSON.parse(limits)
 
     let tmp = limits.join(',')
     return !!~tmp.indexOf(to)
@@ -53,7 +52,7 @@ function isLimited(url) {
  * @returns {Boolean}
  */
 function isTimeout(sessionTime) {
-    sessionTime = parseInt(cry.decrypt(sessionTime))
+    sessionTime = parseInt(sessionTime)
 
     if (sessionTime && new Date().getTime() - sessionTime < config.maxTime) {
         return false
