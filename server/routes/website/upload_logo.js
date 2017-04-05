@@ -12,12 +12,9 @@ module.exports = async function (ctx) {
         body, websiteInfo
     try {
         websiteInfo = await db.websiteModel.getWebsiteByOwner(currentUserId)
-        if (!websiteInfo) {
-            throw {
-                message: '没有找到对应的网站',
-                code: -3
-            }
-        }
+
+        if (!websiteInfo) throw { message: '没有找到对应的网站', code: -3 }
+
         if (websiteInfo.logo) {
             fs.unlink(websiteInfo.logo, function (err) {
                 logger.error(err)
@@ -25,6 +22,7 @@ module.exports = async function (ctx) {
         }
 
         await fileSave.single('logo')(ctx)
+
         await saveLogoPathUrlTodb(ctx.req.file.path, currentUserId)
 
         body = {
