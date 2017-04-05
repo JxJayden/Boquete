@@ -43,7 +43,6 @@ export default {
             this.content = html
         },
         submit() {
-            console.log(this.content)
             if (this.title === '') {
                 this.$message.error('文章标题不能为空')
                 return false

@@ -37,6 +37,7 @@
                 </el-col>
             </el-row>
         </el-form>
+        <el-button @click="addDefaultNav('post', 'http://show.jxdjayden.cn/post')">添加文章导航</el-button>
         <el-button type="primary"
                    :loading="isSubmitBtnLoading"
                    @click="submitForm('navForm')">保存更改</el-button>
@@ -82,12 +83,13 @@ export default {
         deleteNav(nav) {
             this.navigations.splice(this.navigations.indexOf(nav), 1)
         },
-        addNav(formName, index) {
-            this.checkOneFormAndCallBack(formName, index, () => {
-                this.navigations.push({
-                    label: '',
-                    url: ''
-                })
+        addNav(formName, index, label, url) {
+            this.checkOneFormAndCallBack(formName, index, this.pushNavArray)
+        },
+        pushNavArray(label, url) {
+            this.navigations.push({
+                label: label || '',
+                url: url || ''
             })
         },
         updateChange() {
@@ -140,6 +142,13 @@ export default {
         },
         resetForm(formName) {
             this.$refs[formName].resetFields()
+        },
+        addDefaultNav(label, url) {
+            this.navigations[this.navigations.length - 1] = {
+                label: label,
+                url: url
+            }
+            this.pushNavArray()
         }
     }
 }

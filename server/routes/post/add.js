@@ -24,7 +24,8 @@ module.exports = async function (ctx) {
         dbVal = await new db.postModel({
             title: title,
             content: content,
-            author: userId
+            author: userId,
+            owner: userId
         }).save()
 
         body = {

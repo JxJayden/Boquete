@@ -36,6 +36,7 @@ router
     // 文件管理
     // .post('/file', file.upload)
     // 文章管理
+    .get('/post', post.get)
     .post('/post', post.add)
 
 module.exports = router

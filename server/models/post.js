@@ -1,6 +1,6 @@
 const
-    m        = require('../lib/mongoose'),
-    Schema   = m.Schema,
+    m = require('../lib/mongoose'),
+    Schema = m.Schema,
     mongoose = m.mongoose
 
 const post_schema = new Schema({
@@ -11,6 +11,10 @@ const post_schema = new Schema({
     content: {
         type: String,
         required: true
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     },
     author: {
         type: Schema.Types.ObjectId,
