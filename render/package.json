@@ -1,0 +1,36 @@
+{
+  "name": "cms-render",
+  "license": "MIT",
+  "private": true,
+  "author": "JxJayden <jxdjayden@gamil.com>",
+  "scripts": {
+    "render": "node bin/www",
+    "pm2": "pm2 start bin/www ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "art-template": "^3.1.3",
+    "debug": "^2.6.3",
+    "jade": "~1.11.0",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^2.0.1",
+    "koa-onerror": "^1.2.1",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.2.1",
+    "log4js": "^1.1.1",
+    "materialize-css": "^0.98.1",
+    "mongoose": "^4.8.3",
+    "pm2": "^2.4.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-async-await": "^0.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1"
+  }
+}
