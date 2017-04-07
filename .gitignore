@@ -4,4 +4,4 @@ dist/
 npm-debug.log
 .idea
 logs/
-server/public/*
+server/api/public/*

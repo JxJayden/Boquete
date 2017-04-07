@@ -22,9 +22,6 @@
             <el-button class="editor-btn"
                        type="danger"
                        @click="resetPostData">重置</el-button>
-            <el-button class="editor-btn"
-                       type="danger"
-                       @click="getFocus">聚焦</el-button>
         </div>
     </div>
 </template>
@@ -109,9 +106,6 @@ export default {
             _post(this, API.POST, data, function (data) {
                 this.$message.success('提交成功！')
             })
-        },
-        getFocus() {
-            // this.$refs.title.focus()
         }
     },
     computed: {

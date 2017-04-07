@@ -47,9 +47,9 @@ user_schema.statics.login = function (username, password) {
                 })
             }
 
-            bcrypt.compare(password, loginUser.password, (error, same) => {
-                if (error) {
-                    logger.error(error)
+            bcrypt.compare(password, loginUser.password, (err, same) => {
+                if (err) {
+                    logger.error(err)
                     reject({
                         code: -3,
                         message: error.message
@@ -129,9 +129,9 @@ user_schema.pre('save', function (next) {
             return next()
         }
 
-        bcrypt.hash(that.password, salt, function (error, hash) {
-            if (error) {
-                logger.error(error)
+        bcrypt.hash(that.password, salt, function (err, hash) {
+            if (err) {
+                logger.error(err)
             }
             that.password = hash
 
