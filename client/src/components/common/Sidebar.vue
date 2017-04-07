@@ -26,6 +26,7 @@
             </el-submenu>
             <el-submenu index="5">
                 <template slot="title"><i class="el-icon-edit"></i>文章管理</template>
+                <el-menu-item index="postlist">文章列表</el-menu-item>
                 <el-menu-item index="addpost">添加文章</el-menu-item>
             </el-submenu>
             <el-submenu index="6">

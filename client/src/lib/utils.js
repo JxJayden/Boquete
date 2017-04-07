@@ -118,12 +118,12 @@ export function _delete(context, api, data, cb, errCb) {
         if (err.response && err.response.status === 403) {
             self.$router.replace('login')
             self.$notify.error({
-                title: '获取失败',
+                title: '删除失败',
                 message: '无用户信息，请登录重试'
             })
         } else {
             self.$notify.error({
-                title: '获取失败',
+                title: '删除失败',
                 message: err
             })
             isFun(errCb) && errCb.call(self, res.data.data)

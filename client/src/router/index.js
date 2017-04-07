@@ -61,8 +61,16 @@ export default new Router({
             component: resolve => require(['../components/page/basicManage/NavManage.vue'], resolve)
         },
         {
+            path: '/editpost',
+            component: resolve => require(['../components/page/postManage/edit.vue'], resolve)
+        },
+        {
             path: '/addpost',
-            component: resolve => require(['../components/page/postManage/addPost.vue'], resolve)
+            component: resolve => require(['../components/page/postManage/edit.vue'], resolve)
+        },
+        {
+            path: '/postlist',
+            component: resolve => require(['../components/page/postManage/list.vue'], resolve)
         }]
     },
     {

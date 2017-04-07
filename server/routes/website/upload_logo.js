@@ -22,7 +22,6 @@ module.exports = async function (ctx) {
         }
 
         await fileSave.single('logo')(ctx)
-        logger.debug(ctx.req.file)
         await saveLogoPathUrlTodb(ctx.req.file.path, currentUserId)
 
         body = {

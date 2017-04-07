@@ -38,5 +38,7 @@ router
     // 文章管理
     .get('/post', post.get)
     .post('/post', post.add)
+    .put('/post', post.update)
+    .delete('/post', post.delete)
 
 module.exports = router
