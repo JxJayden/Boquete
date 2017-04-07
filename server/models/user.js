@@ -1,8 +1,8 @@
 const
-    bcrypt   = require('bcrypt'),
-    logger   = require('../lib/log'),
-    m        = require('../lib/mongoose'),
-    Schema   = m.Schema,
+    bcrypt = require('bcrypt-nodejs'),
+    logger = require('../lib/log'),
+    m = require('../lib/mongoose'),
+    Schema = m.Schema,
     mongoose = m.mongoose
 
 const user_schema = new Schema({
@@ -123,13 +123,13 @@ user_schema.statics.isRoot = function (userId) {
 
 user_schema.pre('save', function (next) {
     var that = this
-    bcrypt.genSalt(that._salt_bounds, function (err, salt) {
+    bcrypt.genSalt(that._salt_bounds, (err, salt) => {
         if (err) {
             logger.error(err)
             return next()
         }
 
-        bcrypt.hash(that.password, salt, function (err, hash) {
+        bcrypt.hash(that.password, salt, null, (err, hash) => {
             if (err) {
                 logger.error(err)
             }

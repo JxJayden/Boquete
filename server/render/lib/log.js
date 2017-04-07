@@ -6,7 +6,7 @@ const log4js = require('log4js'),
         }, {
             type: 'DateFile',
             level: 'ERROR',
-            filename: `${__dirname}/../../logs/server/server`,
+            filename: `${__dirname}/../../../logs/render/render`,
             pattern: '-yyyy-MM-dd.log',
             alwaysIncludePattern: true,
             maxLogSize: 20480,
