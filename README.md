@@ -4,7 +4,7 @@
 
 ## TODO
 
-[go to TODO](https://github.com/JxJayden/CMS/blob/master/TODO.md)
+[go to TODO](./TODO.md)
 
 ## License
 
