@@ -6,7 +6,7 @@ module.exports = async function (ctx) {
     let content = ctx.request.body.content,
         title = ctx.request.body.title,
         userId = cry.decrypt(ctx.cookies.get('user')),
-        body, dbVal
+        body, dbVal, authorInfo
 
     try {
         if (!content) {
@@ -20,11 +20,13 @@ module.exports = async function (ctx) {
                 message: '无文章标题'
             }
         }
+        authorInfo = await db.userModel.findById(userId).exec()
 
         dbVal = await new db.postModel({
             title: title,
             content: content,
             author: userId,
+            authorName: authorInfo.username,
             owner: userId
         }).save()
 

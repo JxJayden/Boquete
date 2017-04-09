@@ -3,6 +3,7 @@ const logger = require('../../lib/log')
 module.exports = async(ctx, next) => {
     try {
         let webSiteInfo = ctx.websiteInfo
+        logger.debug(webSiteInfo)
         if (webSiteInfo === null) {
             throw {
                 message: '无该网站',
@@ -11,6 +12,7 @@ module.exports = async(ctx, next) => {
         }
 
         let nav = {
+            homeUrl: webSiteInfo.url,
             nav: webSiteInfo.nav,
             logo: `//api.cms.com/${webSiteInfo.logo}`
         }

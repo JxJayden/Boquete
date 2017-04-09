@@ -1,13 +1,16 @@
-/*body {
-    font-family:
-}*/
+html {
+    font-family: Helvetica, Georgia, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
 nav ul a,
 nav .brand-logo {
     color: #444;
 }
+
 nav .brand-logo {
     padding-top: 6px;
 }
+
 p {
     line-height: 2rem;
 }

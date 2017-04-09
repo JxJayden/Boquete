@@ -25,7 +25,7 @@ app
     .use(json())
     .use(require('koa-static')(__dirname + '/public'))
     .use(views(__dirname + '/views', {
-        extension: 'jade'
+        extension: 'pug'
     }))
 
 // logger

@@ -16,6 +16,7 @@ module.exports = async(ctx, next) => {
         let postsInfo = await getPostsInfo(webSiteInfo.owner)
 
         let nav = {
+            homeUrl: webSiteInfo.url,
             nav: webSiteInfo.nav,
             logo: `//api.cms.com/${webSiteInfo.logo}`
         }
@@ -23,7 +24,7 @@ module.exports = async(ctx, next) => {
         let page = {
             title: webSiteInfo.title,
             description: webSiteInfo.description,
-            // cover: '/img/background1.jpg'
+            cover: '/img/background1.jpg'
         }
 
         let footer = {
@@ -39,7 +40,7 @@ module.exports = async(ctx, next) => {
             posts: postsInfo
         }
 
-        await ctx.render('./page/postlist', {})
+        await ctx.render('./page/post_list', {})
     } catch (err) {
         logger.error(err)
         await ctx.render('./error', {
@@ -53,7 +54,6 @@ module.exports = async(ctx, next) => {
 
 
 async function getPostsInfo(ownerId) {
-    logger.debug(ownerId)
     return await db.postModel.find({
         owner: ownerId
     }).exec()

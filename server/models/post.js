@@ -20,6 +20,10 @@ const post_schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
+    authorName: {
+        type: String,
+        default: ''
+    },
     date: {
         type: Date,
         default: Date.now
