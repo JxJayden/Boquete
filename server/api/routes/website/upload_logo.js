@@ -4,7 +4,7 @@ const db = require('../../../models/index'),
     fs = require('fs'),
     fileSave = require('../../lib/save_file')({
         isRandomName: true,
-        dest: 'public/images'
+        dest: 'public/uploads'
     })
 
 module.exports = async function (ctx) {
@@ -13,7 +13,10 @@ module.exports = async function (ctx) {
     try {
         websiteInfo = await db.websiteModel.getWebsiteByOwner(currentUserId)
 
-        if (!websiteInfo) throw { message: '没有找到对应的网站', code: -3 }
+        if (!websiteInfo) throw {
+            message: '没有找到对应的网站',
+            code: -3
+        }
 
         if (websiteInfo.logo) {
             fs.unlink(websiteInfo.logo, function (err) {
@@ -22,13 +25,14 @@ module.exports = async function (ctx) {
         }
 
         await fileSave.single('logo')(ctx)
-        await saveLogoPathUrlTodb(ctx.req.file.path, currentUserId)
-
+        await saveLogoPathUrlTodb(ctx.req.file.path.replace(/.*\/uploads/, 'uploads'), currentUserId)
         body = {
             err: false,
             code: 200,
             message: 'save logo succeed',
-            data: ctx.req.file
+            data: {
+                path: String(ctx.req.file.path).replace(/.*\/uploads/, '/uploads')
+            }
         }
     } catch (err) {
         logger.debug(err)

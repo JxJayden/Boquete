@@ -42,13 +42,18 @@ module.exports = async function (ctx) {
         registerWebSite = await new db.websiteModel({
             owner: registerUser._id,
             title: registerUser.username,
-            url: encodeURI(`http://show.jxdjayden.cn/${registerUser.username}`),
-            copyright: `${registerUser.username} © ${new Date().getFullYear()}`,
-            nav: [{
-                label: 'home',
-                url: encodeURI(`http://show.jxdjayden.cn/${registerUser.username}`)
-            }]
+            copyright: `${registerUser.username} © ${new Date().getFullYear()}`
         }).save()
+
+        let m = await db.websiteModel.findByIdAndUpdate(registerWebSite._id, {
+            $set: {
+                nav: [{
+                    label: 'home',
+                    url: encodeURI(`http://show.jxdjayden.cn/${registerWebSite._id}`)
+                }],
+                url: encodeURI(`http://show.jxdjayden.cn/${registerWebSite._id}`),
+            }
+        }).exec()
 
         // 删除一些不必要的信息
         delete newUser.password
@@ -59,8 +64,7 @@ module.exports = async function (ctx) {
             err: false,
             message: 'register succeed',
             data: {
-                newUser,
-                registerWebSite
+                user: newUser
             }
         }
     } catch (err) {

@@ -9,7 +9,6 @@ const logger = require('./lib/log')
 // const artTemplate = require('art-template')
 
 const index = require('./routes/index')
-const users = require('./routes/users')
 
 // error handler
 onerror(app)
@@ -21,12 +20,13 @@ onerror(app)
 
 
 // middlewares
-app.use(bodyparser)
-app.use(json())
-app.use(require('koa-static')(__dirname + '/public'))
-app.use(views(__dirname + '/views', {
-    extension: 'jade'
-}))
+app
+    .use(bodyparser)
+    .use(json())
+    .use(require('koa-static')(__dirname + '/public'))
+    .use(views(__dirname + '/views', {
+        extension: 'jade'
+    }))
 
 // logger
 app.use(async(ctx, next) => {
@@ -38,6 +38,5 @@ app.use(async(ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
 
 module.exports = app

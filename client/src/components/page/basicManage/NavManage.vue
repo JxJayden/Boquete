@@ -37,7 +37,7 @@
                 </el-col>
             </el-row>
         </el-form>
-        <el-button @click="addDefaultNav('post', 'http://show.jxdjayden.cn/post')">添加文章导航</el-button>
+        <el-button @click="addDefaultNav('post')">添加文章导航</el-button>
         <el-button type="primary"
                    :loading="isSubmitBtnLoading"
                    @click="submitForm('navForm')">保存更改</el-button>
@@ -50,6 +50,7 @@ import { _put, _get, isArray } from '../../../lib/utils'
 export default {
     data() {
         return {
+            websiteUrl: '',
             navigations: [],
             isSubmitBtnLoading: false,
             newNav: {
@@ -70,6 +71,7 @@ export default {
     },
     mounted() {
         this.getWebsiteNavInfo()
+        this.getDefaultUrl()
     },
     methods: {
         getWebsiteNavInfo() {
@@ -143,10 +145,15 @@ export default {
         resetForm(formName) {
             this.$refs[formName].resetFields()
         },
-        addDefaultNav(label, url) {
+        getDefaultUrl() {
+            _get(this, API.WEBSITEURL, function (data) {
+                this.websiteUrl = data.url
+            })
+        },
+        addDefaultNav(type) {
             this.navigations[this.navigations.length - 1] = {
-                label: label,
-                url: url
+                label: type,
+                url: this.websiteUrl + '/' + type
             }
             this.pushNavArray()
         }

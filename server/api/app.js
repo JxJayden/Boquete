@@ -3,23 +3,18 @@ const Koa = require('koa'),
     convert = require('koa-convert'),
     json = require('koa-json'),
     mount = require('mount-koa-routes'),
-    bodyparser = require('koa-bodyparser'),
-    send = require('koa-send'),
+    bodyparser = require('koa-bodyparser')(),
     logger = require('./lib/log'),
+    static = require('koa-static'),
     utils = require('./lib/utils'),
     judgeUser = require('./routes/base/judge_user')
 
 // middlewares
+
 app
-    .use(convert(bodyparser()))
-    .use(convert(json()))
-    .use(async(ctx, next) => {
-        await send(ctx, ctx.path.replace(/\/?public\//, ''), {
-            root: __dirname + '/public',
-            maxage: 300
-        })
-        await next()
-    })
+    .use(bodyparser)
+    .use(json())
+    .use(static(__dirname + '/../public'))
 
 app.use(async function (ctx, next) {
     const start = new Date()

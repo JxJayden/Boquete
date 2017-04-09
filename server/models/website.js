@@ -27,11 +27,11 @@ const website_schema = new Schema({
     },
     url: {
         type: String,
-        required: true
+        default: ''
     },
     nav: {
         type: Array,
-        required: true
+        default: []
     }
 })
 

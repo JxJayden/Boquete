@@ -1,0 +1,40 @@
+extends ../common/layout
+
+block css
+  link(href="/css/page/post.css", rel="stylesheet")
+
+
+block content
+  if page.cover
+    #index-banner.parallax-container
+      .section.no-pad-bot
+        .container
+          br
+          br
+          h1.header.center.red-text.text-lighten-1 #{page.title}
+          .row.center
+            h5.header.col.s12.light #{page.description}
+          br
+          br
+      .parallax
+        img(src=page.cover, alt='post cover img')
+  else
+    #index-banner.parallax-container.grey.lighten-5
+      .section.no-pad-bot
+        .container
+          br
+          br
+          h1.header.center.red-text.text-lighten-2 #{page.title}
+          .row.center
+            h5.header.col.s12.light.red-text.text-darken-3 #{page.description}
+          br
+          br
+  main.post-content.container.row
+    each val in posts
+      article.col.s6.offset-s3.m8.offset-m2.post
+        h3.post-title.text-blue.text-darken-1
+          a(href= 'post/' + val._id) #{val.title}
+        section.post-excerpt !{val.content}
+        footer.post-meta
+          span.post-author #{val.author}
+          time.post-date
