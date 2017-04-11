@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log'),
+    logger = require('../../lib/log').getLogger('website-upload-logo'),
     cry = require('../../lib/cryptology'),
     fs = require('fs'),
     fileSave = require('../../lib/save_file')({
@@ -19,13 +19,14 @@ module.exports = async function (ctx) {
         }
 
         if (websiteInfo.logo) {
-            fs.unlink(websiteInfo.logo, function (err) {
+            fs.unlink('public/' + websiteInfo.logo, function (err) {
                 logger.error(err)
             })
         }
 
         await fileSave.single('logo')(ctx)
         await saveLogoPathUrlTodb(ctx.req.file.path.replace(/.*\/uploads/, 'uploads'), currentUserId)
+
         body = {
             err: false,
             code: 200,

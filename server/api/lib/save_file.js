@@ -2,9 +2,10 @@ const crypto = require('crypto'),
     fs = require('fs'),
     mkdirp = require('mkdirp'),
     multer = require('koa-multer'),
-    logger = require('./log'),
+    log4js = require('./log'),
     config = require('./config'),
-    defaultDest = 'public/uploads'
+    defaultDest = 'public/uploads',
+    logger = log4js.getLogger('save-file')
 
 module.exports = function fileSave(opts) {
     let multerConfig = {},

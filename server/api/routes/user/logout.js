@@ -1,4 +1,5 @@
-const logger = require('../../lib/log')
+const logger = require('../../lib/log').getLogger('logout')
+
 module.exports = async function (ctx) {
     try {
         ctx.cookies.set('sessionId', null)

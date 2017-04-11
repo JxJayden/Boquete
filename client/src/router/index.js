@@ -6,7 +6,7 @@ Vue.use(Router)
 export default new Router({
     routes: [{
         path: '/',
-        redirect: '/login'
+        redirect: '/register'
     },
     {
         path: '/home',
@@ -76,5 +76,9 @@ export default new Router({
     {
         path: '/login',
         component: resolve => require(['../components/page/Login.vue'], resolve)
+    },
+    {
+        path: '/register',
+        component: resolve => require(['../components/page/Register.vue'], resolve)
     }]
 })

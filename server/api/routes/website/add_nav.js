@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log'),
+    logger = require('../../lib/log').getLogger('website-add-nav'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {

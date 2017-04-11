@@ -1,8 +1,8 @@
 /**
- * 获取网站信息
+ * 获取网站导航栏信息
  */
 const db = require('../../../models/index'),
-    logger = require('../../lib/log'),
+    logger = require('../../lib/log').getLogger('website-get-nav'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {

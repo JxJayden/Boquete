@@ -1,7 +1,8 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log'),
+    logger = require('../../lib/log').getLogger('post-delete'),
     cry = require('../../lib/cryptology'),
     utils = require('../../lib/utils')
+
 
 module.exports = async function (ctx) {
     logger.debug(ctx.request.body)

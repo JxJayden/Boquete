@@ -4,17 +4,17 @@ const Koa = require('koa'),
     json = require('koa-json'),
     mount = require('mount-koa-routes'),
     bodyparser = require('koa-bodyparser')(),
-    logger = require('./lib/log'),
+    log4js = require('./lib/log'),
     static = require('koa-static'),
     utils = require('./lib/utils'),
-    judgeUser = require('./routes/base/judge_user')
-
+    judgeUser = require('./routes/base/judge_user'),
+    logger = log4js.getLogger('app')
 // middlewares
 
 app
     .use(bodyparser)
     .use(json())
-    .use(static(__dirname + '/../public'))
+    .use(static('public/'))
 
 app.use(async function (ctx, next) {
     const start = new Date()

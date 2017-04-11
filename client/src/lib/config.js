@@ -3,6 +3,7 @@ export const API = {
     HOST: '//api.cms.com/',
     LOGIN: `${apiPrefix}login`,
     LOGOUT: `${apiPrefix}logout`,
+    REGISTER: `${apiPrefix}register`,
     USER: `${apiPrefix}user`,
     WEBSITE: `${apiPrefix}website`,
     WEBSITEURL: `${apiPrefix}website/url`,

@@ -2,7 +2,7 @@
  * 获取用户信息
  */
 const db = require('../../../models/index'),
-    logger = require('../../lib/log')
+    logger = require('../../lib/log').getLogger('user get')
 
 module.exports = async function (ctx) {
     let conditions = ctx.query.id ?
