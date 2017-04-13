@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('login'),
+    logger = require('../../../lib/log')('login'),
     cry = require('../../lib/cryptology'),
     config = require('../../lib/config')
 

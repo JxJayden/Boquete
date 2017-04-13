@@ -2,7 +2,7 @@
  * 获取网站导航栏信息
  */
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('website-get-nav'),
+    logger = require('../../../lib/log')('website-get-nav'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {

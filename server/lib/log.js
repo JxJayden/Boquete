@@ -16,8 +16,17 @@ const log4js = require('log4js'),
 
 log4js.configure(log_config)
 
-const logger = log4js.getLogger(path.basename(__filename))
+
+function log (logName) {
+    if (logName) {
+        return log4js.getLogger(logName)
+    } else {
+        return log4js.getLogger(path.basename(__filename))
+    }
+}
+
+log.getLogger = log4js.getLogger
 /**
  * 打印日志
  */
-module.exports = logger
+module.exports = log

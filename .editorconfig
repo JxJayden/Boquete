@@ -15,3 +15,6 @@ max_line_length = null
 
 [.md]
 indent_size = 2
+
+[.pug]
+indent_size = 2

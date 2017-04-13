@@ -7,7 +7,7 @@
             <el-menu-item index="home">
                 <i class="el-icon-setting"></i>主页
             </el-menu-item>
-            <!--<el-submenu index="2">
+            <el-submenu index="2">
                 <template slot="title"><i class="el-icon-menu"></i>表格</template>
                 <el-menu-item index="basetable">基础表格</el-menu-item>
                 <el-menu-item index="vuetable">Vue表格组件</el-menu-item>
@@ -23,7 +23,7 @@
                 <template slot="title"><i class="el-icon-star-on"></i>图表</template>
                 <el-menu-item index="basecharts">基础图表</el-menu-item>
                 <el-menu-item index="mixcharts">混合图表</el-menu-item>
-            </el-submenu>-->
+            </el-submenu>
             <el-submenu index="5">
                 <template slot="title"><i class="el-icon-edit"></i>文章管理</template>
                 <el-menu-item index="postlist">文章列表</el-menu-item>

@@ -2,7 +2,7 @@
  * 删除管理员
  */
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('user delete')
+    logger = require('../../../lib/log')('user delete')
 
 module.exports = async function (ctx) {
     let _id = ctx.request.body._id,

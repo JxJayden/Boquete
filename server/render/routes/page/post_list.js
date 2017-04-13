@@ -1,4 +1,4 @@
-const logger = require('../../lib/log'),
+const logger = require('../../../lib/log')('router-postlist'),
     db = require('../../../models/index')
 
 module.exports = async(ctx, next) => {

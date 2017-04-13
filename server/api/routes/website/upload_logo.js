@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('website-upload-logo'),
+    logger = require('../../../lib/log')('website-upload-logo'),
     cry = require('../../lib/cryptology'),
     fs = require('fs'),
     fileSave = require('../../lib/save_file')({

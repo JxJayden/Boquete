@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('website-update-nav'),
+    logger = require('../../../lib/log')('website-update-nav'),
     cry = require('../../lib/cryptology'),
     utils = require('../../lib/utils'),
     NAV_RE = /(label,url)|(url,label)/

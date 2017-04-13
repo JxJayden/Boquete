@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('post-delete'),
+    logger = require('../../../lib/log')('post-delete'),
     cry = require('../../lib/cryptology'),
     utils = require('../../lib/utils')
 

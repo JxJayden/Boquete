@@ -1,6 +1,6 @@
 const
     bcrypt = require('bcrypt-nodejs'),
-    logger = require('../lib/log'),
+    logger = require('../lib/log')('model-user'),
     m = require('../lib/mongoose'),
     Schema = m.Schema,
     mongoose = m.mongoose

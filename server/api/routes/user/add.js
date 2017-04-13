@@ -2,7 +2,7 @@
  * 添加管理员
  */
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('user add'),
+    logger = require('../../../lib/log')('user add'),
     utils = require('../../lib/utils')
 
 module.exports = async function (ctx) {

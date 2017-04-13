@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('user-register'),
+    logger = require('../../../lib/log')('user-register'),
     config = require('../../lib/config')
 
 module.exports = async function (ctx) {

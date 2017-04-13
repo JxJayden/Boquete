@@ -1,5 +1,4 @@
 const router = require('koa-router')(),
-    logger = require('../../lib/log'),
     base = require('./base/index'),
     page = require('./page/index')
 

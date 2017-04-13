@@ -1,5 +1,5 @@
 const
-    logger   = require('../lib/log'),
+    logger   = require('../lib/log')('model-website'),
     m        = require('../lib/mongoose'),
     Schema   = m.Schema,
     mongoose = m.mongoose

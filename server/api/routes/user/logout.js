@@ -1,4 +1,4 @@
-const logger = require('../../lib/log').getLogger('logout')
+const logger = require('../../../lib/log')('logout')
 
 module.exports = async function (ctx) {
     try {

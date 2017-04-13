@@ -2,7 +2,7 @@
  * 获取网站信息
  */
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('website-get-info'),
+    logger = require('../../../lib/log')('website-get-info'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {

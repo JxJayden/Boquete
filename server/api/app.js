@@ -4,11 +4,10 @@ const Koa = require('koa'),
     json = require('koa-json'),
     mount = require('mount-koa-routes'),
     bodyparser = require('koa-bodyparser')(),
-    log4js = require('./lib/log'),
+    logger = require('../lib/log')('app'),
     static = require('koa-static'),
     utils = require('./lib/utils'),
-    judgeUser = require('./routes/base/judge_user'),
-    logger = log4js.getLogger('app')
+    judgeUser = require('./routes/base/judge_user')
 // middlewares
 
 app

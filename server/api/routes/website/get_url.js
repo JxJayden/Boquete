@@ -2,7 +2,7 @@
  * 获取网站 url
  */
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('website-get-url'),
+    logger = require('../../../lib/log')('website-get-url'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {

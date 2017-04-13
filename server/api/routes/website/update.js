@@ -1,5 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../lib/log').getLogger('website-update-info'),
+    logger = require('../../../lib/log')('website-update-info'),
     utils = require('../../lib/utils')
 
 module.exports = async function (ctx) {

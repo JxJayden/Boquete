@@ -1,5 +1,4 @@
-const db = require('../../../models/index'),
-    logger = require('../../lib/log')
+const db = require('../../../models/index')
 
 module.exports = async function (websiteId) {
     return await db.websiteModel.findById(websiteId).exec()

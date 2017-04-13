@@ -1,4 +1,4 @@
-const logger = require('../../lib/log')
+const logger = require('../../../lib/log')('router-home')
 
 module.exports = async(ctx, next) => {
     try {

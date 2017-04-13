@@ -4,20 +4,13 @@ const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')()
-const logger = require('./lib/log')
+const logger = require('../lib/log')('app')
 
-// const artTemplate = require('art-template')
 
 const index = require('./routes/index')
 
 // error handler
 onerror(app)
-
-// artTemplate.config('base', __dirname + '/views')
-// artTemplate.config('encoding', 'utf-8')
-// artTemplate.config('extname', '.html')
-// app.context.render = artTemplate
-
 
 // middlewares
 app
