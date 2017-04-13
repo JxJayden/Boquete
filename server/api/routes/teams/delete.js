@@ -1,74 +1,74 @@
-const db   = require('../../../models/index'),
-    router = require('koa-router')(),
-    logger = require('../../lib/log'),
-    cry    = require('../../lib/cryptology')
+// const db   = require('../../../models/index'),
+//     router = require('koa-router')(),
+//     logger = require('../../lib/log'),
+//     cry    = require('../../lib/cryptology')
 
-router.delete('/', async function(ctx) {
-    let _id = ctx.request.body._id
-    let currentUserId = cry.decrypt(ctx.cookies.get('user'))
-    let body
+// router.delete('/', async function(ctx) {
+//     let _id = ctx.request.body._id
+//     let currentUserId = cry.decrypt(ctx.cookies.get('user'))
+//     let body
 
-    if (currentUserId) {
-        body = await (db.userModel.findOne({ _id: currentUserId }, 'username isRoot')).exec().then((value) => {
+//     if (currentUserId) {
+//         body = await (db.userModel.findOne({ _id: currentUserId }, 'username isRoot')).exec().then((value) => {
 
-            if (!value.isRoot) {
-                throw {
-                    err: true,
-                    message: '无删除权限！',
-                    code: -1
-                }
-            } else {
-                return value.username
-            }
+//             if (!value.isRoot) {
+//                 throw {
+//                     err: true,
+//                     message: '无删除权限！',
+//                     code: -1
+//                 }
+//             } else {
+//                 return value.username
+//             }
 
-        }).then((current) => {
+//         }).then((current) => {
 
-            logger.info(`做出删除操作的用户为 ${current}`)
-            return db.userModel.findOne({ _id: _id }).exec()
+//             logger.info(`做出删除操作的用户为 ${current}`)
+//             return db.userModel.findOne({ _id: _id }).exec()
 
-        }).then((value) => {
+//         }).then((value) => {
 
-            if (value.isRoot) {
-                throw {
-                    err: true,
-                    message: '无法删除超级用户！',
-                    code: -1
-                }
-            } else {
-                return db.userModel.remove({ _id: _id }).exec()
-            }
+//             if (value.isRoot) {
+//                 throw {
+//                     err: true,
+//                     message: '无法删除超级用户！',
+//                     code: -1
+//                 }
+//             } else {
+//                 return db.userModel.remove({ _id: _id }).exec()
+//             }
 
-        }).then(() => {
+//         }).then(() => {
 
-            return {
-                err: false,
-                message: 'delete done',
-                code: 200
-            }
+//             return {
+//                 err: false,
+//                 message: 'delete done',
+//                 code: 200
+//             }
 
-        }).catch((err) => {
+//         }).catch((err) => {
 
-            return {
-                err: true,
-                message: err.message,
-                code: err.code || -1
-            }
+//             return {
+//                 err: true,
+//                 message: err.message,
+//                 code: err.code || -1
+//             }
 
-        })
+//         })
 
-    } else {
-        ctx.cookies.set('sessionId', null)
-        ctx.cookies.set('user', null)
-        ctx.cookies.set('limits', null)
+//     } else {
+//         ctx.cookies.set('sessionId', null)
+//         ctx.cookies.set('user', null)
+//         ctx.cookies.set('limits', null)
 
-        body = {
-            err: true,
-            message: '会话过期，请登录重试',
-            code: -2
-        }
-    }
+//         body = {
+//             err: true,
+//             message: '会话过期，请登录重试',
+//             code: -2
+//         }
+//     }
 
-    ctx.body = body
-})
+//     ctx.body = body
+// })
 
-// module.exports = router
+// // module.exports = router
