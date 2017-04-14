@@ -6,7 +6,7 @@ Vue.use(Router)
 export default new Router({
     routes: [{
         path: '/',
-        redirect: '/register'
+        redirect: '/login'
     },
     {
         path: '/home',
@@ -71,6 +71,14 @@ export default new Router({
         {
             path: '/postlist',
             component: resolve => require(['../components/page/postManage/list.vue'], resolve)
+        },
+        {
+            path: '/addpage',
+            component: resolve => require(['../components/page/pageManage/edit.vue'], resolve)
+        },
+        {
+            path: '/pagelist',
+            component: resolve => require(['../components/page/pageManage/list.vue'], resolve)
         }]
     },
     {
