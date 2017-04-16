@@ -7,7 +7,7 @@
             </el-breadcrumb>
         </div>
 
-        <el-table :data="postData"
+        <el-table :data="pageData"
                   border
                   style="width: 100%">
             <el-table-column prop="date"
@@ -16,11 +16,15 @@
                              :formatter="dateFormatter">
             </el-table-column>
             <el-table-column prop="title"
-                             label="标题">
+                             label="页面名称">
             </el-table-column>
             <el-table-column label="操作">
                 <template scope="scope">
                     <el-button size="small"
+                               type="primary"
+                               @click="openUrl(scope.row.url)">查看页面</el-button>
+                    <el-button size="small"
+                               type="warning"
                                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="small"
                                type="danger"
@@ -29,10 +33,10 @@
             </el-table-column>
         </el-table>
         <!--<div class="pagination">
-            <el-pagination layout="prev, pager, next"
-                           :total="1000">
-            </el-pagination>
-        </div>-->
+                    <el-pagination layout="prev, pager, next"
+                                   :total="1000">
+                    </el-pagination>
+                </div>-->
     </div>
 </template>
 
@@ -42,29 +46,32 @@ import { API } from '../../../lib/config'
 export default {
     data() {
         return {
-            postData: null
+            pageData: null
         }
     },
     mounted() {
-        this.getPostData()
+        this.getPageData()
     },
     methods: {
-        getPostData() {
-            _get(this, API.POST, function (data) {
-                this.postData = data
+        getPageData() {
+            _get(this, API.PAGE, function (data) {
+                this.pageData = data
             })
         },
         dateFormatter(row, column) {
             return row.date.slice(0, row.date.indexOf('T'))
         },
         handleEdit(index, row) {
-            this.$router.push({ path: 'editpost', query: { id: row._id }})
+            this.$router.push({ path: 'editpage', query: { id: row._id } })
         },
         handleDelete(index, row) {
-            _delete(this, API.POST, { id: row._id }, function () {
+            _delete(this, API.PAGE, { id: row._id }, function () {
                 this.$message.success('删除成功')
-                this.getPostData()
+                this.getPageData()
             })
+        },
+        openUrl(url) {
+            window.open(url)
         }
     }
 }

@@ -6,28 +6,12 @@
                 <el-breadcrumb-item>编辑</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="mgb20">
-            <el-input v-model="title"
-                      ref="title"
-                      placeholder="请输入文章标题"
-                      :autofocus="true"></el-input>
-        </div>
-        <quill-editor ref="myTextEditor"
-                      v-model="content"
-                      :config="editorOption"></quill-editor>
-        <div class="mgt20">
-            <el-button class="editor-btn"
-                       type="primary"
-                       @click="submit">提交</el-button>
-            <el-button class="editor-btn"
-                       type="danger"
-                       @click="resetPostData">重置</el-button>
-        </div>
+
     </div>
 </template>
 
 <script>
-import { quillEditor } from 'vue-quill-editor'
+import draggable from 'vuedraggable'
 import { _post, _get, _put } from '../../../lib/utils'
 import { API } from '../../../lib/config'
 export default {
@@ -40,7 +24,7 @@ export default {
         }
     },
     components: {
-        quillEditor
+        draggable
     },
     mounted() {
         if (this.$route.query.id) {

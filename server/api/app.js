@@ -30,7 +30,7 @@ app.use(async function (ctx, next) {
 
             if (!judgeUser.isEffective(ctx.cookies.get('sessionId'))) {
                 throw {
-                    code: -4,
+                    code: -10,
                     message: '长时间未操作，请重新登录'
                 }
             }

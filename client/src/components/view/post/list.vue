@@ -58,7 +58,7 @@ export default {
             return row.date.slice(0, row.date.indexOf('T'))
         },
         handleEdit(index, row) {
-            this.$router.push({ path: 'editpost', query: { id: row._id }})
+            this.$router.push({ name: 'editPost', params: { id: row._id }})
         },
         handleDelete(index, row) {
             _delete(this, API.POST, { id: row._id }, function () {

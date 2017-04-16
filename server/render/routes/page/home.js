@@ -1,9 +1,8 @@
 const logger = require('../../../lib/log')('router-home')
 
-module.exports = async(ctx, next) => {
+module.exports = async(ctx) => {
     try {
         let webSiteInfo = ctx.websiteInfo
-        logger.debug(webSiteInfo)
         if (webSiteInfo === null) {
             throw {
                 message: '无该网站',

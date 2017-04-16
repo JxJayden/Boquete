@@ -1,19 +1,17 @@
 const logger = require('../../../lib/log')('router-postmain'),
     db = require('../../../models/index')
 
-module.exports = async(ctx, next) => {
+module.exports = async(ctx) => {
     try {
         let webSiteInfo = ctx.websiteInfo
         let post = await db.postModel.findById(ctx.params.postId).exec()
 
-        logger.debug(webSiteInfo)
         if (webSiteInfo === null) {
             throw {
                 message: '无该网站',
                 code: 404
             }
         }
-
 
         let nav = {
             homeUrl: webSiteInfo.url,

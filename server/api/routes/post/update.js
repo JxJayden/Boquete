@@ -1,12 +1,11 @@
 const db = require('../../../models/index'),
-    logger = require('../../../lib/log')('post update'),
+    logger = require('../../../lib/log')('post-update'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    logger.debug(ctx.request.body)
     let content = ctx.request.body.content,
         title = ctx.request.body.title,
-        userId = cry.decrypt(ctx.cookies.get('user')),
+        userId = cry.decrypt(ctx.cookies.get('user')), // eslint-disable-line
         postId = ctx.request.body.id,
         body, dbVal
 
@@ -29,10 +28,7 @@ module.exports = async function (ctx) {
             }
         }
 
-        dbVal = await db.postModel.update({
-            _id: postId,
-            owner: userId
-        }, {
+        dbVal = await db.postModel.findByIdAndUpdate(postId, {
             $set: {
                 title: title,
                 content: content

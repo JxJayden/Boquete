@@ -43,16 +43,17 @@ export default {
         quillEditor
     },
     mounted() {
-        if (this.$route.query.id) {
-            this.getOnePostData(this.$route.query.id)
+        console.log(this.$route.params.id)
+        if (this.$route.params.id) {
+            this.getOnePostData(this.$route.params.id)
         } else {
             this.resetPostData()
         }
     },
     watch: {
         $route() {
-            if (this.$route.query.id) {
-                this.getOnePostData(this.$route.query.id)
+            if (this.$route.params.id) {
+                this.getOnePostData(this.$route.params.id)
             } else {
                 this.resetPostData()
             }
@@ -82,8 +83,8 @@ export default {
                 return false
             }
 
-            if (this.$route.query.id) {
-                this.update(this.$route.query.id)
+            if (this.$route.params.id) {
+                this.update(this.$route.params.id)
             } else {
                 this.add()
             }

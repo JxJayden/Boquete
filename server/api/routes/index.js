@@ -6,6 +6,7 @@ const config = require('../lib/config'),
     base = require('./base/index'),
     website = require('./website/index'),
     file = require('./file/index'),
+    page = require('./pages/index'),
     post = require('./post/index'),
     register = user.register,
     login = user.login,
@@ -40,5 +41,10 @@ router
     .post('/post', post.add)
     .put('/post', post.update)
     .delete('/post', post.delete)
+    // 页面管理
+    .get('/page', page.get)
+    .post('/page', page.add)
+    .put('/page', page.update)
+    .delete('/page', page.delete)
 
 module.exports = router

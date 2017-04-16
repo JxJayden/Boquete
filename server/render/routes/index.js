@@ -1,10 +1,11 @@
 const router = require('koa-router')(),
-    base = require('./base/index'),
-    page = require('./page/index')
+    _ = require('../lib/utils'),
+    page = require('./page/index'),
+    logger = require('../../lib/log')('router')
 
 router
     .get(['/:websiteId', '/:websiteId/*'], async(ctx, next) => {
-        ctx.websiteInfo = await base.getWebSiteInfo(ctx.params.websiteId)
+        ctx.websiteInfo = await _.getWebsiteInfo(ctx.params.websiteId)
         await next()
     })
     .get(['/:websiteId', '/:websiteId/index'], page.home)

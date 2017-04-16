@@ -6,7 +6,7 @@ const db = require('../../../models/index'),
 
 module.exports = async function (ctx) {
     logger.debug(ctx.request.body)
-    let userId = cry.decrypt(ctx.cookies.get('user')),
+    let userId = cry.decrypt(ctx.cookies.get('user')), // eslint-disable-line
         postId = ctx.request.body.id,
         body, dbVal
 
@@ -17,17 +17,15 @@ module.exports = async function (ctx) {
             }
         }
 
-        dbVal = await db.postModel.remove({
-            _id: postId,
-            owner: userId
-        }).exec()
+        dbVal = await db.postModel.findByIdAndRemove(postId).exec()
 
         body = {
             err: false,
-            message: 'update post succeed',
+            message: 'delete post succeed',
             code: 200,
             data: dbVal
         }
+
     } catch (err) {
         logger.error(err)
         body = {

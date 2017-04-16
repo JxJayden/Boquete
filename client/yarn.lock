@@ -2203,6 +2203,10 @@ gzip-size@^3.0.0:
   dependencies:
     duplexer "^0.1.1"
 
+hammerjs@^2.0.4:
+  version "2.0.8"
+  resolved "http://registry.npm.taobao.org/hammerjs/download/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+
 har-schema@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/har-schema/-/har-schema-1.0.5.tgz#d263135f43307c02c602afc8fe95970c0151369e"
@@ -2629,11 +2633,19 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
+javascript-detect-element-resize@^0.5.3:
+  version "0.5.3"
+  resolved "http://registry.npm.taobao.org/javascript-detect-element-resize/download/javascript-detect-element-resize-0.5.3.tgz#1a71cd51dfe565907f299012fe73a294104025de"
+
 jodid25519@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
   dependencies:
     jsbn "~0.1.0"
+
+jquery@^2.1.4:
+  version "2.2.4"
+  resolved "http://registry.npm.taobao.org/jquery/download/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
 
 js-base64@^2.1.9:
   version "2.1.9"
@@ -2793,7 +2805,7 @@ lodash.uniq@^4.3.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.16.1, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -2837,6 +2849,14 @@ macaddress@^0.2.8:
 marked@*:
   version "0.3.6"
   resolved "https://registry.npmjs.org/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
+
+materialize-css@^0.97.7:
+  version "0.97.8"
+  resolved "http://registry.npm.taobao.org/materialize-css/download/materialize-css-0.97.8.tgz#e39ce2056785b0c4e9cd4847c2cdf153e19c47cf"
+  dependencies:
+    hammerjs "^2.0.4"
+    jquery "^2.1.4"
+    node-archiver "^0.3.0"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.16"
@@ -2969,6 +2989,13 @@ no-case@^2.2.0:
   resolved "https://registry.npmjs.org/no-case/-/no-case-2.3.1.tgz#7aeba1c73a52184265554b7dc03baf720df80081"
   dependencies:
     lower-case "^1.1.1"
+
+node-archiver@^0.3.0:
+  version "0.3.0"
+  resolved "http://registry.npm.taobao.org/node-archiver/download/node-archiver-0.3.0.tgz#b9f1afe5006d0bdf29260181833a070978bc6947"
+  dependencies:
+    fstream "^1.0.10"
+    tar "^2.2.1"
 
 node-libs-browser@^2.0.0:
   version "2.0.0"
@@ -4391,6 +4418,10 @@ vary@~1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.1.tgz#67535ebb694c1d52257457984665323f587e8d37"
 
+velocity-animate@^1.2.3:
+  version "1.5.0"
+  resolved "http://registry.npm.taobao.org/velocity-animate/download/velocity-animate-1.5.0.tgz#fc8771d8dfe1136ff02a707e10fbb0957c4b030f"
+
 vendors@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/vendors/-/vendors-1.0.1.tgz#37ad73c8ee417fb3d580e785312307d274847f22"
@@ -4411,6 +4442,49 @@ vue-axios@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/vue-axios/-/vue-axios-2.0.1.tgz#fc7f5f06d1f9190f24feca232c4c11dffba54024"
 
+vue-card@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/vue-card/download/vue-card-1.1.0.tgz#93594b59e3d7cee05bac21498431063b938258c8"
+  dependencies:
+    vue-mixins "^0.3.0"
+
+vue-collapsible@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/vue-collapsible/download/vue-collapsible-1.1.0.tgz#a5e11f2d556e0b76220c54150d2b0e2d1c41d1ad"
+  dependencies:
+    vue-mixins "^0.3.0"
+
+vue-comps-dropdown@^1.3.0, vue-comps-dropdown@^1.3.1:
+  version "1.3.1"
+  resolved "http://registry.npm.taobao.org/vue-comps-dropdown/download/vue-comps-dropdown-1.3.1.tgz#d77f01043e0b699616caf8bb2979301548f08e5d"
+  dependencies:
+    vue-mixins "^0.3.0"
+
+vue-comps-modal@^1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/vue-comps-modal/download/vue-comps-modal-1.2.1.tgz#6434c9351e4e415a6d2f5cc0ffc7b09fa3b93675"
+  dependencies:
+    vue-mixins "^0.3.0"
+    vue-overlay "^1.0.1"
+
+vue-comps-scrollspy@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/vue-comps-scrollspy/download/vue-comps-scrollspy-1.0.0.tgz#6eadd4bfde93dc864ef9bbd783b11c339e888b9d"
+  dependencies:
+    vue-mixins "^0.2.19"
+
+vue-comps-tooltip@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/vue-comps-tooltip/download/vue-comps-tooltip-1.1.0.tgz#3245550f1daab67a174351bbf0d8da8c835cf044"
+  dependencies:
+    vue-mixins "^0.3.0"
+
+vue-comps-waves@^1.0.0:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/vue-comps-waves/download/vue-comps-waves-1.0.1.tgz#17e3fbddc2a2138d74c91bb6c776f24e5b69b553"
+  dependencies:
+    vue-mixins "^0.2.14"
+
 vue-core-image-upload@^2.0.5:
   version "2.0.10"
   resolved "https://registry.npmjs.org/vue-core-image-upload/-/vue-core-image-upload-2.0.10.tgz#82fb1059095e60a654ae7fe620c6bc2375828dfc"
@@ -4421,6 +4495,12 @@ vue-datasource@^1.0.4:
   version "1.0.5"
   resolved "https://registry.npmjs.org/vue-datasource/-/vue-datasource-1.0.5.tgz#1d8f5bac4951382e1a2eeec569e5ca33f3f5be3f"
 
+vue-drag-handle@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/vue-drag-handle/download/vue-drag-handle-1.0.1.tgz#63122b1d505b9d5512fe8ef0dc559c595a1d2cbd"
+  dependencies:
+    vue-mixins "^0.2.14"
+
 vue-echarts-v3@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/vue-echarts-v3/-/vue-echarts-v3-1.0.3.tgz#9402e2a4474185b780224788a8a3f0ca293f7502"
@@ -4430,6 +4510,12 @@ vue-echarts-v3@^1.0.3:
     element-resize-event latest
     lodash.debounce latest
     vue latest
+
+vue-fixed-action-button@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/vue-fixed-action-button/download/vue-fixed-action-button-1.2.0.tgz#f31694653c0417037b5c139ea71ae270c17783fd"
+  dependencies:
+    vue-mixins "^0.3.0"
 
 vue-hot-reload-api@^2.0.1:
   version "2.0.11"
@@ -4451,6 +4537,65 @@ vue-loader@^10.3.0:
     vue-style-loader "^2.0.0"
     vue-template-es2015-compiler "^1.2.2"
 
+vue-materialize@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/vue-materialize/download/vue-materialize-1.0.0.tgz#a2110fe29190bdd05dd96052227aec211bff8e41"
+  dependencies:
+    materialize-css "^0.97.7"
+    velocity-animate "^1.2.3"
+    vue-card "^1.1.0"
+    vue-collapsible "^1.1.0"
+    vue-comps-dropdown "^1.3.0"
+    vue-comps-modal "^1.2.1"
+    vue-comps-scrollspy "^1.0.0"
+    vue-comps-tooltip "^1.1.0"
+    vue-comps-waves "^1.0.0"
+    vue-drag-handle "^1.0.1"
+    vue-fixed-action-button "^1.2.0"
+    vue-mixins "^0.3.2"
+    vue-overlay "^1.0.1"
+    vue-parallax "^1.0.0"
+    vue-pushpin "^1.0.0"
+    vue-scrollfire "^1.0.0"
+    vue-side-nav "^1.1.0"
+    vue-simple-select "^1.0.0"
+    vue-textarea "^1.0.0"
+    vue-toaster "^1.1.0"
+    vue-toggle "^1.0.1"
+    vue-zoombox "^1.0.0"
+    vueify-insert-css "^1.0.0"
+
+vue-mixins@^0.2.14, vue-mixins@^0.2.17, vue-mixins@^0.2.19:
+  version "0.2.20"
+  resolved "http://registry.npm.taobao.org/vue-mixins/download/vue-mixins-0.2.20.tgz#f58cf2af25dd012cd81afdd3a0daf77005634a78"
+  dependencies:
+    javascript-detect-element-resize "^0.5.3"
+
+vue-mixins@^0.3.0, vue-mixins@^0.3.2:
+  version "0.3.6"
+  resolved "http://registry.npm.taobao.org/vue-mixins/download/vue-mixins-0.3.6.tgz#49e19cf52c8dbc2c65c919ec67a7d8e25e2e9a86"
+  dependencies:
+    javascript-detect-element-resize "^0.5.3"
+    lodash "^4.16.1"
+
+vue-overlay@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/vue-overlay/download/vue-overlay-1.0.1.tgz#653e2573da4c66731dc03af44f82803038be987f"
+  dependencies:
+    vue-mixins "^0.2.14"
+
+vue-parallax@^1.0.0:
+  version "1.1.1"
+  resolved "http://registry.npm.taobao.org/vue-parallax/download/vue-parallax-1.1.1.tgz#54682835c18e350d9f8692fc457ab9ced44a40a3"
+  dependencies:
+    vue-mixins "^0.3.0"
+
+vue-pushpin@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/vue-pushpin/download/vue-pushpin-1.0.0.tgz#2f7379923f24ad21cce77f62339ae15c374104a9"
+  dependencies:
+    vue-mixins "^0.2.19"
+
 vue-quill-editor@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/vue-quill-editor/-/vue-quill-editor-1.1.1.tgz#f897c357425eff5cdebc859e2dcfcaef5fbdb283"
@@ -4460,6 +4605,28 @@ vue-quill-editor@^1.1.1:
 vue-router@^2.2.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/vue-router/-/vue-router-2.3.0.tgz#a25c8359e8ca989d22ce79f64322eb0ad0c8670f"
+
+vue-scrollfire@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/vue-scrollfire/download/vue-scrollfire-1.0.0.tgz#ab82a037334125ffa75b5158b9e2b03a62af004e"
+  dependencies:
+    vue-mixins "^0.2.14"
+
+vue-side-nav@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/vue-side-nav/download/vue-side-nav-1.1.0.tgz#98ab73fc0e0a90a2c12f7770b3ebcbe63aaf5270"
+  dependencies:
+    vue-drag-handle "^1.0.1"
+    vue-mixins "^0.2.17"
+    vue-overlay "^1.0.1"
+
+vue-simple-select@^1.0.0:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/vue-simple-select/download/vue-simple-select-1.0.1.tgz#f3d6175b9833896aa9a876a68ee5e0ce54b052ed"
+  dependencies:
+    vue-comps-dropdown "^1.3.1"
+    vue-comps-modal "^1.2.1"
+    vue-mixins "^0.3.2"
 
 vue-simplemde@^0.3.2:
   version "0.3.7"
@@ -4486,6 +4653,31 @@ vue-template-es2015-compiler@^1.2.2:
   version "1.5.1"
   resolved "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.5.1.tgz#0c36cc57aa3a9ec13e846342cb14a72fcac8bd93"
 
+vue-textarea@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/vue-textarea/download/vue-textarea-1.0.0.tgz#2c50113a19e1116fc29d2952152c14b8604142dd"
+  dependencies:
+    vue-mixins "^0.2.17"
+
+vue-toaster@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/vue-toaster/download/vue-toaster-1.1.0.tgz#f741e14bd56ffca1c59a02644b3efdf4eaba5710"
+  dependencies:
+    vue-mixins "^0.3.2"
+
+vue-toggle@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/vue-toggle/download/vue-toggle-1.0.1.tgz#2407067b35b489214f03d5bbe1234ac216ab4999"
+  dependencies:
+    vue-mixins "^0.2.14"
+
+vue-zoombox@^1.0.0:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/vue-zoombox/download/vue-zoombox-1.0.2.tgz#d37a11aafea5d3923c7a0ba22f57751cde1cef11"
+  dependencies:
+    vue-mixins "^0.3.0"
+    vue-overlay "^1.0.1"
+
 vue@^2.0.5, vue@^2.1.10, vue@latest:
   version "2.2.6"
   resolved "https://registry.npmjs.org/vue/-/vue-2.2.6.tgz#451714b394dd6d4eae7b773c40c2034a59621aed"
@@ -4495,6 +4687,10 @@ vuedraggable@^2.10.0:
   resolved "http://registry.npm.taobao.org/vuedraggable/download/vuedraggable-2.10.0.tgz#4584838834a7d944033549d53c8d64387a7ce935"
   dependencies:
     sortablejs "^1.5.1"
+
+vueify-insert-css@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/vueify-insert-css/download/vueify-insert-css-1.0.0.tgz#57e5d791907e8c9d87ae6de099a2174bd0a7f990"
 
 watchpack@^1.3.1:
   version "1.3.1"

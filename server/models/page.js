@@ -9,7 +9,11 @@ const page_schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
-    label: {
+    website: {
+        type: Schema.Types.ObjectId,
+        ref: 'website'
+    },
+    title: {
         type: String,
         default: ''
     },
@@ -17,12 +21,20 @@ const page_schema = new Schema({
         type: String,
         default: ''
     },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    visited: {
+        type: Number,
+        default: 0
+    },
     url: {
         type: String,
         default: ''
     }
 })
 
-const pageModel = mongoose.model('page', page_schema)
+const pageModel = mongoose.model('pages', page_schema)
 
 module.exports = pageModel

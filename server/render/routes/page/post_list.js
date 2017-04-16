@@ -1,11 +1,10 @@
 const logger = require('../../../lib/log')('router-postlist'),
     db = require('../../../models/index')
 
-module.exports = async(ctx, next) => {
-    logger.debug('----- in post list')
+module.exports = async(ctx) => {
     try {
         let webSiteInfo = ctx.websiteInfo
-        logger.debug(webSiteInfo)
+
         if (webSiteInfo === null) {
             throw {
                 message: '无该网站',

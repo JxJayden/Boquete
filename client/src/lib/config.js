@@ -1,22 +1,23 @@
-const apiPrefix = '/api/v1/'
+const API_PREFIX = '/api/v1/'
 export const API = {
-    HOST: '//api.cms.com/',
-    LOGIN: `${apiPrefix}login`,
-    LOGOUT: `${apiPrefix}logout`,
-    REGISTER: `${apiPrefix}register`,
-    USER: `${apiPrefix}user`,
-    WEBSITE: `${apiPrefix}website`,
-    WEBSITEURL: `${apiPrefix}website/url`,
-    WEBSITENAV: `${apiPrefix}website/nav`,
-    WEBSITELOGO: `${apiPrefix}/website/logo`,
-    POST: `${apiPrefix}/post`
+    HOST:        '//api.cms.com/',
+    LOGIN:       `${API_PREFIX}login`,
+    LOGOUT:      `${API_PREFIX}logout`,
+    REGISTER:    `${API_PREFIX}register`,
+    USER:        `${API_PREFIX}user`,
+    WEBSITE:     `${API_PREFIX}website`,
+    WEBSITEURL:  `${API_PREFIX}website/url`,
+    WEBSITENAV:  `${API_PREFIX}website/nav`,
+    WEBSITELOGO: `${API_PREFIX}/website/logo`,
+    POST:        `${API_PREFIX}/post`,
+    PAGE:        `${API_PREFIX}/page`
 }
 
 export const tag = {
-    user: '管理员管理',
+    user:    '管理员管理',
     product: '产品管理',
-    pages: '页面管理',
-    file: '文件管理',
+    pages:   '页面管理',
+    file:    '文件管理',
     website: '网站管理'
 }
 

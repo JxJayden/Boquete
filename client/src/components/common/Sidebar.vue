@@ -26,19 +26,19 @@
                 </el-submenu>-->
             <el-submenu index="4">
                 <template slot="title"><i class="el-icon-star-on"></i>页面管理</template>
-                <el-menu-item index="pagelist">页面列表</el-menu-item>
-                <el-menu-item index="addpage">添加页面</el-menu-item>
+                <el-menu-item index="/page/list">页面列表</el-menu-item>
+                <el-menu-item index="/page/add">添加页面</el-menu-item>
             </el-submenu>
             <el-submenu index="5">
                 <template slot="title"><i class="el-icon-edit"></i>文章管理</template>
-                <el-menu-item index="postlist">文章列表</el-menu-item>
-                <el-menu-item index="addpost">添加文章</el-menu-item>
+                <el-menu-item index="/post/list">文章列表</el-menu-item>
+                <el-menu-item index="/post/add">添加文章</el-menu-item>
             </el-submenu>
             <el-submenu index="6">
                 <template slot="title"><i class="el-icon-setting"></i>设置</template>
                 <!--<el-menu-item index="usermanage">管理员设置</el-menu-item>-->
-                <el-menu-item index="basicmanage">基本设置</el-menu-item>
-                <el-menu-item index="navmanage">导航栏设置</el-menu-item>
+                <el-menu-item index="/setting/basic">基本设置</el-menu-item>
+                <el-menu-item index="/setting/nav">导航栏设置</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>
