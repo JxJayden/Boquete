@@ -1,11 +1,8 @@
 const db = require('../../../models/index'),
     logger = require('../../../lib/log')('post-delete'),
-    cry = require('../../lib/cryptology'),
-    utils = require('../../lib/utils')
-
+    cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    logger.debug(ctx.request.body)
     let userId = cry.decrypt(ctx.cookies.get('user')), // eslint-disable-line
         postId = ctx.request.body.id,
         body, dbVal

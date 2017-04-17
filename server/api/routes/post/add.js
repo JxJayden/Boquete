@@ -3,8 +3,7 @@ const db = require('../../../models/index'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    let content = ctx.request.body.content,
-        title = ctx.request.body.title,
+    let { content, title } = ctx.request.body,
         userId = cry.decrypt(ctx.cookies.get('user')),
         body, dbVal, authorInfo
 

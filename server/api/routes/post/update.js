@@ -3,14 +3,12 @@ const db = require('../../../models/index'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    let content = ctx.request.body.content,
-        title = ctx.request.body.title,
+    let { content, title, id } = ctx.request.body,
         userId = cry.decrypt(ctx.cookies.get('user')), // eslint-disable-line
-        postId = ctx.request.body.id,
         body, dbVal
 
     try {
-        if (!postId) {
+        if (!id) {
             throw {
                 message: '无文章 id'
             }
@@ -28,7 +26,7 @@ module.exports = async function (ctx) {
             }
         }
 
-        dbVal = await db.postModel.findByIdAndUpdate(postId, {
+        dbVal = await db.postModel.findByIdAndUpdate(id, {
             $set: {
                 title: title,
                 content: content

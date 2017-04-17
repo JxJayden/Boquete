@@ -7,7 +7,8 @@
     "scripts": {
         "api": "pm2 start ecosystem.config.js --only API",
         "render": "pm2 start ecosystem.config.js --only RENDER",
-        "pm2": "pm2 start ecosystem.config.js"
+        "pm2": "pm2 start ecosystem.config.js",
+        "test": "./node_modules/.bin/mocha ./test/api/all.test.js"
     },
     "dependencies": {
         "bcrypt-nodejs": "^0.0.3",
