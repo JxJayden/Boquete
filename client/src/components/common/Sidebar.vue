@@ -4,28 +4,29 @@
                  theme="dark"
                  unique-opened
                  router>
-            <el-menu-item index="home">
+
+            <el-menu-item index="/home">
                 <i class="el-icon-setting"></i>主页
             </el-menu-item>
             <!--<el-submenu index="2">
-                <template slot="title"><i class="el-icon-menu"></i>表格</template>
-                <el-menu-item index="basetable">基础表格</el-menu-item>
-                <el-menu-item index="vuetable">Vue表格组件</el-menu-item>
-            </el-submenu>-->
+                                    <template slot="title"><i class="el-icon-menu"></i>表格</template>
+                                    <el-menu-item index="basetable">基础表格</el-menu-item>
+                                    <el-menu-item index="vuetable">Vue表格组件</el-menu-item>
+                                </el-submenu>-->
             <!--<el-submenu index="3">
-                <template slot="title"><i class="el-icon-date"></i>表单</template>
-                <el-menu-item index="baseform">基本表单</el-menu-item>
-                <el-menu-item index="vueeditor">编辑器</el-menu-item>
-                <el-menu-item index="markdown">markdown</el-menu-item>
-                <el-menu-item index="upload">文件上传</el-menu-item>
-            </el-submenu>-->
+                                    <template slot="title"><i class="el-icon-date"></i>表单</template>
+                                    <el-menu-item index="baseform">基本表单</el-menu-item>
+                                    <el-menu-item index="vueeditor">编辑器</el-menu-item>
+                                    <el-menu-item index="markdown">markdown</el-menu-item>
+                                    <el-menu-item index="upload">文件上传</el-menu-item>
+                                </el-submenu>-->
             <!--<el-submenu index="4">
-                    <template slot="title"><i class="el-icon-star-on"></i>图表</template>
-                    <el-menu-item index="basecharts">基础图表</el-menu-item>
-                    <el-menu-item index="mixcharts">混合图表</el-menu-item>
-                </el-submenu>-->
+                                        <template slot="title"><i class="el-icon-star-on"></i>图表</template>
+                                        <el-menu-item index="basecharts">基础图表</el-menu-item>
+                                        <el-menu-item index="mixcharts">混合图表</el-menu-item>
+                                    </el-submenu>-->
             <el-submenu index="4">
-                <template slot="title"><i class="el-icon-star-on"></i>页面管理</template>
+                <template slot="title"><i class="el-icon-document"></i>页面管理</template>
                 <el-menu-item index="/page/list">页面列表</el-menu-item>
                 <el-menu-item index="/page/add">添加页面</el-menu-item>
             </el-submenu>
@@ -58,7 +59,7 @@ export default {
 .sidebar {
     display: block;
     position: absolute;
-    width: 250px;
+    width: 200px;
     left: 0;
     top: 70px;
     bottom: 0;

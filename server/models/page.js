@@ -1,5 +1,4 @@
-const
-    logger = require('../lib/log')('model-page'), // eslint-disable-line
+const logger = require('../lib/log')('model-page'), // eslint-disable-line
     m = require('../lib/mongoose'),
     Schema = m.Schema,
     mongoose = m.mongoose
@@ -20,6 +19,10 @@ const page_schema = new Schema({
     content: {
         type: String,
         default: ''
+    },
+    components: {
+        type: Array,
+        default: []
     },
     date: {
         type: Date,

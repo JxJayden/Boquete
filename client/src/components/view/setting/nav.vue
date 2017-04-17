@@ -37,8 +37,16 @@
                 </el-col>
             </el-row>
         </el-form>
-        <el-button @click="addDefaultNav('post')">添加文章导航</el-button>
-        <el-button type="primary"
+        <el-dropdown @command="addCustomNav" trigger="click">
+            <el-button type="primary">
+                添加自定义页面<i class="el-icon-caret-bottom el-icon--right"></i>
+            </el-button>
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item v-for="(item, index) in pageItems" :command="String(index)">{{item.title}}</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+        <el-button type="primary" @click="addDefaultNav('post')">添加文章导航</el-button>
+        <el-button type="success"
                    :loading="isSubmitBtnLoading"
                    @click="submitForm('navForm')">保存更改</el-button>
     </div>
@@ -66,12 +74,14 @@ export default {
                 label: [{ required: true, message: '导航栏名称不能为空' }],
                 url: [{ required: true, message: '导航栏链接不能为空', trigger: 'blur' },
                 { type: 'url', message: '导航栏链接格式错误', trigger: 'blur' }]
-            }
+            },
+            pageItems: []
         }
     },
     mounted() {
         this.getWebsiteNavInfo()
         this.getDefaultUrl()
+        this.getPageData()
     },
     methods: {
         getWebsiteNavInfo() {
@@ -80,6 +90,11 @@ export default {
                     label: '',
                     url: ''
                 }])
+            })
+        },
+        getPageData() {
+            _get(this, API.PAGE, function (data) {
+                this.pageItems = data
             })
         },
         deleteNav(nav) {
@@ -151,9 +166,18 @@ export default {
             })
         },
         addDefaultNav(type) {
+            console.log(arguments)
             this.navigations[this.navigations.length - 1] = {
                 label: type,
                 url: this.websiteUrl + '/' + type
+            }
+            this.pushNavArray()
+        },
+        addCustomNav(index) {
+            const item = this.pageItems[index]
+            this.navigations[this.navigations.length - 1] = {
+                label: item.title,
+                url: item.url
             }
             this.pushNavArray()
         }

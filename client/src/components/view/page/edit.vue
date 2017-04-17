@@ -6,7 +6,19 @@
                 <el-breadcrumb-item>编辑</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-
+        <div class="btn-group">
+            <el-button icon="plus"
+                       type="primary"
+                       v-for="item in defaultComponents"
+                       @click="addComponents(item)">{{item.name}}</el-button>
+        </div>
+        <div class="custom-content mgt20">
+            <draggable v-model="customComponents">
+                    <div v-for="element in customComponents"
+                         v-text="element.name">
+                    </div>
+            </draggable>
+        </div>
     </div>
 </template>
 
@@ -14,47 +26,49 @@
 import draggable from 'vuedraggable'
 import { _post, _get, _put } from '../../../lib/utils'
 import { API } from '../../../lib/config'
+const components = [
+    {
+        name: '轮播',
+        type: 'carousel'
+    },
+    {
+        name: '图片',
+        type: 'image'
+    },
+    {
+        name: '视频',
+        type: 'video'
+    }
+]
 export default {
     data() {
         return {
-            title: '',
-            content: '<p>请输入文章内容</p>',
-            editorOption: {
-            }
+            pageData: null,
+            defaultComponents: components,
+            customComponents: []
         }
     },
     components: {
         draggable
     },
     mounted() {
-        if (this.$route.query.id) {
-            this.getOnePostData(this.$route.query.id)
+        if (this.$route.params.id) {
+            this.getOnePageData(this.$route.params.id)
         } else {
-            this.resetPostData()
         }
     },
     watch: {
         $route() {
-            if (this.$route.query.id) {
-                this.getOnePostData(this.$route.query.id)
-            } else {
-                this.resetPostData()
+            if (this.$route.params.id) {
+                this.getOnePageData(this.$route.params.id)
             }
         }
     },
     methods: {
-        resetPostData() {
-            this.title = ''
-            this.content = '<p>请输入文章内容</p>'
-        },
-        getOnePostData(id) {
-            _get(this, API.POST + '?id=' + id, function (data) {
-                this.title = data.title
-                this.content = data.content
+        getOnePageData(id) {
+            _get(this, API.PAGE + '?id=' + id, function (data) {
+                this.pageData = data
             })
-        },
-        onEditorChange({ editor, html, text }) {
-            this.content = html
         },
         submit() {
             if (this.title === '') {
@@ -90,11 +104,9 @@ export default {
             _post(this, API.POST, data, function (data) {
                 this.$message.success('提交成功！')
             })
-        }
-    },
-    computed: {
-        editor() {
-            return this.$refs.myTextEditor.quillEditor
+        },
+        addComponents(item) {
+            this.customComponents.push(item)
         }
     }
 }
@@ -102,5 +114,9 @@ export default {
 <style scoped>
 .post-title {
     margin-bottom: 20px;
+}
+.custom-content {
+    border-top: 1px solid #D3DCE6;
+    padding-top: 20px;
 }
 </style>

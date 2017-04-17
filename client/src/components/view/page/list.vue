@@ -1,5 +1,5 @@
 <template>
-    <div class="table">
+    <div class="page-list">
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-menu"></i> 页面管理</el-breadcrumb-item>
@@ -32,16 +32,21 @@
                 </template>
             </el-table-column>
         </el-table>
+        <div class="mgt20">
+            <el-button @click="showPageNameDialog"
+                       type="primary"
+                       icon="plus">添加页面</el-button>
+        </div>
         <!--<div class="pagination">
-                    <el-pagination layout="prev, pager, next"
-                                   :total="1000">
-                    </el-pagination>
-                </div>-->
+                                <el-pagination layout="prev, pager, next"
+                                               :total="1000">
+                                </el-pagination>
+                            </div>-->
     </div>
 </template>
 
 <script>
-import { _delete, _get } from '../../../lib/utils'
+import { _delete, _get, _post } from '../../../lib/utils'
 import { API } from '../../../lib/config'
 export default {
     data() {
@@ -62,7 +67,7 @@ export default {
             return row.date.slice(0, row.date.indexOf('T'))
         },
         handleEdit(index, row) {
-            this.$router.push({ path: 'editpage', query: { id: row._id } })
+            this.$router.push({ name: 'editPage', params: { id: row._id }})
         },
         handleDelete(index, row) {
             _delete(this, API.PAGE, { id: row._id }, function () {
@@ -72,6 +77,34 @@ export default {
         },
         openUrl(url) {
             window.open(url)
+        },
+        showPageNameDialog() {
+            this.$prompt('请输入页面名称', '提示', {
+                confirmButtonText: '添加',
+                cancelButtonText: '取消',
+                inputValidator: function (value) {
+                    return !!value
+                },
+                inputErrorMessage: '页面名称不能为空！'
+            }).then(({ value }) => {
+                this.postAddPage(value)
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '取消输入'
+                })
+            })
+        },
+        postAddPage(title) {
+            _post(this, API.PAGE, {
+                title: title
+            }, function (data) {
+                this.$message({
+                    type: 'success',
+                    message: '添加' + title + '页面成功！'
+                })
+                this.getPageData()
+            })
         }
     }
 }

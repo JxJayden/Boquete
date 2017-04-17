@@ -84,6 +84,11 @@ export default new Router({
             name: 'allPage',
             path: '/page/list',
             component: resolve => require(['../components/view/page/list.vue'], resolve)
+        },
+        {
+            name: 'editPage',
+            path: '/page/edit/:id',
+            component: resolve => require(['../components/view/page/edit.vue'], resolve)
         }]
     },
     {

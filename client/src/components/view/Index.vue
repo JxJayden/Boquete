@@ -6,7 +6,8 @@
             </el-breadcrumb>
         </div>
         <a :href="websiteUrl"
-           target="_blank">{{title}}</a>
+            class="el-button el-button--primary"
+           target="_blank">查看网站</a>
     </div>
 </template>
 <script>

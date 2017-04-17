@@ -1,9 +1,10 @@
 const db = require('../../../models/index'),
     logger = require('../../../lib/log')('post add'),
-    cry = require('../../lib/cryptology')
+    cry = require('../../lib/cryptology'),
+    config = require('../../lib/config')
 
 module.exports = async function (ctx) {
-    let content = ctx.request.body.content || '',
+    let content = ctx.request.body.content || config.defaultPageContent,
         title = ctx.request.body.title || '',
         userId = cry.decrypt(ctx.cookies.get('user')),
         body, pageVal, websiteInfo, pageUrl

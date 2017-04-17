@@ -11,5 +11,6 @@ router
     .get(['/:websiteId', '/:websiteId/index'], page.home)
     .get('/:websiteId/post', page.post_list)
     .get('/:websiteId/post/:postId', page.post_main)
+    .get('/:websiteId/page/:pageId', page.page_main)
 
 module.exports = router
