@@ -1,13 +1,12 @@
 <template>
     <div>
-        <div v-if="content"
-             v-html="content"></div>
-        <div v-else>
-            <quill-editor ref="myTextEditor"
-                          v-model="textContent"
-                          @blur="onEditorBlur"
-                          :config="editorOption"></quill-editor>
+        <div class="mgb20">
+            <el-button type="danger" icon="close" @click="deleteModule"></el-button>
         </div>
+        <quill-editor ref="myTextEditor"
+                      v-model="textContent"
+                      @blur="onEditorBlur"
+                      :config="editorOption"></quill-editor>
     </div>
 </template>
 <script>
@@ -45,7 +44,10 @@ export default {
             this.textContent = html
         },
         onEditorBlur() {
-            this.$emit('increment', this.moduleId, this.textContent)
+            this.$emit('get-content', this.moduleId, this.textContent)
+        },
+        deleteModule() {
+            this.$emit('remove', this.moduleId)
         }
     }
 }

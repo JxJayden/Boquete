@@ -35,7 +35,7 @@ router
     .put('/website/nav', website.update_nav)
     // .delete('/website/nav', website.del_nav)
     // 文件管理
-    // .post('/file', file.upload)
+    .post('/image', file.upload)
     // 文章管理
     .get('/post', post.get)
     .post('/post', post.add)

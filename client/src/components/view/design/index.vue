@@ -14,7 +14,8 @@
                 <component :is="'v-' + element.type"
                            :content="element.defaultContent"
                            :module-id="index"
-                           v-on:increment="getContent">
+                           v-on:get-content="getContent"
+                           v-on:remove="removeModule">
                 </component>
             </div>
         </div>
@@ -86,6 +87,9 @@ export default {
         },
         getContent(index, content) {
             this.customModules[index].content = content
+        },
+        removeModule(index) {
+            this.customModules.splice(index, 1)
         }
     }
 }
