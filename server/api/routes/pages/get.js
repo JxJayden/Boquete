@@ -13,7 +13,7 @@ module.exports = async function (ctx) {
                 owner: userId
             }).exec()
         } else {
-            dbVal = await db.pageModel.find({
+            dbVal = await db.pageModel.findOne({
                 owner: userId,
                 _id: pageId
             }).exec()

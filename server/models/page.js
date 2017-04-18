@@ -20,7 +20,7 @@ const page_schema = new Schema({
         type: String,
         default: ''
     },
-    components: {
+    modules: {
         type: Array,
         default: []
     },

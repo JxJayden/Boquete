@@ -3,33 +3,38 @@ const db = require('../../../models/index'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    let content = ctx.request.body.content || '',
-        title = ctx.request.body.title || '',
+    let modules = ctx.request.body.content || [],
         userId = cry.decrypt(ctx.cookies.get('user')), // eslint-disable-line
         pageId = ctx.request.body.id,
-        body, dbVal
+        content = '',
+        body,
+        dbVal
 
     try {
         if (!pageId) {
-            throw {
-                message: '无页面 id'
-            }
+            throw {message: '无页面 id'}
         }
 
-        dbVal = await db.pageModel.findByIdAndUpdate(pageId, {
-            $set: {
-                title: title,
-                content: content
-            }
-        }).exec()
+        modules.forEach((value) => {
+            content += value.content
+        })
+
+        dbVal = await db
+            .pageModel
+            .findByIdAndUpdate(pageId, {
+                $set: {
+                    content: content,
+                    modules: modules
+                }
+            })
+            .exec()
 
         body = {
             err: false,
             message: 'update page succeed',
             code: 200,
             data: Object.assign(dbVal, {
-                content: content,
-                title: title
+                content: content
             })
         }
     } catch (err) {

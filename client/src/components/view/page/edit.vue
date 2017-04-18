@@ -6,50 +6,25 @@
                 <el-breadcrumb-item>编辑</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="btn-group">
-            <el-button icon="plus"
-                       type="primary"
-                       v-for="item in defaultComponents"
-                       @click="addComponents(item)">{{item.name}}</el-button>
-        </div>
-        <div class="custom-content mgt20">
-            <draggable v-model="customComponents">
-                    <div v-for="element in customComponents"
-                         v-text="element.name">
-                    </div>
-            </draggable>
-        </div>
+        <v-design v-model="customContent" :modules="defaultComponents"></v-design>
+        <el-button @click="update">保存</el-button>
     </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+import VDesign from '../design/index'
 import { _post, _get, _put } from '../../../lib/utils'
 import { API } from '../../../lib/config'
-const components = [
-    {
-        name: '轮播',
-        type: 'carousel'
-    },
-    {
-        name: '图片',
-        type: 'image'
-    },
-    {
-        name: '视频',
-        type: 'video'
-    }
-]
 export default {
     data() {
         return {
             pageData: null,
-            defaultComponents: components,
-            customComponents: []
+            defaultComponents: ['video', 'image', 'carousel', 'text'],
+            customContent: []
         }
     },
     components: {
-        draggable
+        VDesign
     },
     mounted() {
         if (this.$route.params.id) {
@@ -86,27 +61,15 @@ export default {
                 this.add()
             }
         },
-        update(id) {
+        update() {
+            const id = this.$route.params.id
             const data = {
-                content: this.content,
-                title: this.title,
+                content: this.customContent,
                 id: id
             }
-            _put(this, API.POST, data, function (data) {
+            _put(this, API.PAGE, data, function (data) {
                 this.$message.success('更新成功！')
             })
-        },
-        add() {
-            const data = {
-                content: this.content,
-                title: this.title
-            }
-            _post(this, API.POST, data, function (data) {
-                this.$message.success('提交成功！')
-            })
-        },
-        addComponents(item) {
-            this.customComponents.push(item)
         }
     }
 }
@@ -114,9 +77,5 @@ export default {
 <style scoped>
 .post-title {
     margin-bottom: 20px;
-}
-.custom-content {
-    border-top: 1px solid #D3DCE6;
-    padding-top: 20px;
 }
 </style>

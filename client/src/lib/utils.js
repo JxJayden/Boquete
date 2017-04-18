@@ -143,3 +143,21 @@ export function isFun(fn) {
 export function isArray(value) {
     return Array.isArray(value) || toString.call(value) === '[object Array]'
 }
+
+
+export function assign(target, sources) {
+    if (Object.assign) {
+        return Object.assign(target, sources)
+    } else {
+        if (Object.prototype.toString(target) !== '[object Object]') {
+            throw new TypeError('target must be Object')
+        }
+        if (Object.prototype.toString(sources) !== '[object Object]') {
+            throw new TypeError('sources must be Object')
+        }
+        for (var key in sources) {
+            target[key] = sources[key]
+        }
+        return target
+    }
+}
