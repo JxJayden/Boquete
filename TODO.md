@@ -18,9 +18,7 @@
   - [x] save logo 前删除旧数据
 - [x] 完成 post API
 - [x] 完成 pages API
-- [ ] 写测试
-- [ ] 一键更换主题 API // optional（add to website model）参考 [KeystoneJS](http://demo.keystonejs.com/?theme=Cosmo)
-- [ ] 完成 product API // optional
+- [x] 写测试
 - [ ] API 尽量实现 RESTful API
 
 ## client
@@ -34,8 +32,10 @@
   - [x] 页面列表
   - [x] 页面添加，删除
   - [ ] 页面自定义
+    - [ ] 文字，图片，轮播，视频等模块
+    - [ ] 模块位置变更
+    - [ ] 模块删除
 - [ ] 一键更换主题
-- [ ] 完成产品管理 // optional
 
 ## user
 
