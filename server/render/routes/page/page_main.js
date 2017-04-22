@@ -23,7 +23,8 @@ module.exports = async(ctx) => {
             title: webSiteInfo.title,
             description: webSiteInfo.description,
             cover: '/img/background1.jpg',
-            content: pageData.content
+            content: pageData.content,
+            chaturl: webSiteInfo.url + '/chat'
         }
 
         let footer = {

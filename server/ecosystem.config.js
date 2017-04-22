@@ -21,7 +21,7 @@ module.exports = {
     // Second application
     {
       name      : "RENDER",
-      script    : "./render/bin/www",
+      script    : "./render/app.js",
       watch     : ["./render", "./lib", "./models"],
       env: {
         COMMON_VARIABLE: "true"

@@ -18,7 +18,8 @@ module.exports = async(ctx) => {
 
         let page = {
             title: webSiteInfo.title,
-            description: webSiteInfo.description
+            description: webSiteInfo.description,
+            chaturl: webSiteInfo.url + '/chat'
         }
 
         let footer = {

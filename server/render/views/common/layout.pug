@@ -11,8 +11,9 @@ html
   body
     include ../components/nav.pug
     block content
+    include ../components/menu.pug
     include ../components/footer.pug
-    block js
     script(src='//cdn.bootcss.com/jquery/3.2.1/jquery.min.js')
     script(src='//cdn.bootcss.com/materialize/0.98.1/js/materialize.min.js')
     script(src='/js/main.js')
+    block js

@@ -6,7 +6,7 @@
                 <el-breadcrumb-item>编辑</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <v-design v-model="customContent" :modules="defaultComponents"></v-design>
+        <v-design v-model="customContent" :modules="defaultModules" :data="modulesData"></v-design>
         <el-button @click="update">保存</el-button>
     </div>
 </template>
@@ -19,8 +19,9 @@ export default {
     data() {
         return {
             pageData: null,
-            defaultComponents: ['video', 'image', 'carousel', 'text'],
-            customContent: []
+            defaultModules: ['video', 'image', 'carousel', 'text'],
+            customContent: [],
+            modulesData: []
         }
     },
     components: {
@@ -29,7 +30,6 @@ export default {
     mounted() {
         if (this.$route.params.id) {
             this.getOnePageData(this.$route.params.id)
-        } else {
         }
     },
     watch: {
@@ -43,6 +43,7 @@ export default {
         getOnePageData(id) {
             _get(this, API.PAGE + '?id=' + id, function (data) {
                 this.pageData = data
+                this.modulesData = data.modules
             })
         },
         submit() {

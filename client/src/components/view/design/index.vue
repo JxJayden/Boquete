@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="design-content">
         <div class="btn-group">
             <el-button icon="plus"
                        type="primary"
@@ -11,8 +11,14 @@
         </div>
         <div class="custom-content mgt20">
             <div v-for="(element, index) in customModules">
+                <div class="modules-bar">
+                    <span class="modules-bar-title">工具栏</span>
+                    <el-button size="small"
+                               class="modulrd-bar-btn"
+                               @click="removeModule">删除模块</el-button>
+                </div>
                 <component :is="'v-' + element.type"
-                           :content="element.defaultContent"
+                           :content="element.content"
                            :module-id="index"
                            v-on:get-content="getContent"
                            v-on:remove="removeModule">
@@ -23,7 +29,6 @@
 </template>
 <script>
 import draggable from 'vuedraggable'
-import { assign } from '../../../lib/utils'
 import VText from './text'
 import VImage from './image'
 import VVideo from './video'
@@ -32,19 +37,23 @@ import VCarousel from './carousel'
 const defaultModules = {
     'carousel': {
         name: '轮播',
-        type: 'carousel'
+        type: 'carousel',
+        content: ''
     },
     'image': {
         name: '图片',
-        type: 'image'
+        type: 'image',
+        content: ''
     },
     'video': {
         name: '视频',
-        type: 'video'
+        type: 'video',
+        content: ''
     },
     'text': {
         name: '文字',
-        type: 'text'
+        type: 'text',
+        content: ''
     }
 }
 
@@ -57,6 +66,10 @@ export default {
         modules: {
             type: Array,
             default: defaultModulesType
+        },
+        data: {
+            type: Array,
+            default: []
         }
     },
     data() {
@@ -76,11 +89,7 @@ export default {
     },
     methods: {
         addModules(itemType, defaultContent) {
-            const item = assign(defaultModules[itemType], {
-                defaultContent: defaultContent || '',
-                content: ''
-            })
-            this.customModules.push(item)
+            this.customModules.push(defaultModules[itemType])
         },
         saveDesign() {
             this.$emit('input', this.customModules)
@@ -96,7 +105,19 @@ export default {
 </script>
 <style scoped>
 .custom-content {
-    border-top: 1px solid #D3DCE6;
-    padding-top: 20px;
+    border: 1px solid #D3DCE6;
+    background: #F9FAFC;
+    padding: 20px 0;
+    margin-bottom: 20px;
 }
+.modules-bar {
+    margin: 5px 0;
+    background: #20A0FF;
+    padding: 5px;
+}
+.modules-bar-title {
+    color: #FFF;
+    font-size: 14px;
+}
+
 </style>

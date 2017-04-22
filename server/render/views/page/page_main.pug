@@ -1,4 +1,10 @@
 extends ../common/layout
 
+block css
+    link(rel='stylesheet', href='/css/page/page_common.css')
+    link(rel='stylesheet', href='/css/quill.core.css')
 block content
     main.container !{page.content}
+
+block js
+    script(src='/js/page_common.js')

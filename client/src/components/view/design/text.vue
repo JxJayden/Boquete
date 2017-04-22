@@ -1,8 +1,5 @@
 <template>
     <div>
-        <div class="mgb20">
-            <el-button type="danger" icon="close" @click="deleteModule"></el-button>
-        </div>
         <quill-editor ref="myTextEditor"
                       v-model="textContent"
                       @blur="onEditorBlur"
@@ -11,6 +8,7 @@
 </template>
 <script>
 import { quillEditor } from 'vue-quill-editor'
+
 const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'list': 'ordered' }, { 'list': 'bullet' }],
@@ -44,10 +42,8 @@ export default {
             this.textContent = html
         },
         onEditorBlur() {
-            this.$emit('get-content', this.moduleId, this.textContent)
-        },
-        deleteModule() {
-            this.$emit('remove', this.moduleId)
+            const content = '<div class=\"ql-editor\">' + this.textContent + '</div>'
+            this.$emit('get-content', this.moduleId, content)
         }
     }
 }

@@ -1,12 +1,8 @@
 <template>
     <div class="module-image"
          ref="image">
-        <div class="mgb20">
-            <el-button type="danger"
-                       icon="close"
-                       @click="deleteModule"></el-button>
-        </div>
-        <el-upload :action="uploadImgUrl"
+        <el-upload class="avatar-uploader"
+                   :action="uploadImgUrl"
                    :show-file-list="false"
                    :on-success="handleAvatarSuccess"
                    :before-upload="beforeAvatarUpload">
@@ -48,15 +44,39 @@ export default {
             return isJPG && isLt2M
         },
         saveImg(imgUrl) {
-            const contentTmp = '<img src="' + imgUrl + '" alt=""/>'
+            const contentTmp = '<img class=\"responsive-img\" src=\"' + imgUrl + '\" />'
             this.$emit('get-content', this.moduleId, contentTmp)
-        },
-        deleteModule() {
-            this.$emit('remove', this.moduleId)
         }
     }
 }
 </script>
-<style scoped>
+<style>
 
+.avatar-uploader .el-upload {
+    width: 100%;
+    height: auto;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.el-upload:hover {
+    border-color: #20a0ff;
+}
+
+.avatar-uploader-icon {
+    font-size: 40px;
+    color: #8c939d;
+    width: 100%;
+    height: 400px;
+    line-height: 400px;
+    text-align: center;
+}
+
+.avatar {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 </style>

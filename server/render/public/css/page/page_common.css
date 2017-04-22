@@ -1,0 +1,13 @@
+.carousel.carousel-slider {
+    height: 600px;
+    overflow: hidden;
+}
+.carousel.carousel-slider .carousel-item {
+    text-align: center;
+}
+.carousel.carousel-slider img {
+    height: 100%;
+    width: auto;
+}
+
+

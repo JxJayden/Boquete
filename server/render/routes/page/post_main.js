@@ -16,7 +16,8 @@ module.exports = async(ctx) => {
         let nav = {
             homeUrl: webSiteInfo.url,
             nav: webSiteInfo.nav,
-            logo: `//api.cms.com/${webSiteInfo.logo}`
+            logo: `//api.cms.com/${webSiteInfo.logo}`,
+            chaturl: webSiteInfo.url + '/chat'
         }
 
         let page = {
