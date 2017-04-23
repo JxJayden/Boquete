@@ -4,7 +4,6 @@ const router = require('koa-router')(),
     logger = require('../../lib/log')('router')
 
 router
-    .get('/chat', page.chat)
     .get(['/:websiteId', '/:websiteId/*'], async(ctx, next) => {
         ctx.websiteInfo = await _.getWebsiteInfo(ctx.params.websiteId)
         await next()
@@ -13,5 +12,6 @@ router
     .get('/:websiteId/post', page.post_list)
     .get('/:websiteId/post/:postId', page.post_main)
     .get('/:websiteId/page/:pageId', page.page_main)
+    .get('/:websiteId/chat', page.chat)
 
 module.exports = router

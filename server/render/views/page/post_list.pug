@@ -17,7 +17,7 @@ block content
           br
           br
       .parallax
-        img(src=page.cover, alt='post cover img')
+        img(src=page.cover, alt="post cover img")
   else
     #index-banner.parallax-container.grey.lighten-5
       .section.no-pad-bot
@@ -33,7 +33,7 @@ block content
     each val in posts
       article.col.s6.offset-s3.m10.offset-m1.post
         h3.post-title.text-blue.text-darken-1
-          a(href= 'post/' + val._id) #{val.title}
+          a(href= "post/" + val._id) #{val.title}
         section.post-excerpt !{val.content}
         footer.post-meta.grey-text.text-lighten-1.right
           span.post-author #{val.authorName}
