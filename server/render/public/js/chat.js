@@ -68,6 +68,12 @@ $(function () {
         }
     }
 
+    function showHistory(history) {
+        for (var i = 0; i < history.length; i++) {
+            addChatMessage(history[i])
+        }
+    }
+
     function getWebsiteIdFromUrl () {
         var WEBSITE_REG = /\/(.*)\//
         return window.location.pathname.match(WEBSITE_REG)[1]
@@ -248,9 +254,10 @@ $(function () {
     })
 
     socket.on('autologin succeed', function(data) {
-        console.log(data)
         setUsername(data.username)
+        showHistory(data.history)
         connected = true
+
     })
 
     socket.on('history delete', function() {
@@ -267,9 +274,7 @@ $(function () {
 
     socket.on('reconnect', function () {
         log('you have been reconnected')
-        if (username) {
-            socket.emit('add user', username)
-        }
+        autoLogin()
     })
 
     socket.on('reconnect_error', function () {

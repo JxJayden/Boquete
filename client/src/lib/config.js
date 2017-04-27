@@ -8,11 +8,12 @@ export const API = {
     WEBSITE:      `${API_PREFIX}website`,
     WEBSITEURL:   `${API_PREFIX}website/url`,
     WEBSITENAV:   `${API_PREFIX}website/nav`,
-    WEBSITELOGO:  `${API_PREFIX}/website/logo`,
+    WEBSITELOGO:  `${API_PREFIX}website/logo`,
     POST:         `${API_PREFIX}post`,
     PAGE:         `${API_PREFIX}page`,
     UPLOAD_IMAGE: `${API_PREFIX}image`,
-    CHAT:         `${API_PREFIX}chat`
+    CHAT:         `${API_PREFIX}chat`,
+    CHAT_HISTORY: `${API_PREFIX}chathistory`
 }
 
 export const tag = {

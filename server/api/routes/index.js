@@ -49,5 +49,6 @@ router
     .delete('/page', page.delete)
     .get('/chat', chat.get)
     .delete('/chat', chat.delete)
+    .delete('/chathistory', chat.cleanHistory)
 
 module.exports = router

@@ -1,6 +1,5 @@
 const db = require('../../../models/index'),
-    logger = require('../../../lib/log')('post-get'),
-    cry = require('../../lib/cryptology')
+    logger = require('../../../lib/log')('post-get')
 
 module.exports = async function (ctx) {
     let id = ctx.request.body.id,
@@ -8,11 +7,15 @@ module.exports = async function (ctx) {
 
     try {
 
-        dbVal = await db.chatModel.findByIdAndRemove(id).exec()
+        dbVal = await db.chatModel.findByIdAndUpdate(id, {
+            $set: {
+                history: []
+            }
+        }).exec()
 
         body = {
             err: false,
-            message: 'delete chat succeed',
+            message: 'clean chat history succeed',
             code: 200,
             data: dbVal
         }

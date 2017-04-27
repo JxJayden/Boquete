@@ -49,9 +49,9 @@ module.exports = async function (ctx) {
             $set: {
                 nav: [{
                     label: 'home',
-                    url: encodeURI(`http://show.jxdjayden.cn/${registerWebSite._id}`)
+                    url: encodeURI(`http://show.geishajs.cn/${registerWebSite._id}`)
                 }],
-                url: encodeURI(`http://show.jxdjayden.cn/${registerWebSite._id}`),
+                url: encodeURI(`http://show.geishajs.cn/${registerWebSite._id}`),
             }
         }).exec()
 
