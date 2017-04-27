@@ -13,7 +13,8 @@ export const API = {
     PAGE:         `${API_PREFIX}page`,
     UPLOAD_IMAGE: `${API_PREFIX}image`,
     CHAT:         `${API_PREFIX}chat`,
-    CHAT_HISTORY: `${API_PREFIX}chathistory`
+    CHAT_HISTORY: `${API_PREFIX}chathistory`,
+    IM:           'http://im.geishajs.cn'
 }
 
 export const tag = {

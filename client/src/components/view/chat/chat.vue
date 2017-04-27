@@ -14,11 +14,10 @@
     </div>
 </template>
 <script>
-import { _delete, _get } from '../../../lib/utils'
+import { _get } from '../../../lib/utils'
 import { API } from '../../../lib/config'
 import io from 'socket.io-client'
 import VMessage from './message'
-import Socket from '../../../lib/chat'
 export default {
     data() {
         return {
@@ -34,9 +33,9 @@ export default {
         VMessage
     },
     mounted() {
-        this.$socket = io.connect('http://im.geishajs.cn')
+        this.$socket = io.connect(API.IM)
         this.getUser(this.userLogin)
-        this.init()
+        this.initSocket()
     },
     methods: {
         getUser(cb) {
@@ -52,21 +51,20 @@ export default {
                 userid: user._id,
                 username: user.username
             }
-            console.log(data)
             this.$socket.emit('manager login', data)
             this.$socket.on('login succeed', function (data) {
                 that.chatData = data
                 that.history = data.history
             })
         },
-        init() {
+        initSocket() {
             const socket = this.$socket
             const that = this
             socket.on('new message', function (data) {
                 that.history.push(data)
             })
             socket.on('socket error', function (error) {
-                console.error(error)
+                that.$message.error(error)
             })
         },
         sendMessage() {
@@ -80,16 +78,10 @@ export default {
             this.$socket.emit('new message from manager', data.message)
             this.message = ''
         }
-    },
-    computed: {
-
     }
-
 }
 </script>
 <style scoped>
-/* Fix user-agent */
-
 * {
     box-sizing: border-box;
 }
@@ -105,7 +97,6 @@ ul {
     width: 100%;
 }
 
-
 /* Pages */
 
 .pages {
@@ -120,7 +111,6 @@ ul {
     position: absolute;
     width: 100%;
 }
-
 
 /* Font */
 
@@ -138,7 +128,6 @@ ul {
     margin: 5px;
     text-align: center;
 }
-
 
 /* Messages */
 
@@ -164,7 +153,6 @@ ul {
     padding-right: 15px;
     text-align: right;
 }
-
 
 /* Input */
 
