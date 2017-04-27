@@ -47,9 +47,10 @@
 ## im 在线咨询客服功能
 
 - [x] 添加 socket demo
-- [ ] 更新 socket chat
+- [x] 更新 socket chat
 
 ## 后续优化
 
 - [ ] 使用 vuex
+- [ ] 重写 管理端 socket
 - [ ] 重写 koa static server
