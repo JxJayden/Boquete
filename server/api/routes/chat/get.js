@@ -16,7 +16,7 @@ module.exports = async function (ctx) {
 
         body = {
             err: false,
-            message: 'get post info succeed',
+            message: 'get chat info succeed',
             code: 200,
             data: dbVal
         }

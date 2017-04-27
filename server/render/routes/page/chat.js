@@ -14,14 +14,14 @@ module.exports = async(ctx) => {
         let nav = {
             homeUrl: webSiteInfo.url,
             nav: webSiteInfo.nav,
-            logo: `//api.cms.com/${webSiteInfo.logo}`,
-            chaturl: webSiteInfo.url + '/chat'
+            logo: `//api.cms.com/${webSiteInfo.logo}`
         }
 
         let page = {
             title: webSiteInfo.title,
             description: webSiteInfo.description,
-            cover: '/img/background1.jpg'
+            cover: '/img/background1.jpg',
+            chaturl: webSiteInfo.url + '/chat'
         }
 
         let footer = {

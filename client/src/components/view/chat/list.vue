@@ -24,21 +24,19 @@
                                type="primary"
                                @click="gotoChat(scope.row.customerId)">进入聊天窗口</el-button>
                     <el-button size="small"
+                               type="warning"
+                               @click="cleanHistory(scope.$index, scope.row)">清空聊天历史</el-button>
+                    <el-button size="small"
                                type="danger"
                                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <!--<div class="pagination">
-                                <el-pagination layout="prev, pager, next"
-                                               :total="1000">
-                                </el-pagination>
-                            </div>-->
     </div>
 </template>
 
 <script>
-import { _delete, _get, _post } from '../../../lib/utils'
+import { _delete, _get } from '../../../lib/utils'
 import { API } from '../../../lib/config'
 export default {
     data() {
@@ -63,6 +61,11 @@ export default {
             _delete(this, API.CHAT, { id: row._id }, function () {
                 this.$message.success('删除成功')
                 this.getChatData()
+            })
+        },
+        cleanHistory(index, row) {
+            _delete(this, API.CHAT_HISTORY, { id: row._id }, function () {
+                this.$message.success('清除成功')
             })
         },
         gotoChat(customerId) {

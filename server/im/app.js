@@ -13,13 +13,16 @@ io.on('connection', function (socket) {
     socket.on('new message from customer', async(data) => {
 
         try {
-            await saveMessageToDB(socket.customerId, 'manager', data)
+            let opts = {
+                customerId: socket.customerId,
+                from: 'customer',
+                username: socket.username,
+                message: data
+            }
+            await saveMessageToDB(opts)
             socket
                 .broadcast
-                .emit('new message', {
-                    username: socket.username,
-                    message: data
-                })
+                .emit('new message', opts)
         } catch (error) {
             logger.error(error)
             socket.emit('socket error', error.message)
@@ -30,14 +33,16 @@ io.on('connection', function (socket) {
     socket.on('new message from manager', async(data) => {
 
         try {
-
-            await saveMessageToDB(socket.customerId, 'manager', data)
+            let opts = {
+                customerId: socket.customerId,
+                from: 'manager',
+                username: socket.username,
+                message: data
+            }
+            await saveMessageToDB(opts)
             socket
                 .broadcast
-                .emit('new message', {
-                    username: socket.username,
-                    message: data
-                })
+                .emit('new message', opts)
         } catch (error) {
             logger.error(error)
             socket.emit('socket error', error.message)
@@ -166,14 +171,15 @@ server.listen(8081, function () {
 })
 
 
-async function saveMessageToDB(customerId, from, message) {
+async function saveMessageToDB(opts) {
     return await db.chatModel.update({
-        customerId: customerId
+        customerId: opts.customerId
     }, {
         $push: {
             'history': {
-                from: from,
-                message: message,
+                from: opts.from,
+                message: opts.message,
+                username: opts.username,
                 time: Date.now,
                 answer: false
             }

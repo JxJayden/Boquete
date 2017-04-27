@@ -3,10 +3,12 @@
         <ul class="pages">
             <li class="chat page">
                 <div class="chatArea">
-                    <ul class="messages"></ul>
+                    <v-message v-if="chatData" :history="history"></v-message>
                 </div>
                 <input class="inputMessage"
-                       placeholder="Type here..." />
+                       v-model.trim="message"
+                       @keyup.enter="sendMessage"
+                       placeholder="请输入……" />
             </li>
         </ul>
     </div>
@@ -15,16 +17,26 @@
 import { _delete, _get } from '../../../lib/utils'
 import { API } from '../../../lib/config'
 import io from 'socket.io-client'
+import VMessage from './message'
+import Socket from '../../../lib/chat'
 export default {
     data() {
         return {
             user: null,
-            chatData: null
+            chatData: null,
+            history: [],
+            FADE_TIME: 150,
+            TYPING_TIMER_LENGTH: 400,
+            message: ''
         }
     },
+    components: {
+        VMessage
+    },
     mounted() {
-        this.$socket = io.connect('http://localhost:8081')
+        this.$socket = io.connect('http://im.geishajs.cn')
         this.getUser(this.userLogin)
+        this.init()
     },
     methods: {
         getUser(cb) {
@@ -44,8 +56,33 @@ export default {
             this.$socket.emit('manager login', data)
             this.$socket.on('login succeed', function (data) {
                 that.chatData = data
+                that.history = data.history
             })
+        },
+        init() {
+            const socket = this.$socket
+            const that = this
+            socket.on('new message', function (data) {
+                that.history.push(data)
+            })
+            socket.on('socket error', function (error) {
+                console.error(error)
+            })
+        },
+        sendMessage() {
+            const data = {
+                from: 'manager',
+                username: this.user.username,
+                message: this.message,
+                date: Date.now()
+            }
+            this.history.push(data)
+            this.$socket.emit('new message from manager', data.message)
+            this.message = ''
         }
+    },
+    computed: {
+
     }
 
 }
@@ -68,6 +105,7 @@ ul {
     width: 100%;
 }
 
+
 /* Pages */
 
 .pages {
@@ -82,6 +120,7 @@ ul {
     position: absolute;
     width: 100%;
 }
+
 
 /* Font */
 
@@ -99,6 +138,7 @@ ul {
     margin: 5px;
     text-align: center;
 }
+
 
 /* Messages */
 
@@ -124,6 +164,7 @@ ul {
     padding-right: 15px;
     text-align: right;
 }
+
 
 /* Input */
 
