@@ -8,6 +8,7 @@ const config = require('../lib/config'),
     file = require('./file/index'),
     page = require('./pages/index'),
     post = require('./post/index'),
+    chat = require('./chat/index'),
     register = user.register,
     login = user.login,
     logout = user.logout
@@ -20,10 +21,10 @@ router
     .post('/register', register)
     .get('/logout', logout)
     // 用户管理
-    .post('/user', user.isRoot, user.add)
-    .get('/user', user.get)
-    .put('/user', user.isRoot, user.update)
-    .delete('/user', user.isRoot, user.delete)
+    .get('/user', user.getById)
+    // .post('/user', user.isRoot, user.add)
+    // .put('/user', user.isRoot, user.update)
+    // .delete('/user', user.isRoot, user.delete)
     // 网站信息管理
     .get('/website', website.get)
     .put('/website', website.update)
@@ -46,5 +47,7 @@ router
     .post('/page', page.add)
     .put('/page', page.update)
     .delete('/page', page.delete)
+    .get('/chat', chat.get)
+    .delete('/chat', chat.delete)
 
 module.exports = router

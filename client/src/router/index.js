@@ -91,9 +91,14 @@ export default new Router({
             component: resolve => require(['../components/view/page/edit.vue'], resolve)
         },
         {
+            name: 'chatlist',
+            path: '/chat/list',
+            component: resolve => require(['../components/view/chat/list.vue'], resolve)
+        },
+        {
             name: 'chat',
-            path: '/chat',
-            component: resolve => require(['../components/view/chat.vue'], resolve)
+            path: '/chat/content/:id',
+            component: resolve => require(['../components/view/chat/chat.vue'], resolve)
         }]
     },
     {

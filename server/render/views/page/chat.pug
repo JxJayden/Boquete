@@ -8,12 +8,13 @@ block content
         li.chat.page
             .chatArea
                 ul.messages
-                    input.inputMessage(placeholder="Type here...")
+                    input.inputMessage(placeholder="请输入……")
         li.login.page
             .form
                 h3.title What&apos;s your nickname?
                     input.usernameInput(type="text", maxlength="14")
 
 block js
+    script(src="//ohnpdrepj.bkt.clouddn.com/store+json2.min.js")
     script(src="/socket.io/socket.io.js")
     script(src="/js/chat.js")

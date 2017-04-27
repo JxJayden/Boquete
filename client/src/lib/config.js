@@ -1,17 +1,18 @@
 const API_PREFIX = '/api/v1/'
 export const API = {
-    HOST:        '//api.cms.com/',
-    LOGIN:       `${API_PREFIX}login`,
-    LOGOUT:      `${API_PREFIX}logout`,
-    REGISTER:    `${API_PREFIX}register`,
-    USER:        `${API_PREFIX}user`,
-    WEBSITE:     `${API_PREFIX}website`,
-    WEBSITEURL:  `${API_PREFIX}website/url`,
-    WEBSITENAV:  `${API_PREFIX}website/nav`,
-    WEBSITELOGO: `${API_PREFIX}/website/logo`,
-    POST:        `${API_PREFIX}post`,
-    PAGE:        `${API_PREFIX}page`,
-    UPLOAD_IMAGE: `${API_PREFIX}image`
+    HOST:         '//api.cms.com/',
+    LOGIN:        `${API_PREFIX}login`,
+    LOGOUT:       `${API_PREFIX}logout`,
+    REGISTER:     `${API_PREFIX}register`,
+    USER:         `${API_PREFIX}user`,
+    WEBSITE:      `${API_PREFIX}website`,
+    WEBSITEURL:   `${API_PREFIX}website/url`,
+    WEBSITENAV:   `${API_PREFIX}website/nav`,
+    WEBSITELOGO:  `${API_PREFIX}/website/logo`,
+    POST:         `${API_PREFIX}post`,
+    PAGE:         `${API_PREFIX}page`,
+    UPLOAD_IMAGE: `${API_PREFIX}image`,
+    CHAT:         `${API_PREFIX}chat`
 }
 
 export const tag = {
