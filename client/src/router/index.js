@@ -89,6 +89,16 @@ export default new Router({
             name: 'editPage',
             path: '/page/edit/:id',
             component: resolve => require(['../components/view/page/edit.vue'], resolve)
+        },
+        {
+            name: 'chatlist',
+            path: '/chat/list',
+            component: resolve => require(['../components/view/chat/list.vue'], resolve)
+        },
+        {
+            name: 'chat',
+            path: '/chat/content/:id',
+            component: resolve => require(['../components/view/chat/chat.vue'], resolve)
         }]
     },
     {

@@ -28,7 +28,6 @@
     </div>
 </template>
 <script>
-import draggable from 'vuedraggable'
 import VText from './text'
 import VImage from './image'
 import VVideo from './video'
@@ -81,7 +80,6 @@ export default {
         }
     },
     components: {
-        draggable: draggable,
         'v-text': VText,
         'v-image': VImage,
         'v-video': VVideo,

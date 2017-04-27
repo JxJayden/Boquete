@@ -1,4 +1,6 @@
-/* global $ window io*/
+/* global $ window io store*/
+/* eslint no-console: "off", no-debugger: "off" */
+
 $(function () {
     var FADE_TIME = 150 // ms
     var TYPING_TIMER_LENGTH = 400 // ms
@@ -28,37 +30,55 @@ $(function () {
 
     // Prompt for setting a username
     var username
+    var websiteId = getWebsiteIdFromUrl()
     var connected = false
     var typing = false
     var lastTypingTime
     var $currentInput = $usernameInput.focus()
 
-    var socket = io('http://localhost:8080')
-
-    function addParticipantsMessage(data) {
-        var message = ''
-        if (data.numUsers === 1) {
-            message += 'there\'s 1 participant'
-        } else {
-            message += 'there are ' + data.numUsers + ' participants'
-        }
-        log(message)
-    }
+    var socket = io('http://localhost:8081')
 
     // Sets the client's username
-    function setUsername() {
-        username = cleanInput($usernameInput.val().trim())
+    function setUsername(defaultUserName) {
+        username = defaultUserName || cleanInput($usernameInput.val().trim())
 
-        // If the username is valid
         if (username) {
             $loginPage.fadeOut()
             $chatPage.show()
             $loginPage.off('click')
             $currentInput = $inputMessage.focus()
 
-            // Tell the server your username
-            socket.emit('add user', username)
+            !defaultUserName && socket.emit('add customer', {
+                username: username,
+                website: websiteId
+            })
         }
+    }
+
+    // 获取 localstoge 中的用户数据并自动登录，如无用户数据则不做任何操作
+    function autoLogin() {
+        if (!store) {
+            throw Error('no require store.js')
+        }
+
+        var userMessage = getUserMessage()
+
+        if (userMessage && userMessage.userid && userMessage.username) {
+            socket.emit('autologin', userMessage)
+        }
+    }
+
+    function getWebsiteIdFromUrl () {
+        var WEBSITE_REG = /\/(.*)\//
+        return window.location.pathname.match(WEBSITE_REG)[1]
+    }
+
+    function storeUserMessage(userData) {
+        return store.set('user', userData)
+    }
+
+    function getUserMessage() {
+        return store.get('user')
     }
 
     // Sends a chat message
@@ -71,7 +91,7 @@ $(function () {
             $inputMessage.val('')
             addChatMessage({username: username, message: message})
             // tell server to execute 'new message' and send along one parameter
-            socket.emit('new message', message)
+            socket.emit('new message from customer', message)
         }
     }
 
@@ -83,9 +103,7 @@ $(function () {
         addMessageElement($el, options)
     }
 
-    // Adds the visual chat message to the message list
     function addChatMessage(data, options) {
-        // Don't fade the message in if there is an 'X was typing'
         var $typingMessages = getTypingMessages(data)
         options = options || {}
         if ($typingMessages.length !== 0) {
@@ -107,21 +125,6 @@ $(function () {
             .append($usernameDiv, $messageBodyDiv)
 
         addMessageElement($messageDiv, options)
-    }
-
-    // Adds the visual chat typing message
-    function addChatTyping(data) {
-        data.typing = true
-        data.message = 'is typing'
-        addChatMessage(data)
-    }
-
-    // Removes the visual chat typing message
-    function removeChatTyping(data) {
-        getTypingMessages(data)
-            .fadeOut(function () {
-                $(this).remove()
-            })
     }
 
     // Adds a message element to the messages and scrolls to the bottom el - The
@@ -214,8 +217,6 @@ $(function () {
             if (event.which === 13) {
                 if (username) {
                     sendMessage()
-                    socket.emit('stop typing')
-                    typing = false
                 } else {
                     setUsername()
                 }
@@ -237,40 +238,27 @@ $(function () {
     })
 
     // Socket events Whenever the server emits 'login', log the login message
-    socket.on('login', function (data) {
+    socket.on('login succeed', function (data) {
         connected = true
+        console.log(data)
+        storeUserMessage(data)
         // Display the welcome message
-        var message = 'Welcome to Socket.IO Chat – '
+        var message = '欢迎来到在线咨询'
         log(message, {prepend: true})
-        addParticipantsMessage(data)
     })
 
-    // Whenever the server emits 'new message', update the chat body
+    socket.on('autologin succeed', function(data) {
+        console.log(data)
+        setUsername(data.username)
+        connected = true
+    })
+
+    socket.on('history delete', function() {
+        store.remove('user')
+    })
+
     socket.on('new message', function (data) {
         addChatMessage(data)
-    })
-
-    // Whenever the server emits 'user joined', log it in the chat body
-    socket.on('user joined', function (data) {
-        log(data.username + ' joined')
-        addParticipantsMessage(data)
-    })
-
-    // Whenever the server emits 'user left', log it in the chat body
-    socket.on('user left', function (data) {
-        log(data.username + ' left')
-        addParticipantsMessage(data)
-        removeChatTyping(data)
-    })
-
-    // Whenever the server emits 'typing', show the typing message
-    socket.on('typing', function (data) {
-        addChatTyping(data)
-    })
-
-    // Whenever the server emits 'stop typing', kill the typing message
-    socket.on('stop typing', function (data) {
-        removeChatTyping(data)
     })
 
     socket.on('disconnect', function () {
@@ -288,4 +276,9 @@ $(function () {
         log('attempt to reconnect has failed')
     })
 
+    socket.on('socket error', function(error) {
+        console.error(error)
+    })
+
+    autoLogin()
 })
