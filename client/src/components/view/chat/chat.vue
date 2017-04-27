@@ -8,25 +8,46 @@
                 <input class="inputMessage"
                        placeholder="Type here..." />
             </li>
-            <li class="login page">
-                <div class="form">
-                    <h3 class="title">What's your nickname?</h3>
-                    <input class="usernameInput"
-                           type="text"
-                           maxlength="14" />
-                </div>
-            </li>
         </ul>
     </div>
 </template>
-
 <script>
-var io = require('socket.io-client')
-var socket = io('http://localhost/8080')
+import { _delete, _get } from '../../../lib/utils'
+import { API } from '../../../lib/config'
+import io from 'socket.io-client'
 export default {
     data() {
-        return {}
+        return {
+            user: null,
+            chatData: null
+        }
+    },
+    mounted() {
+        this.$socket = io.connect('http://localhost:8081')
+        this.getUser(this.userLogin)
+    },
+    methods: {
+        getUser(cb) {
+            _get(this, API.USER, function (data) {
+                this.user = data
+                cb && cb(data)
+            })
+        },
+        userLogin(user) {
+            const that = this
+            const data = {
+                customerId: this.$route.params.id,
+                userid: user._id,
+                username: user.username
+            }
+            console.log(data)
+            this.$socket.emit('manager login', data)
+            this.$socket.on('login succeed', function (data) {
+                that.chatData = data
+            })
+        }
     }
+
 }
 </script>
 <style scoped>
@@ -60,53 +81,6 @@ ul {
     height: 100%;
     position: absolute;
     width: 100%;
-}
-
-/* Login Page */
-
-.login.page {
-    background-color: #000;
-}
-
-.login.page .form {
-    height: 100px;
-    margin-top: -100px;
-    position: absolute;
-
-    text-align: center;
-    top: 50%;
-    width: 100%;
-}
-
-.login.page .form .usernameInput {
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid #fff;
-    outline: none;
-    padding-bottom: 15px;
-    text-align: center;
-    width: 400px;
-}
-
-.login.page .title {
-    font-size: 200%;
-}
-
-.login.page .usernameInput {
-    font-size: 200%;
-    letter-spacing: 3px;
-}
-
-.login.page .title,
-.login.page .usernameInput {
-    color: #fff;
-    font-weight: 100;
-}
-
-/* Chat page */
-
-.chat.page {
-    display: none;
 }
 
 /* Font */
