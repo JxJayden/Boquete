@@ -53,7 +53,7 @@ user_schema.statics.login = function (username, password) {
                     logger.error(err)
                     reject({
                         code: -3,
-                        message: error.message
+                        message: err.message
                     })
                 }
                 if (same) {

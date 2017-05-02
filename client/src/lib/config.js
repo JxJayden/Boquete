@@ -1,3 +1,4 @@
+/* eslint key-spacing: "off" */
 const API_PREFIX = '/api/v1/'
 export const API = {
     HOST:         '//api.cms.com/',
