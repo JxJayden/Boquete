@@ -1,3 +1,4 @@
+/* eslint key-spacing: "off" */
 const API_PREFIX = '/api/v1/'
 export const API = {
     HOST:         '//api.cms.com/',
@@ -14,6 +15,7 @@ export const API = {
     UPLOAD_IMAGE: `${API_PREFIX}image`,
     CHAT:         `${API_PREFIX}chat`,
     CHAT_HISTORY: `${API_PREFIX}chathistory`,
+    PASSWORD:     `${API_PREFIX}password`,
     IM:           'http://im.geishajs.cn'
 }
 

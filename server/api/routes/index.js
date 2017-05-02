@@ -22,6 +22,7 @@ router
     .get('/logout', logout)
     // 用户管理
     .get('/user', user.getById)
+    .put('/password', user.update_pw)
     // .post('/user', user.isRoot, user.add)
     // .put('/user', user.isRoot, user.update)
     // .delete('/user', user.isRoot, user.delete)

@@ -54,6 +54,11 @@ export default new Router({
             component: resolve => require(['../components/view/setting/basic.vue'], resolve)
         },
         {
+            name: 'passwordSetting',
+            path: '/setting/password',
+            component: resolve => require(['../components/view/setting/password.vue'], resolve)
+        },
+        {
             name: 'navSetting',
             path: '/setting/nav',
             component: resolve => require(['../components/view/setting/nav.vue'], resolve)
@@ -102,10 +107,12 @@ export default new Router({
         }]
     },
     {
+        name: 'login',
         path: '/login',
         component: resolve => require(['../components/view/Login.vue'], resolve)
     },
     {
+        name: 'register',
         path: '/register',
         component: resolve => require(['../components/view/Register.vue'], resolve)
     }]
