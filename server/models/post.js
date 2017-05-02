@@ -39,6 +39,10 @@ const post_schema = new Schema({
     nav: {
         type: String,
         default: ''
+    },
+    _draft: {
+        type: Boolean,
+        default: false
     }
 })
 

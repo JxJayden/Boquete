@@ -4,7 +4,7 @@ const db = require('../../../models/index'),
 
 module.exports = async function (ctx) {
     let userId = cry.decrypt(ctx.cookies.get('user')), // eslint-disable-line
-        postId = ctx.request.body.id,
+        { id: postId } = ctx.request.body,
         body, dbVal
 
     try {

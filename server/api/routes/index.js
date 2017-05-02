@@ -43,6 +43,7 @@ router
     .post('/post', post.add)
     .put('/post', post.update)
     .delete('/post', post.delete)
+    .put('/post/draft', post.update_draft)
     // 页面管理
     .get('/page', page.get)
     .post('/page', page.add)

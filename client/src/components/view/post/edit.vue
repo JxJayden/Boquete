@@ -18,7 +18,10 @@
         <div class="mgt20">
             <el-button class="editor-btn"
                        type="primary"
-                       @click="submit">提交</el-button>
+                       @click="submitAsPublic">发布</el-button>
+            <el-button class="editor-btn"
+                       type="primary"
+                       @click="submitAsDraft">存为草稿</el-button>
             <el-button class="editor-btn"
                        type="danger"
                        @click="resetPostData">重置</el-button>
@@ -33,6 +36,7 @@ import { API } from '../../../lib/config'
 export default {
     data() {
         return {
+            _draft: false,
             title: '',
             content: '<p>请输入文章内容</p>',
             editorOption: {
@@ -68,6 +72,7 @@ export default {
             _get(this, API.POST + '?id=' + id, function (data) {
                 this.title = data.title
                 this.content = data.content
+                this._draft = data._draft
             })
         },
         onEditorChange({ editor, html, text }) {
@@ -89,10 +94,19 @@ export default {
                 this.add()
             }
         },
+        submitAsDraft() {
+            this._draft = true
+            this.submit()
+        },
+        submitAsPublic() {
+            this._draft = false
+            this.submit()
+        },
         update(id) {
             const data = {
                 content: this.content,
                 title: this.title,
+                draft: this._draft,
                 id: id
             }
             _put(this, API.POST, data, function (data) {
@@ -102,7 +116,8 @@ export default {
         add() {
             const data = {
                 content: this.content,
-                title: this.title
+                title: this.title,
+                draft: this._draft
             }
             _post(this, API.POST, data, function (data) {
                 this.$message.success('提交成功！')
