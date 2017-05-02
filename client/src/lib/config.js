@@ -14,6 +14,7 @@ export const API = {
     UPLOAD_IMAGE: `${API_PREFIX}image`,
     CHAT:         `${API_PREFIX}chat`,
     CHAT_HISTORY: `${API_PREFIX}chathistory`,
+    PASSWORD:     `${API_PREFIX}password`,
     IM:           'http://im.geishajs.cn'
 }
 

@@ -3,7 +3,8 @@ const
     logger = require('../lib/log')('model-user'),
     m = require('../lib/mongoose'),
     Schema = m.Schema,
-    mongoose = m.mongoose
+    mongoose = m.mongoose,
+    _salt_bounds = 10
 
 const user_schema = new Schema({
     username: {
@@ -29,7 +30,7 @@ const user_schema = new Schema({
     _salt_bounds: {
         type: Number,
         required: false,
-        default: 10
+        default: _salt_bounds
     }
 })
 
@@ -143,33 +144,23 @@ user_schema.pre('save', function (next) {
 user_schema.pre('update', function (next) {
     var that = this
     if (that._update.$set.password) {
-        let newPass = that._update.$set.password
-        that.findOne({
-            _id: that._conditions._id
-        }, {
-            _salt_bounds: 1
-        }).exec().then(value => {
-            bcrypt.genSalt(value._salt_bounds, function (err, salt) {
+        bcrypt.genSalt(_salt_bounds, (err, salt) => {
+            if (err) {
+                logger.error(err)
+                return next()
+            }
+
+            bcrypt.hash(that._update.$set.password, salt, null, (err, hash) => {
                 if (err) {
                     logger.error(err)
-                    return next()
                 }
-
-                bcrypt.hash(newPass, salt, function (error, hash) {
-                    if (error) {
-                        logger.error(error)
-                    }
-                    that._update.$set.password = hash
-                    return next()
-                })
+                that._update.$set.password = hash
+                return next()
             })
-        }).catch(err => {
-            throw err
         })
     } else {
         return next()
     }
-
 })
 
 const userModel = mongoose.model('user', user_schema)
