@@ -1,10 +1,8 @@
 const db = require('../../../models/index'),
-    logger = require('../../../lib/log')('post-update'),
-    cry = require('../../lib/cryptology')
+    logger = require('../../../lib/log')('post-update-draft')
 
 module.exports = async function (ctx) {
-    let { content, title, id, draft = false } = ctx.request.body,
-        userId = cry.decrypt(ctx.cookies.get('user')), // eslint-disable-line
+    let { id, draft = false } = ctx.request.body,
         body, dbVal
 
     try {
@@ -14,29 +12,15 @@ module.exports = async function (ctx) {
             }
         }
 
-        if (!content) {
-            throw {
-                message: '无文章内容'
-            }
-        }
-
-        if (!title) {
-            throw {
-                message: '无文章标题'
-            }
-        }
-
         dbVal = await db.postModel.findByIdAndUpdate(id, {
             $set: {
-                title: title,
-                content: content,
                 _draft: draft
             }
         }).exec()
 
         body = {
             err: false,
-            message: 'update post succeed',
+            message: 'update post draft succeed',
             code: 200,
             data: dbVal
         }

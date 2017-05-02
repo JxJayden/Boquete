@@ -3,7 +3,7 @@ const db = require('../../../models/index'),
     cry = require('../../lib/cryptology')
 
 module.exports = async function (ctx) {
-    let { content, title } = ctx.request.body,
+    let { content, title, draft = false } = ctx.request.body,
         userId = cry.decrypt(ctx.cookies.get('user')),
         body, dbVal, authorInfo
 
@@ -26,7 +26,8 @@ module.exports = async function (ctx) {
             content: content,
             author: userId,
             authorName: authorInfo.username,
-            owner: userId
+            owner: userId,
+            _draft: draft
         }).save()
 
         body = {

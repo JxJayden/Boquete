@@ -21,6 +21,15 @@
             <el-table-column label="操作">
                 <template scope="scope">
                     <el-button size="small"
+                               type="success"
+                               v-if="scope.row._draft === true"
+                               @click="handleChangeDraft(scope.$index, scope.row)">发布文章</el-button>
+                    <el-button size="small"
+                               type="warning"
+                               v-else
+                               @click="handleChangeDraft(scope.$index, scope.row)">存为草稿</el-button>
+                    <el-button size="small"
+                               type="primary"
                                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="small"
                                type="danger"
@@ -37,7 +46,7 @@
 </template>
 
 <script>
-import { _delete, _get } from '../../../lib/utils'
+import { _delete, _get, _put } from '../../../lib/utils'
 import { API } from '../../../lib/config'
 export default {
     data() {
@@ -63,6 +72,16 @@ export default {
         handleDelete(index, row) {
             _delete(this, API.POST, { id: row._id }, function () {
                 this.$message.success('删除成功')
+                this.getPostData()
+            })
+        },
+        handleChangeDraft(index, row) {
+            const data = {
+                draft: !row._draft,
+                id: row._id
+            }
+            _put(this, API.POST_DRAFT, data, function (data) {
+                this.$message.success('修改成功')
                 this.getPostData()
             })
         }

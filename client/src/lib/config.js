@@ -11,6 +11,7 @@ export const API = {
     WEBSITENAV:   `${API_PREFIX}website/nav`,
     WEBSITELOGO:  `${API_PREFIX}website/logo`,
     POST:         `${API_PREFIX}post`,
+    POST_DRAFT:   `${API_PREFIX}post/draft`,
     PAGE:         `${API_PREFIX}page`,
     UPLOAD_IMAGE: `${API_PREFIX}image`,
     CHAT:         `${API_PREFIX}chat`,

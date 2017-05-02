@@ -31,10 +31,11 @@ block content
           br
   main.post-list.container.row
     each val in posts
-      article.col.s6.offset-s3.m10.offset-m1.post
-        h3.post-title.text-blue.text-darken-1
-          a(href= "post/" + val._id) #{val.title}
-        section.post-excerpt !{val.content}
-        footer.post-meta.grey-text.text-lighten-1.right
-          span.post-author #{val.authorName}
-          time.post-date(datetime=val.date) #{val.date}
+      if !val._draft
+        article.col.s6.offset-s3.m10.offset-m1.post
+          h3.post-title.text-blue.text-darken-1
+            a(href= "post/" + val._id) #{val.title}
+          section.post-excerpt !{val.content}
+          footer.post-meta.grey-text.text-lighten-1.right
+            span.post-author #{val.authorName}
+            time.post-date(datetime=val.date) #{val.date}
