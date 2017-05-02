@@ -43,6 +43,9 @@ a{text-decoration: none}
 .mgb20{
     margin-bottom: 20px;
 }
+.mgt20{
+    margin-top: 20px;
+}
 
 .move-enter-active,.move-leave-active{
     transition: opacity .5s;
@@ -109,7 +112,4 @@ a{text-decoration: none}
 }
 .ql-snow .ql-tooltip{
     transform: translateX(117.5px) translateY(10px) !important;
-}
-.editor-btn{
-    margin-top: 20px;
 }

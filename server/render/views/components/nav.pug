@@ -1,0 +1,14 @@
+nav.white(role="navigation")
+  .nav-wrapper.container
+    a#logo-container.brand-logo(href=nav.homeUrl)
+      img.circle(src= nav.logo, height="50", width="50")
+    ul.right.hide-on-med-and-down
+      each val in nav.nav
+        li
+          a(href= val.url) #{val.label}
+    ul#nav-mobile.side-nav
+      each val in nav.nav
+        li
+          a(href= val.url) #{val.label}
+    a.button-collapse(href="#", data-activates="nav-mobile")
+      i.material-icons menu

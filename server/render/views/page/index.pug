@@ -1,0 +1,61 @@
+extends ../common/layout
+
+block content
+  #index-banner.parallax-container
+    .section.no-pad-bot
+      .container
+        br
+        br
+        h1.header.center.blue-text.text-lighten-2 #{page.title}
+        .row.center
+          h5.header.col.s12.light #{page.description}
+        //- .row.center
+          //- a#download-button.btn-large.waves-effect.waves-light.blue.lighten-1(href="http://materializecss.com/getting-started.html") Get Started
+        br
+        br
+    .parallax
+      img(src="/img/background1.jpg", alt="Unsplashed background img 1")
+  .container
+    .section
+      // Icon Section
+      .row
+        .col.s12.m4
+          .icon-block
+            h2.center.brown-text
+              i.material-icons flash_on
+            h5.center Speeds up development
+            p.light
+        .col.s12.m4
+          .icon-block
+            h2.center.brown-text
+              i.material-icons group
+            h5.center User Experience Focused
+            p.light
+        .col.s12.m4
+          .icon-block
+            h2.center.brown-text
+              i.material-icons settings
+            h5.center Easy to work with
+            p.light
+  .parallax-container.valign-wrapper
+    .section.no-pad-bot
+      .container
+        .row.center
+          h5.header.col.s12.light #{page.description}
+    .parallax
+      img(src="/img/background2.jpg", alt="Unsplashed background img 2")
+  .container
+    .section
+      .row
+        .col.s12.center
+          h3
+            i.mdi-content-send.brown-text
+          h4 Contact Us
+          p.left-align.light
+  .parallax-container.valign-wrapper
+    .section.no-pad-bot
+      .container
+        .row.center
+          h5.header.col.s12.light #{page.description}
+    .parallax
+      img(src="/img/background3.jpg", alt="Unsplashed background img 3")

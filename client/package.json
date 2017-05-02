@@ -1,6 +1,6 @@
 {
-  "name": "cms-client",
-  "version": "0.0.2",
+  "name": "boquete-client",
+  "version": "0.4.0",
   "description": "cms client",
   "author": "lin-xin <2981207131@qq.com> & JxJayden <jxdjayden@gamil.com>",
   "private": true,
@@ -10,15 +10,18 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "debug": "2.3.3",
     "element-ui": "^1.2.2",
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-vue": "^2.0.1",
     "global": "^4.3.1",
+    "socket.io": "^1.7.3",
     "vue": "^2.1.10",
     "vue-axios": "^2.0.1",
     "vue-core-image-upload": "^2.0.5",
     "vue-datasource": "^1.0.4",
     "vue-echarts-v3": "^1.0.3",
+    "vue-materialize": "^1.0.0",
     "vue-quill-editor": "^1.1.1",
     "vue-router": "^2.2.0",
     "vue-simplemde": "^0.3.2"

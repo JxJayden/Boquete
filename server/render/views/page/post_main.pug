@@ -1,0 +1,15 @@
+extends ../common/layout
+
+block css
+  link(href="/css/page/post.css", rel="stylesheet")
+
+block content
+  main.post-template.container.row
+    article.post
+      header.post-header
+        h2.post-title.blue-text #{post.title}
+        section.post-meta.grey-text.text-lighten-1
+          span.post-author 作者：#{post.authorName}
+          time.post-date(datetime=post.date) 发表时间：#{post.date}
+      section.post-content !{post.content}
+

@@ -1,13 +1,10 @@
 <template>
     <div class="header">
-        <div class="logo">后台管理系统</div>
+        <div class="logo">Boquete 后台</div>
         <div class="user-info">
             <el-dropdown trigger="click"
                          @command="handleCommand">
-                <span class="el-dropdown-link">
-                                    <img class="user-logo" src="../../../static/img/img.jpg">
-                                    {{username}}
-                                </span>
+                <span class="el-dropdown-link"> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="loginout">退出</el-dropdown-item>
                 </el-dropdown-menu>
@@ -16,7 +13,7 @@
     </div>
 </template>
 <script>
-import { api } from '../../lib/config'
+import { API } from '../../lib/config'
 export default {
     data() {
         return {
@@ -36,7 +33,7 @@ export default {
         },
         logout() {
             localStorage.clear()
-            this.axios.get(api.logout).then((res) => {
+            this.axios.get(API.LOGOUT).then((res) => {
                 this.$router.push('/login')
             })
         }

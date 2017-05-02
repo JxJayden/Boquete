@@ -13,51 +13,107 @@ export default new Router({
         component: resolve => require(['../components/common/Home.vue'], resolve),
         children: [{
             path: '/',
-            component: resolve => require(['../components/page/Readme.vue'], resolve)
+            component: resolve => require(['../components/view/Index.vue'], resolve)
         },
         {
             path: '/basetable',
-            component: resolve => require(['../components/page/BaseTable.vue'], resolve)
+            component: resolve => require(['../components/view/BaseTable.vue'], resolve)
         },
         {
             path: '/vuetable',
-            component: resolve => require(['../components/page/VueTable.vue'], resolve) // vue-datasource组件
+            component: resolve => require(['../components/view/VueTable.vue'], resolve) // vue-datasource组件
         },
         {
             path: '/baseform',
-            component: resolve => require(['../components/page/BaseForm.vue'], resolve)
+            component: resolve => require(['../components/view/BaseForm.vue'], resolve)
         },
         {
             path: '/vueeditor',
-            component: resolve => require(['../components/page/VueEditor.vue'], resolve) // Vue-Quill-Editor组件
+            component: resolve => require(['../components/view/VueEditor.vue'], resolve) // Vue-Quill-Editor组件
         },
         {
             path: '/markdown',
-            component: resolve => require(['../components/page/Markdown.vue'], resolve) // Vue-Quill-Editor组件
+            component: resolve => require(['../components/view/Markdown.vue'], resolve) // Vue-Quill-Editor组件
         },
         {
             path: '/upload',
-            component: resolve => require(['../components/page/Upload.vue'], resolve) // Vue-Core-Image-Upload组件
+            component: resolve => require(['../components/view/Upload.vue'], resolve) // Vue-Core-Image-Upload组件
         },
         {
             path: '/basecharts',
-            component: resolve => require(['../components/page/BaseCharts.vue'], resolve) // vue-echarts-v3组件
+            component: resolve => require(['../components/view/BaseCharts.vue'], resolve) // vue-echarts-v3组件
         },
         {
             path: '/mixcharts',
-            component: resolve => require(['../components/page/MixCharts.vue'], resolve) // vue-echarts-v3组件
+            component: resolve => require(['../components/view/MixCharts.vue'], resolve) // vue-echarts-v3组件
+        },
+        // setting
+        {
+            name: 'basicSetting',
+            path: '/setting/basic',
+            component: resolve => require(['../components/view/setting/basic.vue'], resolve)
         },
         {
-            path: '/usermanage',
-            component: resolve => require(['../components/page/basicManage/UserManage.vue'], resolve)
+            name: 'passwordSetting',
+            path: '/setting/password',
+            component: resolve => require(['../components/view/setting/password.vue'], resolve)
         },
         {
-            path: '/websitemanage',
-            component: resolve => require(['../components/page/basicManage/WebsiteManage.vue'], resolve)
+            name: 'navSetting',
+            path: '/setting/nav',
+            component: resolve => require(['../components/view/setting/nav.vue'], resolve)
+        },
+        // post
+        {
+            name: 'editPost',
+            path: '/post/edit/:id',
+            component: resolve => require(['../components/view/post/edit.vue'], resolve)
+        },
+        {
+            name: 'addPost',
+            path: '/post/add',
+            component: resolve => require(['../components/view/post/edit.vue'], resolve)
+        },
+        {
+            name: 'allPost',
+            path: '/post/list',
+            component: resolve => require(['../components/view/post/list.vue'], resolve)
+        },
+        // page
+        {
+            name: 'addPage',
+            path: '/page/add',
+            component: resolve => require(['../components/view/page/edit.vue'], resolve)
+        },
+        {
+            name: 'allPage',
+            path: '/page/list',
+            component: resolve => require(['../components/view/page/list.vue'], resolve)
+        },
+        {
+            name: 'editPage',
+            path: '/page/edit/:id',
+            component: resolve => require(['../components/view/page/edit.vue'], resolve)
+        },
+        {
+            name: 'chatlist',
+            path: '/chat/list',
+            component: resolve => require(['../components/view/chat/list.vue'], resolve)
+        },
+        {
+            name: 'chat',
+            path: '/chat/content/:id',
+            component: resolve => require(['../components/view/chat/chat.vue'], resolve)
         }]
     },
     {
+        name: 'login',
         path: '/login',
-        component: resolve => require(['../components/page/Login.vue'], resolve)
+        component: resolve => require(['../components/view/Login.vue'], resolve)
+    },
+    {
+        name: 'register',
+        path: '/register',
+        component: resolve => require(['../components/view/Register.vue'], resolve)
     }]
 })

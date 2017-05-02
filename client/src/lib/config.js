@@ -1,8 +1,23 @@
-const apiPrefix = '/api/v1/'
-export const api = {
-    login: `${apiPrefix}login`,
-    logout: `${apiPrefix}logout`,
-    user: `${apiPrefix}user`
+/* eslint key-spacing: "off" */
+const API_PREFIX = '/api/v1/'
+export const API = {
+    HOST:         '//api.cms.com/',
+    LOGIN:        `${API_PREFIX}login`,
+    LOGOUT:       `${API_PREFIX}logout`,
+    REGISTER:     `${API_PREFIX}register`,
+    USER:         `${API_PREFIX}user`,
+    WEBSITE:      `${API_PREFIX}website`,
+    WEBSITEURL:   `${API_PREFIX}website/url`,
+    WEBSITENAV:   `${API_PREFIX}website/nav`,
+    WEBSITELOGO:  `${API_PREFIX}website/logo`,
+    POST:         `${API_PREFIX}post`,
+    POST_DRAFT:   `${API_PREFIX}post/draft`,
+    PAGE:         `${API_PREFIX}page`,
+    UPLOAD_IMAGE: `${API_PREFIX}image`,
+    CHAT:         `${API_PREFIX}chat`,
+    CHAT_HISTORY: `${API_PREFIX}chathistory`,
+    PASSWORD:     `${API_PREFIX}password`,
+    IM:           'http://im.geishajs.cn'
 }
 
 export const tag = {

@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import App from './App'
-import router from './router'
 import ElementUI from 'element-ui'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import App from './App'
+import router from './router'
 import 'element-ui/lib/theme-default/index.css'
 
 Vue.use(VueAxios, axios)
