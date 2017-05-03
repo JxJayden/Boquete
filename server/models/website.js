@@ -1,49 +1,46 @@
 const
     logger   = require('../lib/log')('model-website'),
-    m        = require('../lib/mongoose'),
-    Schema   = m.Schema,
-    mongoose = m.mongoose
-
-const website_schema = new Schema({
-    owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
-    },
-    title: {
-        type: String,
-        default: ''
-    },
-    description: {
-        type: String,
-        default: 'Thoughts, stories and ideas.'
-    },
-    logo: {
-        type: String,
-        default: ''
-    },
-    copyright: {
-        type: String,
-        default: 'Copyright © 2017'
-    },
-    keywords: {
-        type: String,
-        default: ''
-    },
-    url: {
-        type: String,
-        default: ''
-    },
-    nav: {
-        type: Array,
-        default: []
-    }
-})
+    { Schema, mongoose } = require('../lib/mongoose'),
+    website_schema = new Schema({
+        owner: { // 网站所有者 _id
+            type: Schema.Types.ObjectId,
+            ref: 'user'
+        },
+        title: { // 网站标题
+            type: String,
+            default: ''
+        },
+        description: { // 网站描述
+            type: String,
+            default: 'Thoughts, stories and ideas.'
+        },
+        logo: { // 网站 logo
+            type: String,
+            default: ''
+        },
+        copyright: {  // 网站版权
+            type: String,
+            default: 'Copyright © 2017'
+        },
+        keywords: { // 网站关键字
+            type: String,
+            default: ''
+        },
+        url: { // 网站链接
+            type: String,
+            default: ''
+        },
+        nav: { // 网站导航栏
+            type: Array,
+            default: []
+        }
+    })
 
 website_schema.statics.getWebsiteByOwner = function (ownerId) {
-    let self = this
+    let that = this
 
     return new Promise((resolve, reject) => {
-        self.findOne({
+        that.findOne({
             owner: ownerId
         }).exec().then((value) => {
             if (value && value.owner) {
@@ -81,6 +78,4 @@ website_schema.statics.hasWebsiteByOwner = function (ownerId) {
     })
 }
 
-const websiteModel = mongoose.model('website', website_schema)
-
-module.exports = websiteModel
+module.exports = mongoose.model('website', website_schema)
