@@ -25,6 +25,10 @@ const website_schema = new Schema({
         type: String,
         default: 'Copyright © 2017'
     },
+    keywords: {
+        type: String,
+        default: ''
+    },
     url: {
         type: String,
         default: ''
