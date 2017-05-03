@@ -7,30 +7,30 @@ const
     _salt_bounds = 10
 
 const user_schema = new Schema({
-    username: {
+    username: { // 管理员用户名
         type: String,
         required: true
     },
-    password: {
+    password: { // 管理员密码
         type: String,
         required: true
     },
-    limits: {
+    limits: { // 权限
         type: Array,
         default: []
     },
-    isRoot: {
+    isRoot: { // 是否为超级管理员
         type: Boolean,
         default: false
     },
-    created_at: {
+    created_at: { // 创建时间
         type: Date,
         default: Date.now
     },
-    _salt_bounds: {
+    _salt_bounds: { //
         type: Number,
         required: false,
-        default: _salt_bounds
+        default: _salt_bounds // 10
     }
 })
 
@@ -124,6 +124,9 @@ user_schema.statics.isRoot = function (userId) {
 
 user_schema.pre('save', function (next) {
     var that = this
+
+    if (!that.isModified('password')) return next()
+
     bcrypt.genSalt(that._salt_bounds, (err, salt) => {
         if (err) {
             logger.error(err)
@@ -141,27 +144,27 @@ user_schema.pre('save', function (next) {
     })
 })
 
-user_schema.pre('update', function (next) {
-    var that = this
-    if (that._update.$set.password) {
-        bcrypt.genSalt(_salt_bounds, (err, salt) => {
-            if (err) {
-                logger.error(err)
-                return next()
-            }
+// user_schema.pre('update', function (next) {
+//     var that = this
+//     if (that._update.$set.password) {
+//         bcrypt.genSalt(_salt_bounds, (err, salt) => {
+//             if (err) {
+//                 logger.error(err)
+//                 return next()
+//             }
 
-            bcrypt.hash(that._update.$set.password, salt, null, (err, hash) => {
-                if (err) {
-                    logger.error(err)
-                }
-                that._update.$set.password = hash
-                return next()
-            })
-        })
-    } else {
-        return next()
-    }
-})
+//             bcrypt.hash(that._update.$set.password, salt, null, (err, hash) => {
+//                 if (err) {
+//                     logger.error(err)
+//                 }
+//                 that._update.$set.password = hash
+//                 return next()
+//             })
+//         })
+//     } else {
+//         return next()
+//     }
+// })
 
 const userModel = mongoose.model('user', user_schema)
 

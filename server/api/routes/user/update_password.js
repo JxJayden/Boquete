@@ -5,22 +5,20 @@ const db = require('../../../models/index'),
 module.exports = async function (ctx) {
     let userId = cry.decrypt(ctx.cookies.get('user')),
         newPassword = ctx.request.body.password,
-        body, dbVal
+        body, userData
 
     try {
-        dbVal = await db.userModel.update({
-            _id: userId
-        }, {
-            $set: {
-                password: newPassword
-            }
-        }).exec()
+        userData = await db.userModel.findById(userId).exec()
+        userData.password = newPassword
+        userData.save()
 
         body = {
             err: false,
             code: 200,
             message: '修改用户密码成功',
-            data: dbVal
+            data: {
+                ok: 1
+            }
         }
         ctx.cookies.set('sessionId', null)
         ctx.cookies.set('user', null)
