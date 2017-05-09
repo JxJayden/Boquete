@@ -51,7 +51,7 @@
                         </el-upload>
                     </div>
                 </el-form-item>
-                <el-form-item>
+                <el-form-item class="mgt20">
                     <el-button type="primary"
                                :disabled="!isChange"
                                :loading="isLoading"

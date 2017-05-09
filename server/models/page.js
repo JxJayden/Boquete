@@ -32,6 +32,10 @@ const logger = require('../lib/log')('model-page'), // eslint-disable-line
         url: { // 页面的链接
             type: String,
             default: ''
+        },
+        _draft: { // 是否为草稿
+            type: Boolean,
+            default: false
         }
     })
 

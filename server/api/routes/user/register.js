@@ -32,7 +32,7 @@ module.exports = async function (ctx) {
         if (isUserExist) {
             throw {
                 code: -3,
-                message: `The username: ${username} is exist!`
+                message: `用户名: ${username} 已存在！`
             }
         }
 

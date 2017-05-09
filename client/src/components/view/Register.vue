@@ -19,8 +19,11 @@
                 <div class="login-btn">
                     <el-button type="success"
                                @click="submitForm('loginForm')">注册</el-button>
-                    <el-button type="primary"
-                               @click="gotoLogin">登录</el-button>
+                </div>
+                <div class="login-btn">
+                    <el-button :plain="true"
+                               type="primary"
+                               @click="gotoLogin">已有帐号，去登录</el-button>
                 </div>
             </el-form>
         </div>
@@ -110,7 +113,7 @@ export default {
     left: 50%;
     top: 50%;
     width: 300px;
-    height: 140px;
+    height: 180px;
     margin: -150px 0 0 -190px;
     padding: 40px;
     border-radius: 5px;
@@ -124,10 +127,11 @@ export default {
 
 .login-btn {
     text-align:center;
+    margin-bottom: 10px;
 }
 
 .login-btn button {
-    width: 47%;
+    width: 100%;
     height: 36px;
 }
 </style>
