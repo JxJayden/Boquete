@@ -1,16 +1,20 @@
-const logger = require('../../../lib/log')('router-home')
+const logger = require('../../../lib/log')('router-home'),
+    db = require('../../../models/index')
 
 module.exports = async(ctx) => {
-    try {
-        await ctx.render('./page/index', {})
-    } catch (err) {
-        logger.error(err)
-        await ctx.render('./error', {
-            message: err.message,
-            error: {
-                status: err.status || 500
+    let pageData = await db.pageModel.findOne({
+        website: ctx.params.websiteId,
+        type: 'home'
+    }).exec()
+
+    logger.info(pageData)
+    if (pageData) {
+        await ctx.render('./page/page_main', {
+            page: {
+                content: pageData.content
             }
         })
+    } else {
+        await ctx.render('./page/index', {})
     }
-
 }

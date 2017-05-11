@@ -5,6 +5,10 @@ const logger = require('../lib/log')('model-page'), // eslint-disable-line
             type: Schema.Types.ObjectId,
             ref: 'user'
         },
+        type: { // 页面的类型： home 或者 customize
+            type: String,
+            required: true
+        },
         website: { // 页面所属的网站 _id
             type: Schema.Types.ObjectId,
             ref: 'website'

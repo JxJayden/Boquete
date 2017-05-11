@@ -15,11 +15,5 @@ module.exports = async(ctx) => {
         })
     } catch (err) {
         logger.error(err)
-        await ctx.render('./error', {
-            message: err.message,
-            error: {
-                status: err.status || 500
-            }
-        })
     }
 }

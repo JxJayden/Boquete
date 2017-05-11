@@ -16,7 +16,9 @@ module.exports = async function (ctx) {
     try {
         websiteInfo = await db
             .websiteModel
-            .findOne({owner: userId})
+            .findOne({
+                owner: userId
+            })
             .exec()
 
         modules.forEach((value) => {
@@ -24,7 +26,14 @@ module.exports = async function (ctx) {
         })
 
         pageVal = await new db
-            .pageModel({title: title, website: websiteInfo._id, modules: modules, content: content, owner: userId})
+            .pageModel({
+                title: title,
+                website: websiteInfo._id,
+                modules: modules,
+                content: content,
+                owner: userId,
+                type: 'customize'
+            })
             .save()
 
         pageUrl = `${websiteInfo.url}/page/${pageVal._id}`
@@ -42,7 +51,9 @@ module.exports = async function (ctx) {
             err: false,
             message: 'add page succeed',
             code: 200,
-            data: Object.assign(pageVal, {url: pageUrl})
+            data: Object.assign(pageVal, {
+                url: pageUrl
+            })
         }
     } catch (err) {
         logger.error(err)
