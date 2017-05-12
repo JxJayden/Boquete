@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!--<el-carousel height="150px">-->
         <el-upload :action="uploadImgUrl"
                    list-type="picture-card"
                    :on-preview="handlePictureCardPreview"
@@ -14,10 +13,6 @@
                  :src="dialogImageUrl"
                  alt="">
         </el-dialog>
-        <!--<el-carousel-item v-for="item in items">
-                                            <img :src="item.imgUrl">
-                                        </el-carousel-item>-->
-        <!--</el-carousel>-->
     </div>
 </template>
 <script>
@@ -30,7 +25,12 @@ export default {
             uploadImgUrl: API.UPLOAD_IMAGE,
             items: [],
             dialogImageUrl: '',
-            dialogVisible: false
+            dialogVisible: false,
+            htmlContent: [
+                '<div class=\"carousel carousel-slider\">',
+                '</div>'
+            ],
+            returnData: []
         }
     },
     methods: {
@@ -48,16 +48,21 @@ export default {
 
             file.url = url
             file.content = '<div class=\"carousel-item\"><img src=\"' + url + '\" /></div>'
-            this.items.push(file.content)
-            this.saveCarousel()
+
+            this.returnData.push(url)
+            this.htmlContent[0] = this.htmlContent[0] + file.content
+
+            this.items.push(file)
+            this.saveCarousel(file)
         },
-        saveCarousel() {
-            let contents = ''
-            for (var i = 0; i < this.items.length; i++) {
-                contents += this.items[i]
+        saveCarousel(file) {
+            const content = {
+                type: 'carousel',
+                content: this.htmlContent.join(''),
+                data: this.returnData
             }
-            contents = '<div class=\"carousel carousel-slider\">' + contents + '</div>'
-            this.$emit('get-content', this.moduleId, contents)
+
+            this.$emit('get-content', this.moduleId, content)
         }
     }
 }

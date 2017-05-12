@@ -32,7 +32,7 @@ module.exports = async function (ctx) {
         if (isUserExist) {
             throw {
                 code: -3,
-                message: `The username: ${username} is exist!`
+                message: `用户名: ${username} 已存在！`
             }
         }
 
@@ -45,7 +45,7 @@ module.exports = async function (ctx) {
             copyright: `${registerUser.username} © ${new Date().getFullYear()}`
         }).save()
 
-        let m = await db.websiteModel.findByIdAndUpdate(registerWebSite._id, {
+        await db.websiteModel.findByIdAndUpdate(registerWebSite._id, {
             $set: {
                 nav: [{
                     label: 'home',
@@ -54,6 +54,16 @@ module.exports = async function (ctx) {
                 url: encodeURI(`http://show.geishajs.cn/${registerWebSite._id}`),
             }
         }).exec()
+
+        await new db.pageModel({
+            title: 'home',
+            website: registerWebSite._id,
+            modules: [],
+            content: '',
+            owner: registerUser._id,
+            url: encodeURI(`http://show.geishajs.cn/${registerWebSite._id}`),
+            type: 'home'
+        }).save()
 
         // 删除一些不必要的信息
         delete newUser.password

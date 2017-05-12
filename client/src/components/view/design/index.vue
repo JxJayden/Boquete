@@ -11,12 +11,10 @@
         </div>
         <div class="custom-content mgt20">
             <div v-for="(element, index) in customModules">
-                <div class="modules-bar">
-                    <span class="modules-bar-title">工具栏</span>
-                    <el-button size="small"
-                               class="modulrd-bar-btn"
-                               @click="removeModule">删除模块</el-button>
-                </div>
+                <v-toolbar>
+                    <span class="tool-bar-title">工具栏</span>
+                    <el-button size="small" class="tool-bar-btn" @click="removeModule">删除模块</el-button>
+                </v-toolbar>
                 <component :is="'v-' + element.type"
                            :content="element.content"
                            :module-id="index"
@@ -32,6 +30,8 @@ import VText from './text'
 import VImage from './image'
 import VVideo from './video'
 import VCarousel from './carousel'
+import VSection from './section'
+import VToolbar from './toolbar'
 
 const defaultModules = {
     'carousel': {
@@ -49,6 +49,11 @@ const defaultModules = {
         type: 'video',
         content: ''
     },
+    'section': {
+        name: '三栏项目',
+        type: 'section',
+        content: ''
+    },
     'text': {
         name: '文字',
         type: 'text',
@@ -56,7 +61,6 @@ const defaultModules = {
     }
 }
 
-const defaultModulesType = ['video', 'image', 'carousel', 'text']
 
 export default {
     name: 'vue-custom',
@@ -64,12 +68,21 @@ export default {
         value: null,
         modules: {
             type: Array,
-            default: defaultModulesType
+            default: function () {
+                const defaultModulesType = ['video', 'image', 'carousel', 'text', 'section']
+                return defaultModulesType
+            }
         },
         data: {
             type: Array,
-            default: []
-        }
+            default: function () {
+                return []
+            }
+        },
+        tools: [{
+            name: '删除',
+            event: ''
+        }]
     },
     data() {
         return {
@@ -83,17 +96,22 @@ export default {
         'v-text': VText,
         'v-image': VImage,
         'v-video': VVideo,
-        'v-carousel': VCarousel
+        'v-carousel': VCarousel,
+        'v-section': VSection,
+        'v-toolbar': VToolbar
     },
     methods: {
-        addModules(itemType, defaultContent) {
-            this.customModules.push(defaultModules[itemType])
+        addModules(itemType) {
+            this.customModules.push({
+                type: itemType,
+                content: ''
+            })
         },
         saveDesign() {
             this.$emit('input', this.customModules)
         },
         getContent(index, content) {
-            this.customModules[index].content = content
+            this.customModules[index].content = content.content ? content.content : content
         },
         removeModule(index) {
             this.customModules.splice(index, 1)

@@ -1,13 +1,9 @@
 const router = require('koa-router')(),
-    _ = require('../lib/utils'),
     page = require('./page/index'),
-    logger = require('../../lib/log')('router')
+    getInfoAndSetCommonData = require('./base/get_info')
 
 router
-    .get(['/:websiteId', '/:websiteId/*'], async(ctx, next) => {
-        ctx.websiteInfo = await _.getWebsiteInfo(ctx.params.websiteId)
-        await next()
-    })
+    .get(['/:websiteId', '/:websiteId/*'], getInfoAndSetCommonData)
     .get(['/:websiteId', '/:websiteId/index'], page.home)
     .get('/:websiteId/post', page.post_list)
     .get('/:websiteId/post/:postId', page.post_main)
@@ -15,3 +11,4 @@ router
     .get('/:websiteId/chat', page.chat)
 
 module.exports = router
+

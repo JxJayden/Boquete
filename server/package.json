@@ -1,14 +1,15 @@
 {
     "name": "boquete-server",
-    "version": "0.4.0",
+    "version": "1.0.0",
     "license": "MIT",
     "private": true,
     "author": "JxJayden <jxdjayden@gamil.com>",
     "scripts": {
-        "api": "pm2 start ecosystem.config.js --only API",
-        "render": "pm2 start ecosystem.config.js --only RENDER",
-        "chat": "pm2 start ecosystem.config.js --only CHAT",
-        "pm2": "pm2 start ecosystem.config.js",
+        "api": "pm2 reload ecosystem.config.js --only API",
+        "render": "pm2 reload ecosystem.config.js --only RENDER",
+        "chat": "pm2 reload ecosystem.config.js --only CHAT",
+        "pm2": "pm2 reload ecosystem.config.js --env production",
+        "dev": "pm2 reload ecosystem.config.js",
         "test": "./node_modules/.bin/mocha ./test/api/all.test.js"
     },
     "dependencies": {

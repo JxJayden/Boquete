@@ -28,6 +28,12 @@
                               @change="handleChange"
                               auto-complete="off"></el-input>
                 </el-form-item>
+                <el-form-item label="关键字（keywords）"
+                              prop="copyright">
+                    <el-input v-model="website.keywords"
+                              @change="handleChange"
+                              auto-complete="off"></el-input>
+                </el-form-item
                 <el-form-item label="网站 logo">
                     <div style="clear: both;">
                         <el-upload class="logo-uploader"
@@ -45,7 +51,7 @@
                         </el-upload>
                     </div>
                 </el-form-item>
-                <el-form-item>
+                <el-form-item class="mgt20">
                     <el-button type="primary"
                                :disabled="!isChange"
                                :loading="isLoading"
@@ -71,7 +77,8 @@ export default {
                 title: '',
                 description: '',
                 copyright: '',
-                logo: ''
+                logo: '',
+                keywords: ''
             },
             rules: {
                 title: [{ required: true, message: '请输入网站名称', trigger: 'blur' }],
@@ -91,7 +98,8 @@ export default {
                 change: {
                     title: this.website.title,
                     description: this.website.description,
-                    copyright: this.website.copyright
+                    copyright: this.website.copyright,
+                    keywords: this.website.keywords
                 }
             }
             _put(this, API.WEBSITE, data, function (data) {
@@ -112,7 +120,7 @@ export default {
         handleLogoSuccess(res, file) {
             console.log(res)
             this.imageUrl = URL.createObjectURL(file.raw)
-            this.handleChange()
+            this.$message.success('更新网站 logo 成功')
         },
         handleLogoError(res, file) {
             this.$message.error('提交失败！')

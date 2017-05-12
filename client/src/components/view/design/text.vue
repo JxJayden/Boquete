@@ -25,6 +25,8 @@ export default {
     data() {
         return {
             textContent: '',
+            returnData: [],
+            htmlContent: ['<div class=\"ql-editor container\">', '', '</div>'],
             editorOption: {
                 theme: 'snow',
                 placeholder: ' 输入任何内容，支持 html',
@@ -42,7 +44,15 @@ export default {
             this.textContent = html
         },
         onEditorBlur() {
-            const content = '<div class=\"ql-editor\">' + this.textContent + '</div>'
+            this.htmlContent[1] = this.textContent
+            this.returnData[0] = this.textContent
+
+            const content = {
+                content: this.htmlContent.join(''),
+                type: 'text',
+                data: this.returnData
+            }
+
             this.$emit('get-content', this.moduleId, content)
         }
     }

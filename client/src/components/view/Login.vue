@@ -1,6 +1,6 @@
 <template>
     <div class="login-wrap">
-        <div class="ms-title">Boquete 后台管理系统</div>
+        <div class="ms-title">后台管理系统</div>
         <div class="ms-login">
             <el-form :model="loginForm"
                      :rules="rules"

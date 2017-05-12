@@ -1,38 +1,34 @@
 const
     bcrypt = require('bcrypt-nodejs'),
     logger = require('../lib/log')('model-user'),
-    m = require('../lib/mongoose'),
-    Schema = m.Schema,
-    mongoose = m.mongoose,
-    _salt_bounds = 10
-
-const user_schema = new Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    limits: {
-        type: Array,
-        default: []
-    },
-    isRoot: {
-        type: Boolean,
-        default: false
-    },
-    created_at: {
-        type: Date,
-        default: Date.now
-    },
-    _salt_bounds: {
-        type: Number,
-        required: false,
-        default: _salt_bounds
-    }
-})
+    { Schema, mongoose } = require('../lib/mongoose'),
+    user_schema = new Schema({
+        username: { // 管理员用户名
+            type: String,
+            required: true
+        },
+        password: { // 管理员密码
+            type: String,
+            required: true
+        },
+        limits: { // 用户权限
+            type: Array,
+            default: []
+        },
+        isRoot: { // 是否为超级管理员
+            type: Boolean,
+            default: false
+        },
+        created_at: { // 创建时间
+            type: Date,
+            default: Date.now
+        },
+        _salt_bounds: { // 工作因子 salt work factor
+            type: Number,
+            required: false,
+            default: 10
+        }
+    })
 
 user_schema.statics.login = function (username, password) {
     return new Promise((resolve, reject) => {
@@ -124,6 +120,9 @@ user_schema.statics.isRoot = function (userId) {
 
 user_schema.pre('save', function (next) {
     var that = this
+
+    if (!that.isModified('password')) return next()
+
     bcrypt.genSalt(that._salt_bounds, (err, salt) => {
         if (err) {
             logger.error(err)
@@ -135,34 +134,9 @@ user_schema.pre('save', function (next) {
                 logger.error(err)
             }
             that.password = hash
-
             return next()
         })
     })
 })
 
-user_schema.pre('update', function (next) {
-    var that = this
-    if (that._update.$set.password) {
-        bcrypt.genSalt(_salt_bounds, (err, salt) => {
-            if (err) {
-                logger.error(err)
-                return next()
-            }
-
-            bcrypt.hash(that._update.$set.password, salt, null, (err, hash) => {
-                if (err) {
-                    logger.error(err)
-                }
-                that._update.$set.password = hash
-                return next()
-            })
-        })
-    } else {
-        return next()
-    }
-})
-
-const userModel = mongoose.model('user', user_schema)
-
-module.exports = userModel
+module.exports = mongoose.model('user', user_schema)
