@@ -93,6 +93,7 @@ export default {
         },
         resetForm(formName) {
             this.$refs[formName].resetFields()
+            this.verifyImgSrc = `api/v1/verify-img?${Math.random()}`
         }
     }
 }

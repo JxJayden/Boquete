@@ -1,5 +1,6 @@
 const  logger = require('../../../lib/log')('base-getinfo'),
-    _ = require('../../lib/utils')
+    _ = require('../../lib/utils'),
+    config = require('../../lib/config')
 
 module.exports = async (ctx, next) => {
     ctx.websiteInfo = await _.getWebsiteInfo(ctx.params.websiteId)
@@ -14,11 +15,11 @@ module.exports = async (ctx, next) => {
     }
     let common = {
         title: webSiteInfo.title,
-        logo:  `//api.geishajs.com/${webSiteInfo.logo}`,
+        logo:  `${config.URL.API}${webSiteInfo.logo}`,
         nav: {
             homeUrl: webSiteInfo.url,
             nav: webSiteInfo.nav,
-            logo: `//api.geishajs.com/${webSiteInfo.logo}`
+            logo: `${config.URL.API}${webSiteInfo.logo}`
         },
         page: {
             title: webSiteInfo.title,

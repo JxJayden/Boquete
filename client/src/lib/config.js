@@ -1,7 +1,7 @@
 /* eslint key-spacing: "off" */
 const API_PREFIX = '/api/v1/'
 export const API = {
-    HOST:         '//api.geishajs.com/',
+    HOST:         '//api.geishajs.cn/',
     LOGIN:        `${API_PREFIX}login`,
     LOGOUT:       `${API_PREFIX}logout`,
     REGISTER:     `${API_PREFIX}register`,
