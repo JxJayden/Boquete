@@ -10,7 +10,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:JxJayden/Boquete.git',
       path : '/boquete',
-      'post-deploy' : 'cd /boquete && yarn install && cd ./server && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'yarn install && cd ./server && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
