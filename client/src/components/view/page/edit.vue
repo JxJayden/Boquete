@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             pageData: null,
-            defaultModules: ['video', 'image', 'carousel', 'text'],
+            defaultModules: ['image', 'carousel', 'text', 'section'],
             customContent: [],
             modulesData: []
         }

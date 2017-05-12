@@ -1,16 +1,16 @@
 <template>
     <div class="module-image"
          ref="image">
-        <el-upload class="avatar-uploader"
+        <el-upload class="image-uploader"
                    :action="uploadImgUrl"
                    :show-file-list="false"
-                   :on-success="handleAvatarSuccess"
-                   :before-upload="beforeAvatarUpload">
+                   :on-success="handleImageSuccess"
+                   :before-upload="beforeImageUpload">
             <img v-if="imageUrl"
                  :src="imageUrl"
-                 class="avatar">
+                 class="image">
             <i v-else
-               class="el-icon-plus avatar-uploader-icon"></i>
+               class="el-icon-plus image-uploader-icon"></i>
         </el-upload>
     </div>
 </template>
@@ -22,37 +22,40 @@ export default {
     data() {
         return {
             uploadImgUrl: API.UPLOAD_IMAGE,
-            imageUrl: ''
+            imageUrl: '',
+            returnData: [],
+            htmlContent: ['<img class=\"responsive-img\" src=\"', '', '\" style=\"height: auto; width: 100%;\"/>']
         }
     },
     methods: {
-        handleAvatarSuccess(res, file) {
+        handleImageSuccess(res, file) {
             const path = res.data.files[0].path
             this.imageUrl = API.HOST + path.replace(/.*\/uploads/, 'uploads')
-            this.saveImg(this.imageUrl)
+            this.htmlContent[1] = this.imageUrl
+            this.returnData.push(this.imageUrl)
+            this.saveImg(this.htmlContent.join(''), this.returnData)
         },
-        beforeAvatarUpload(file) {
-            const isJPG = file.type === 'image/jpeg'
+        beforeImageUpload(file) {
             const isLt2M = file.size / 1024 / 1024 < 2
-
-            if (!isJPG) {
-                this.$message.error('上传图片只能是 JPG 格式!')
-            }
             if (!isLt2M) {
                 this.$message.error('上传图片大小不能超过 2MB!')
             }
-            return isJPG && isLt2M
+            return isLt2M
         },
-        saveImg(imgUrl) {
-            const contentTmp = '<img class=\"responsive-img\" src=\"' + imgUrl + '\" />'
-            this.$emit('get-content', this.moduleId, contentTmp)
+        saveImg(htmlContent, data) {
+            const content = {
+                type: 'image',
+                content: htmlContent,
+                data: data
+            }
+            this.$emit('get-content', this.moduleId, content)
         }
     }
 }
 </script>
 <style>
 
-.avatar-uploader .el-upload {
+.image-uploader .el-upload {
     width: 100%;
     height: auto;
     border: 1px dashed #d9d9d9;
@@ -65,7 +68,7 @@ export default {
     border-color: #20a0ff;
 }
 
-.avatar-uploader-icon {
+.image-uploader-icon {
     font-size: 40px;
     color: #8c939d;
     width: 100%;
@@ -74,7 +77,7 @@ export default {
     text-align: center;
 }
 
-.avatar {
+.image {
     width: 100%;
     height: auto;
     display: block;
