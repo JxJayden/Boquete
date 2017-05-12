@@ -8,7 +8,7 @@ module.exports = {
       user : 'root',
       host : '119.29.137.236',
       ref  : 'origin/master',
-      repo : 'git@github.com:JxJayden/Boquete.git',
+      repo : 'https://github.com/JxJayden/Boquete.git',
       path : '/boquete',
       'post-deploy' : 'cd ./server && yarn install && pm2 reload ecosystem.config.js --env production'
     }
