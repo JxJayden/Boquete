@@ -4,7 +4,7 @@ const log4js = require('log4js'),
         appenders: [{
             type: 'console'
         }, {
-            type: 'DateFile',
+            type: 'dateFile',
             level: 'ERROR',
             filename: `${__dirname}/../../logs/server/server`,
             pattern: '-yyyy-MM-dd.log',
