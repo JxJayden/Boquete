@@ -14,11 +14,11 @@ module.exports = async (ctx, next) => {
     }
     let common = {
         title: webSiteInfo.title,
-        logo:  `//api.cms.com/${webSiteInfo.logo}`,
+        logo:  `//api.geishajs.com/${webSiteInfo.logo}`,
         nav: {
             homeUrl: webSiteInfo.url,
             nav: webSiteInfo.nav,
-            logo: `//api.cms.com/${webSiteInfo.logo}`
+            logo: `//api.geishajs.com/${webSiteInfo.logo}`
         },
         page: {
             title: webSiteInfo.title,

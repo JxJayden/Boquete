@@ -61,7 +61,7 @@ const defaultPageContent =
 module.exports = {
     limits: ['file', 'pages', 'product', 'user', 'website', 'post'],
     maxTime: 28800000,
-    production: false,
+    production: process.env.NODE_ENV && process.env.NODE_ENV === 'production',
     route_prefix: 'v1',
     mimetypeList: mimetypeList,
     defaultPageContent: defaultPageContent
