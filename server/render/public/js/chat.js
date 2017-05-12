@@ -36,7 +36,7 @@ $(function () {
     var lastTypingTime
     var $currentInput = $usernameInput.focus()
 
-    var socket = io('http://localhost:8081')
+    var socket = io('http://im.geishajs.cn')
 
     // Sets the client's username
     function setUsername(defaultUserName) {
