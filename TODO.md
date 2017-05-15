@@ -19,7 +19,7 @@
 - [x] 完成 post API
 - [x] 完成 pages API
 - [x] 写测试
-- [ ] 网站信息添加 keywords
+- [x] 网站信息添加 keywords
 - [ ] API 尽量实现 RESTful API
 
 ## client
@@ -37,8 +37,8 @@
     - [x] 模块删除
 - [x] 修改密码
 - [x] 文章可以暂存为草稿
-- [ ] 网站信息添加 keywords
-  - [ ] 页面自定义进一步完善
+- [x] 网站信息添加 keywords
+- [x] 页面自定义进一步完善
 
 ## user
 
